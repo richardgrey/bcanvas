@@ -3,70 +3,88 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Layout from '../components/Layout/Layout';
+import Header from '../components/Header/Header';
 import CanvasTitle from '../components/CanvasTitle/CanvasTitle';
 import CanvasTable from '../components/CanvasTable/CanvasTable';
 import CanvasTableLoading from '../components/CanvasTable/CanvasTableLoading';
 import CanvasActions from '../components/CanvasActions/CanvasActions';
-import { fetchCanvasWithEntries, unloadCanvas, setShareUrl } from '../actions/canvas';
-import Header from '../components/Header/Header';
+import { fetchCanvas, setShareUrl, setPreloadedCanvas } from '../actions/canvas';
+import { locationPropType } from '../utils/propTypes';
 
 class CanvasPage extends Component {
   static propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    canvasId: PropTypes.string.isRequired,
-    isPermissionDenied: PropTypes.bool.isRequired,
-    isFetching: PropTypes.bool.isRequired,
-    data: PropTypes.shape({
-      title: PropTypes.string,
-      type: PropTypes.string,
-      entries: PropTypes.object,
-      isOwner: PropTypes.bool,
-      isPublic: PropTypes.bool,
-    }),
-    user: PropTypes.shape({
-      id: PropTypes.string,
-    }),
     match: PropTypes.shape({
       url: PropTypes.string,
     }).isRequired,
-    location: PropTypes.shape({
-      pathname: PropTypes.string,
-    }).isRequired,
+    location: locationPropType.isRequired,
+    dispatch: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired,
+    isFetching: PropTypes.bool,
+    isLoaded: PropTypes.bool,
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    type: PropTypes.string,
+    entries: PropTypes.shape({}),
+    canView: PropTypes.bool,
+    canEdit: PropTypes.bool,
+    preloaded: PropTypes.shape({}),
   };
 
   static defaultProps = {
-    data: null,
-    user: null,
+    isFetching: false,
+    title: '',
+    type: undefined,
+    entries: {},
+    canView: undefined,
+    canEdit: undefined,
+    isLoaded: false,
+    preloaded: undefined,
   };
 
   componentDidMount() {
-    const { dispatch, canvasId, match } = this.props;
+    const { dispatch, id, isLoaded, preloaded, match } = this.props;
     const url = `${window.location.origin}${match.url}`;
 
-    dispatch(fetchCanvasWithEntries(canvasId));
+    console.log('componentDidMount');
+
+    if (!isLoaded) {
+      dispatch(fetchCanvas(id));
+    } else if (preloaded) {
+      dispatch(setPreloadedCanvas(preloaded));
+    }
     dispatch(setShareUrl(url));
   }
 
   componentWillReceiveProps(nextProps) {
-    const { dispatch, canvasId, match } = this.props;
-    const url = `${window.location.origin}${match.url}`;
-
-    if (canvasId !== nextProps.canvasId) {
-      dispatch(unloadCanvas());
-      dispatch(fetchCanvasWithEntries(nextProps.canvasId));
-      dispatch(setShareUrl(url));
-    }
-  }
-
-  componentWillUnmount() {
-    const { dispatch } = this.props;
-    dispatch(unloadCanvas());
+    // const { dispatch, id, match } = this.props;
+    // const url = `${window.location.origin}${match.url}`;
+    //
+    // if (id !== nextProps.id) {
+    //   dispatch(unloadCanvas());
+    //   dispatch(fetchCanvas(nextProps.id));
+    //   dispatch(setShareUrl(url));
+    // }
   }
 
   render() {
-    const { canvasId, dispatch, location, data, isFetching, isPermissionDenied } = this.props;
+    const {
+      dispatch,
+      location,
+      isAuthenticated,
+      id,
+      type,
+      title,
+      canEdit,
+      canView,
+      entries,
+      isFetching,
+    } = this.props;
 
-    if (isPermissionDenied) {
+    // Must be strictly False
+    if (canView === false) {
+      if (isAuthenticated) {
+        return <Redirect to="/" />;
+      }
       return (
         <Redirect
           to={{
@@ -79,8 +97,8 @@ class CanvasPage extends Component {
       );
     }
 
-    if (!data) {
-      // Show loading
+    // No information about type of the canvas, so must be fetched before full render
+    if (type) {
       return (
         <Layout fluid background="gradient">
           <Layout.Header>
@@ -89,42 +107,14 @@ class CanvasPage extends Component {
               btnUser
               fixed
               left={
-                <CanvasTitle canvasId={canvasId} title={null} canEdit={false} dispatch={dispatch} />
+                <CanvasTitle canvasId={id} title={title} canEdit={canEdit} dispatch={dispatch} />
               }
-            />
-          </Layout.Header>
-          <Layout.Container>
-            <CanvasTableLoading />
-          </Layout.Container>
-        </Layout>
-      );
-    }
-
-    if (data && (data.isOwner || data.isPublic)) {
-      const { title, type, entries, isOwner } = data;
-      const canEdit = isOwner && !isFetching;
-      // Canvas table
-      return (
-        <Layout fluid background="gradient">
-          <Layout.Header>
-            <Header
-              btnDashboard
-              btnUser
-              fixed
-              left={
-                <CanvasTitle
-                  canvasId={canvasId}
-                  title={title}
-                  canEdit={canEdit}
-                  dispatch={dispatch}
-                />
-              }
-              right={<CanvasActions canvas={data} dispatch={dispatch} />}
+              right={<CanvasActions dispatch={dispatch} />}
             />
           </Layout.Header>
           <Layout.Container>
             <CanvasTable
-              canvasId={canvasId}
+              canvasId={id}
               type={type}
               entries={entries}
               isLoading={isFetching}
@@ -136,33 +126,81 @@ class CanvasPage extends Component {
       );
     }
 
-    // Not owner and not Shared
-    return <Redirect to="/" />;
+    // We don't know the type of the canvas, so showing general loading state
+    return (
+      <Layout fluid background="gradient">
+        <Layout.Header>
+          <Header
+            btnDashboard
+            btnUser
+            fixed
+            left={<CanvasTitle canvasId={id} title={title} canEdit={canEdit} dispatch={dispatch} />}
+          />
+        </Layout.Header>
+        <Layout.Container>
+          <CanvasTableLoading />
+        </Layout.Container>
+      </Layout>
+    );
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const { canvas, canvasList } = state;
   const { match } = ownProps;
+  const { canvas, auth, account, canvasList } = state;
   const canvasId = match.params.id;
+  const { isAuthenticated } = auth;
 
-  // Use canvas data from the list of canvases if available
-  if (!canvas.data && canvasList.canvases.length) {
-    const prefetchedCanvas = canvasList.canvases.find(cnvs => cnvs.id === canvasId);
-    if (prefetchedCanvas) {
+  const prepareData = data => {
+    const isOwner = data.ownerId === account.uid;
+    const canView = !data.isDenied && (isOwner || data.isPublic);
+    const canEdit = isOwner && !data.isFetching;
+
+    // Preparing entries for rendering
+    const entries = data.entries || {};
+    const preparedEntries = Object.keys(entries)
+      .sort((a, b) => entries[a].createdAt - entries[b].createdAt)
+      .reduce((obj, id) => {
+        const entr = entries[id];
+        obj[entr.label] = obj[entr.label] || [];
+        obj[entr.label].push({
+          id,
+          ...entr,
+        });
+        return obj;
+      }, {});
+
+    return {
+      ...data,
+      entries: preparedEntries,
+      isOwner,
+      canView,
+      canEdit,
+      isLoaded: true,
+      isAuthenticated,
+    };
+  };
+
+  // Canvas with ID is loaded
+  if (canvasId === canvas.id) {
+    return prepareData(canvas);
+  }
+
+  if (canvasList.isLoaded) {
+    const canvasFromList = canvasList.canvases.find(cnvs => cnvs.id === canvasId);
+    if (canvasFromList) {
       return {
-        canvasId,
-        ...canvas,
-        data: prefetchedCanvas,
-        isPermissionDenied: canvas.isPermissionDenied,
+        ...prepareData(canvasFromList),
+        preloaded: canvasFromList,
       };
     }
   }
 
   return {
-    canvasId,
-    ...canvas,
-    isPermissionDenied: canvas.isPermissionDenied,
+    id: canvasId,
+    isFetching: canvas.isFetching,
+    canEdit: canvas.isFetching,
+    isAuthenticated,
   };
 };
 

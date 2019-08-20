@@ -4,52 +4,6 @@ import history from '../history';
 export const CANVAS_LIST_FETCH_REQUEST = 'CANVAS_LIST_FETCH_REQUEST';
 export const CANVAS_LIST_FETCH_SUCCESS = 'CANVAS_LIST_FETCH_SUCCESS';
 export const CANVAS_LIST_FETCH_ERROR = 'CANVAS_LIST_FETCH_ERROR';
-export const CANVAS_FETCH_REQUEST = 'CANVAS_FETCH_REQUEST';
-export const CANVAS_FETCH_SUCCESS = 'CANVAS_FETCH_SUCCESS';
-export const CANVAS_FETCH_ERROR = 'CANVAS_FETCH_ERROR';
-export const CANVAS_CREATE_REQUEST = 'CANVAS_CREATE_REQUEST';
-export const CANVAS_CREATE_SUCCESS = 'CANVAS_CREATE_SUCCESS';
-export const CANVAS_CREATE_ERROR = 'CANVAS_CREATE_ERROR';
-export const CANVAS_UPDATE_TITLE_REQUEST = 'CANVAS_UPDATE_TITLE_REQUEST';
-export const CANVAS_UPDATE_TITLE_SUCCESS = 'CANVAS_UPDATE_TITLE_SUCCESS';
-export const CANVAS_UPDATE_TITLE_ERROR = 'CANVAS_UPDATE_TITLE_ERROR';
-export const CANVAS_REMOVE_REQUEST = 'CANVAS_REMOVE_REQUEST';
-export const CANVAS_REMOVE_SUCCESS = 'CANVAS_REMOVE_SUCCESS';
-export const CANVAS_REMOVE_ERROR = 'CANVAS_REMOVE_ERROR';
-export const CANVAS_ENTRIES_FETCH_REQUEST = 'CANVAS_ENTRIES_FETCH_REQUEST';
-export const CANVAS_ENTRIES_FETCH_SUCCESS = 'CANVAS_ENTRIES_FETCH_SUCCESS';
-export const CANVAS_ENTRIES_FETCH_ERROR = 'CANVAS_ENTRIES_FETCH_ERROR';
-export const CANVAS_SHARING_REQUEST = 'CANVAS_SHARING_REQUEST';
-export const CANVAS_SHARING_SUCCESS = 'CANVAS_SHARING_SUCCESS';
-export const CANVAS_SHARING_ERROR = 'CANVAS_SHARING_ERROR';
-
-export const CANVAS_UNLOAD = 'CANVAS_UNLOAD';
-export const CANVAS_SET_SHARE_URL = 'CANVAS_SET_SHARE_URL';
-
-/**
- * Check if current users is owner of the canvas
- *
- * @param cnvs {object}
- * @param cnvs.ownerID {uid}
- * @param user {object}
- * @param user.uid {uid}
- * @returns {boolean}
- */
-function isCanvasOwner(cnvs, user) {
-  return user.uid && user.uid === cnvs.ownerId;
-}
-
-/**
- * Returns sharable link for canvas
- *
- * @param cnvs {object}
- * @param cnvs.id {uid}
- * @param baseUrl {URL}
- * @returns {string}
- */
-function canvasShareUrl(cnvs, baseUrl) {
-  return `${baseUrl}/canvas/${cnvs.id}`;
-}
 
 /**
  * Load canvases available for current user
@@ -57,7 +11,7 @@ function canvasShareUrl(cnvs, baseUrl) {
  * @returns {Function}
  */
 export const fetchCanvasList = () => async (dispatch, getState) => {
-  const { app, account, canvasList } = getState();
+  const { canvasList } = getState();
 
   // Don't make another request if it's already loading
   if (canvasList.isFetching) {
@@ -71,11 +25,7 @@ export const fetchCanvasList = () => async (dispatch, getState) => {
     // Extends canvas info width generic data
     dispatch({
       type: CANVAS_LIST_FETCH_SUCCESS,
-      payload: canvases.map(cnvs => ({
-        ...cnvs,
-        isOwner: isCanvasOwner(cnvs, account),
-        shareUrl: canvasShareUrl(cnvs, app.baseUrl),
-      })),
+      payload: canvases,
     });
   } catch (error) {
     dispatch({
@@ -85,15 +35,19 @@ export const fetchCanvasList = () => async (dispatch, getState) => {
   }
 };
 
+// ---
+
+export const CANVAS_FETCH_REQUEST = 'CANVAS_FETCH_REQUEST';
+export const CANVAS_FETCH_SUCCESS = 'CANVAS_FETCH_SUCCESS';
+export const CANVAS_FETCH_ERROR = 'CANVAS_FETCH_ERROR';
+
 /**
  * Get a full object of canvas with entries
  *
  * @param canvasId {uid}
  * @returns {Function}
  */
-export const fetchCanvasWithEntries = canvasId => async (dispatch, getState) => {
-  const { app, account } = getState();
-
+export const fetchCanvas = canvasId => async dispatch => {
   dispatch({
     type: CANVAS_FETCH_REQUEST,
     payload: { canvasId },
@@ -101,18 +55,9 @@ export const fetchCanvasWithEntries = canvasId => async (dispatch, getState) => 
 
   try {
     const canvas = await api.canvas.get(canvasId);
-    const entries = await api.canvas.entries(canvasId);
-
-    const payload = {
-      ...canvas,
-      entries,
-      isOwner: isCanvasOwner(canvas, account),
-      shareUrl: canvasShareUrl(canvas, app.baseUrl),
-    };
-
     dispatch({
       type: CANVAS_FETCH_SUCCESS,
-      payload,
+      payload: canvas,
     });
   } catch (error) {
     dispatch({
@@ -122,34 +67,18 @@ export const fetchCanvasWithEntries = canvasId => async (dispatch, getState) => 
   }
 };
 
+// ---
+
+export const CANVAS_CREATE_REQUEST = 'CANVAS_CREATE_REQUEST';
+export const CANVAS_CREATE_SUCCESS = 'CANVAS_CREATE_SUCCESS';
+export const CANVAS_CREATE_ERROR = 'CANVAS_CREATE_ERROR';
+
 /**
- * Get Entries of canvas with provided ID
- *
- * @param canvasId {uid}
+ * Creates new canvas with given type and title
+ * @param data
  * @returns {Function}
  */
-export const fetchCanvasEntries = canvasId => async dispatch => {
-  dispatch({
-    type: CANVAS_ENTRIES_FETCH_REQUEST,
-    payload: { canvasId },
-  });
-  try {
-    const entries = await api.canvas.entries(canvasId);
-    dispatch({
-      type: CANVAS_ENTRIES_FETCH_SUCCESS,
-      payload: entries,
-    });
-  } catch (error) {
-    dispatch({
-      type: CANVAS_ENTRIES_FETCH_ERROR,
-      payload: { canvasId, error },
-    });
-  }
-};
-
-export const createCanvas = (data = {}) => async (dispatch, getState) => {
-  const { app } = getState();
-
+export const createCanvas = (data = {}) => async dispatch => {
   dispatch({
     type: CANVAS_CREATE_REQUEST,
     payload: { data },
@@ -160,16 +89,12 @@ export const createCanvas = (data = {}) => async (dispatch, getState) => {
 
     dispatch({
       type: CANVAS_CREATE_SUCCESS,
-      payload: {
-        ...canvas,
-        isOwner: true,
-        shareUrl: canvasShareUrl(canvas, app.baseUrl),
-      },
+      payload: canvas,
     });
     // Go to newly created canvas
     history.push(`/canvas/${canvasId}`);
     // Fetch updated list of canvases
-    dispatch(fetchCanvasList());
+    // dispatch(fetchCanvasList());
   } catch (error) {
     dispatch({
       type: CANVAS_CREATE_ERROR,
@@ -177,6 +102,12 @@ export const createCanvas = (data = {}) => async (dispatch, getState) => {
     });
   }
 };
+
+// ---
+
+export const CANVAS_UPDATE_TITLE_REQUEST = 'CANVAS_UPDATE_TITLE_REQUEST';
+export const CANVAS_UPDATE_TITLE_SUCCESS = 'CANVAS_UPDATE_TITLE_SUCCESS';
+export const CANVAS_UPDATE_TITLE_ERROR = 'CANVAS_UPDATE_TITLE_ERROR';
 
 /**
  * Change title of the canvas with provided ID.
@@ -204,6 +135,18 @@ export const updateCanvasTitle = (canvasId, title) => async dispatch => {
   }
 };
 
+// ---
+
+export const CANVAS_REMOVE_REQUEST = 'CANVAS_REMOVE_REQUEST';
+export const CANVAS_REMOVE_SUCCESS = 'CANVAS_REMOVE_SUCCESS';
+export const CANVAS_REMOVE_ERROR = 'CANVAS_REMOVE_ERROR';
+
+/**
+ * Mark canvas with given ID as removed
+ *
+ * @param canvasId {string}
+ * @returns {Function}
+ */
 export const removeCanvas = canvasId => async dispatch => {
   dispatch({
     type: CANVAS_REMOVE_REQUEST,
@@ -223,6 +166,20 @@ export const removeCanvas = canvasId => async dispatch => {
   }
 };
 
+// ---
+
+export const CANVAS_SHARING_REQUEST = 'CANVAS_SHARING_REQUEST';
+export const CANVAS_SHARING_SUCCESS = 'CANVAS_SHARING_SUCCESS';
+export const CANVAS_SHARING_ERROR = 'CANVAS_SHARING_ERROR';
+
+/**
+ * Change Sharing settings of the canvas with given ID
+ *
+ * @param canvasId {string}
+ * @param opts {object}
+ * @param opts.isPublic {boolean}
+ * @returns {Function}
+ */
 export const saveSharingSettings = (canvasId, opts = {}) => async dispatch => {
   dispatch({
     type: CANVAS_SHARING_REQUEST,
@@ -245,11 +202,39 @@ export const saveSharingSettings = (canvasId, opts = {}) => async dispatch => {
   }
 };
 
+// ---
+
+export const CANVAS_UNLOAD = 'CANVAS_UNLOAD';
+
+/**
+ * Clear canvas state
+ *
+ * @returns {{type: string}}
+ */
 export const unloadCanvas = () => ({
   type: CANVAS_UNLOAD,
 });
 
+// ---
+
+export const CANVAS_SET_SHARE_URL = 'CANVAS_SET_SHARE_URL';
+
+/**
+ * Set sharing URL in state
+ *
+ * @param url
+ * @returns {{payload: string, type: string}}
+ */
 export const setShareUrl = url => ({
   type: CANVAS_SET_SHARE_URL,
   payload: url,
+});
+
+// ---
+
+export const CANVAS_SET_PRELOADED_CANVAS = 'CANVAS_SET_PRELOADED_CANVAS';
+
+export const setPreloadedCanvas = canvas => ({
+  type: CANVAS_SET_PRELOADED_CANVAS,
+  payload: canvas,
 });

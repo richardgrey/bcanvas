@@ -12,23 +12,18 @@ export const CANVAS_DOCUMENT_DEFAULTS = {
   deletedAt: null,
 };
 
-export const ENTRY_DOCUMENT_DEFAULTS = {
-  label: null,
-  value: null,
-  createdAt: FieldValue.serverTimestamp(),
-  updatedAt: FieldValue.serverTimestamp(),
-};
-
-export const documentUpdatedTick = docRef =>
-  docRef.set({ updatedAt: FieldValue.serverTimestamp() }, { merge: true });
-
 export const timestampFieldsToMillis = doc => {
-  const data = doc.data();
+  const data = typeof doc.data === 'function' ? doc.data() : doc;
   const newData = {};
 
   Object.keys(data).forEach(key => {
     if (data[key] instanceof Timestamp) {
       newData[key] = data[key].toMillis();
+    } else if (key === 'entries') {
+      newData[key] = Object.keys(data[key]).reduce((o, k) => {
+        o[k] = timestampFieldsToMillis(data[key][k]);
+        return o;
+      }, {});
     } else {
       newData[key] = data[key];
     }

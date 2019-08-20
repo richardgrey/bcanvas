@@ -10,7 +10,6 @@ const CanvasTable = props => {
 
   return (
     <div className="canvas-table">
-      {isLoading ? <div className="canvas-table__loader" /> : null}
       {schema.map(column => {
         const { label } = column;
         return (
@@ -24,6 +23,7 @@ const CanvasTable = props => {
           />
         );
       })}
+      {isLoading ? <div className="canvas-table__loader" /> : null}
     </div>
   );
 };
@@ -32,8 +32,8 @@ CanvasTable.propTypes = {
   dispatch: PropTypes.func.isRequired,
   canvasId: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  isLoading: PropTypes.bool.isRequired,
   canEdit: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   entries: PropTypes.shape({
     partners: PropTypes.arrayOf(PropTypes.object),
     activities: PropTypes.arrayOf(PropTypes.object),

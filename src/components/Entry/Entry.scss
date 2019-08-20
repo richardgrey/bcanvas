@@ -36,7 +36,6 @@ $color-map: (
 
   span {
     color: $color-black;
-    user-select: none;
     transition: background-color 100ms;
   }
   @include entryBg($color-primary);
@@ -72,4 +71,11 @@ $color-map: (
 }
 .entry:focus:before {
   opacity: 1;
+}
+
+.entry_disabled {
+  &,
+  &:hover {
+    background: none;
+  }
 }

@@ -34,15 +34,15 @@ const focusNextEntry = el => {
 
 class Entry extends Component {
   static propTypes = {
-    id: PropTypes.string,
+    dispatch: PropTypes.func.isRequired,
+    canEdit: PropTypes.bool.isRequired,
     label: PropTypes.string.isRequired,
+    id: PropTypes.string,
     value: PropTypes.string,
     canvasId: PropTypes.string,
     isHidden: PropTypes.bool,
-    isOptimistic: PropTypes.bool,
+    isError: PropTypes.bool,
     inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    dispatch: PropTypes.func.isRequired,
-    canEdit: PropTypes.bool.isRequired,
   };
 
   static defaultProps = {
@@ -50,7 +50,7 @@ class Entry extends Component {
     value: '',
     canvasId: null,
     isHidden: false,
-    isOptimistic: false,
+    isError: false,
     inputRef: null,
   };
 
@@ -61,6 +61,7 @@ class Entry extends Component {
 
   onKeyUp(e) {
     if (e.key === 'Escape') {
+      e.target.innerText = this.props.value;
       e.target.blur();
     }
   }
@@ -68,13 +69,13 @@ class Entry extends Component {
   onKeyPress(e) {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
-      const value = e.target.innerText;
-      this.submitEntry(value.trim(), e.target);
+      const val = e.target.innerText;
+      this.submitEntry(val.trim(), e.target);
     }
   }
 
   submitEntry(val, target) {
-    const { dispatch, canvasId, id, value, label, isOptimistic } = this.props;
+    const { dispatch, canvasId, id, value, label } = this.props;
 
     if (val === value) {
       // Imitate submission.
@@ -82,16 +83,14 @@ class Entry extends Component {
       return;
     }
 
-    // Flag isOptimistic indicates that current entry was added without positive response from
-    // the server. The changes should not be processed.
-    if (!canvasId || isOptimistic) {
+    if (!canvasId) {
       return;
     }
 
     if (id) {
       if (val) {
         // Update existing entry
-        dispatch(updateEntry(canvasId, id, { label, value: val }));
+        dispatch(updateEntry(canvasId, id, val));
       } else {
         // Remove entry. Move focus to next input
         dispatch(removeEntry(canvasId, id));
@@ -99,7 +98,7 @@ class Entry extends Component {
       focusNextEntry(target);
     } else if (val) {
       // Creates new entry that will render via state update
-      dispatch(addEntry(canvasId, { label, value: val }));
+      dispatch(addEntry(canvasId, label, val));
       target.innerText = '';
     }
   }
@@ -120,14 +119,14 @@ class Entry extends Component {
         suppressContentEditableWarning
         aria-placeholder="Type in something..."
         onKeyPress={e => this.onKeyPress(e)}
-        onKeyUp={this.onKeyUp}
-        onPaste={this.onPaste}
+        onKeyUp={e => this.onKeyUp(e)}
+        onPaste={e => this.onPaste(e)}
         ref={inputRef}
       >
         <span>{value}</span>
       </div>
     ) : (
-      <div className="entry">
+      <div className="entry entry_disabled">
         <span>{value}</span>
       </div>
     );
