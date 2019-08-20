@@ -1,5 +1,6 @@
 import { FieldValue, Timestamp } from '../firebase';
 import { CANVAS_TYPE_BUSINESS } from '../constants';
+import isObject from '../utils/isObject';
 
 export const CANVAS_DOCUMENT_DEFAULTS = {
   title: null,
@@ -19,11 +20,8 @@ export const timestampFieldsToMillis = doc => {
   Object.keys(data).forEach(key => {
     if (data[key] instanceof Timestamp) {
       newData[key] = data[key].toMillis();
-    } else if (key === 'entries') {
-      newData[key] = Object.keys(data[key]).reduce((o, k) => {
-        o[k] = timestampFieldsToMillis(data[key][k]);
-        return o;
-      }, {});
+    } else if (isObject(data[key])) {
+      newData[key] = timestampFieldsToMillis(data[key]);
     } else {
       newData[key] = data[key];
     }
@@ -33,11 +31,6 @@ export const timestampFieldsToMillis = doc => {
 };
 
 export const normalizeCanvas = doc => ({
-  id: doc.id,
-  ...timestampFieldsToMillis(doc),
-});
-
-export const normalizeEntry = doc => ({
   id: doc.id,
   ...timestampFieldsToMillis(doc),
 });
