@@ -1,0 +1,102 @@
+@import "../../styles/variables";
+
+.form {
+}
+.form__row {
+  position: relative;
+}
+.form__row + .form__row {
+  margin-top: 1.5rem;
+}
+.form__row + .form__row_submit {
+  margin-top: 2.5rem;
+}
+.form__label {
+  color: $color-gray1;
+  font-size: 1.125rem;
+  line-height: 1.125;
+  display: block;
+  margin-bottom: .5em;
+}
+.form__label a {
+  color: $color-gray1;
+  text-decoration: underline;
+}
+
+.form__hint,
+.form__error {
+  margin-top: .5em;
+}
+.form__error {
+  color: $color-red;
+  font-size: 1rem;
+  line-height: 1.125;
+}
+.form__hint {
+  color: $color-gray4;
+  font-size: 1rem;
+  line-height: 1.5;
+
+  a {
+    color: $color-gray4;
+
+    &:hover {
+      color: $color-gray2;
+    }
+  }
+}
+
+
+.form__switch {
+  vertical-align: middle;
+  margin-left: 1em;
+}
+
+// ??? Deprecated ????
+.form__input {
+  font-size: 1.166667rem;
+  line-height: 1.25;
+  display: block;
+  width: 100%;
+  padding: .75em 1em;
+  border: 1px solid #c8cbcc;
+}
+.form__input:focus {
+  outline: none;
+  background: #f5f9fa;
+  border: 1px solid #c8cbcc;
+}
+.form__input_disabled,
+.form__input_disabled:focus {
+  background: #f5f9fa;
+}
+.form__input_error,
+.form__input_error:focus {
+  border-color: #a82a28;
+}
+
+
+// Account forms
+.form_auth,
+.form_account {
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (min-width: $min-desktop) {
+  .form_auth,
+  .form_account {
+    .form__error {
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      margin: 0 0 0 40px;
+      transform: translateY(-50%);
+      // magic number
+      width: 240px;
+    }
+  }
+  .form_account {
+    margin-top: 90px;
+  }
+}

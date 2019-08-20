@@ -1,0 +1,35 @@
+@import '../../styles/variables';
+
+.hero {
+  margin: 150px auto 120px;
+  text-align: center;
+}
+.hero__title {
+  font-family: $font-serif;
+  font-size: 4rem;
+  line-height: 1;
+  margin: 0 0 0.5em;
+}
+.hero__subtitle {
+  color: $color-gray1;
+  font-family: $font-sans;
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+.hero__cta {
+  margin: 60px 0;
+
+  .button {
+    &:before {
+      box-shadow: 0 15px 30px rgba($color-indigo, 0.3);
+    }
+    &:hover:before {
+      box-shadow: 0 7px 10px rgba($color-indigo, 0.3);
+    }
+    &:active:before {
+      box-shadow: 0 4px 7px rgba($color-indigo, 0.3);
+    }
+  }
+}
+
+

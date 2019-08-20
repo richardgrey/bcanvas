@@ -1,0 +1,63 @@
+@import "../../styles/variables";
+
+.header-button {
+  color: $color-black;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.125;
+  text-decoration: none;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: 0;
+
+  &:active {
+    color: $color-primary;
+    background-color: $color-gray0;
+
+    svg {
+      fill: $color-primary;
+      stroke: $color-primary;
+    }
+  }
+}
+.header-button__inner {
+  display: flex;
+}
+.header-button__icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+
+  svg {
+    max-width: 20px;
+    max-height: 20px;
+  }
+  .icon_dashboard {
+    vertical-align: middle;
+    width: 18px;
+    height: 18px;
+  }
+}
+.header-button__label {
+  margin-left: -0.5em;
+  padding: 20px 20px 20px 0;
+}
+
+
+.header-button_align_right {
+  .header-button__inner {
+    flex-direction: row-reverse;
+  }
+  .header-button__label {
+    margin-left: 0;
+    margin-right: -0.5em;
+    padding-left: 20px;
+    padding-right: 0;
+  }
+}

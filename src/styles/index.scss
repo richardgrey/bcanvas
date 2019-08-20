@@ -1,0 +1,82 @@
+@import url("https://use.typekit.net/ctn7gqi.css");
+@import "variables";
+@import "reset";
+
+/* ----------------------- */
+
+html {
+  font-size: 100%;
+
+  -webkit-overflow-scrolling: touch;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body {
+  color: $color-gray1;
+  font: normal 1em/1.5 $font-sans;
+  background: #fff;
+  overflow-y: scroll;
+}
+
+input::placeholder {
+  color: #c8cbcc;
+}
+button {
+  outline: none;
+}
+
+
+hr {
+  border: none;
+  border-top: 1px solid #c8cbcc;
+}
+
+.hidden {
+  display: none;
+}
+
+
+// Basic Typography
+.h1, h1,
+.h2, h2,
+.h3, h3,
+.h4, h4 {
+  color: $color-black;
+  font-family: $font-sans;
+  font-weight: bold;
+  line-height: 1.125;
+  margin: 0 0 1em;
+}
+.h1, h1 {
+  font-size: 3rem;
+}
+.h2, h2 {
+  font-size: 1.5rem;
+}
+.h3, h3 {
+  font-size: 1.125rem;
+  margin-bottom: 0.3em;
+}
+p {
+  margin: 0 0 1em;
+}
+a {
+  color: $color-primary;
+}
+
+.text_align_center {
+  text-align: center;
+}
+.text_align_left {
+  text-align: left;
+}
+.text_align_right {
+  text-align: right;
+}
+
+
+
+
+
+
+

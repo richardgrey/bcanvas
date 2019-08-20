@@ -1,0 +1,12 @@
+@import "../../styles/variables";
+
+.auth-header-text {
+  color: $color-gray3;
+  font-size: 1rem;
+  line-height: 1.25;
+  padding: 20px;
+
+  a {
+    color: $color-primary;
+  }
+}

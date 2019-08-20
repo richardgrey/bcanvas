@@ -1,0 +1,112 @@
+@import "../../styles/variables";
+@import "../../styles/elevate";
+
+.new-canvas-card {
+  color: $color-gray1;
+  text-decoration: none;
+  max-width: 320px;
+  cursor: pointer;
+}
+.new-canvas-card__inner {
+  overflow: hidden;
+  padding: 40px;
+  background: $color-gray9;
+  border-radius: $border-radius;
+  transform: translate3d(0, 0, 0);
+  transition: box-shadow 200ms ease, transform 200ms ease;
+  will-change: transition, box-shadow;
+}
+.new-canvas-card__media {
+  margin-bottom: 40px;
+}
+.new-canvas-card__title {
+  min-height: 1.125 * 2em;
+}
+.new-canvas-card__desc {
+  margin-bottom: 40px;
+}
+.new-canvas-card__cta {
+  font-weight: 700;
+  font-size: 1.125rem;
+
+  .icon {
+    margin-left: 12px;
+    width: 18px;
+    height: 12px;
+    transform: translate3d(0, 0, 0);
+    transition: transform 300ms ease;
+  }
+}
+
+
+.new-canvas-card:hover,
+.new-canvas-card:focus {
+  outline: none;
+
+  .new-canvas-card__inner {
+    @include elevate(16);
+    transform: translate3d(0, -10px, 0);
+  }
+  .new-canvas-card__cta {
+    .icon {
+      transform: translate3d(15px, 0, 0);
+    }
+  }
+}
+.new-canvas-card:active {
+  .new-canvas-card__inner {
+    @include elevate(8);
+    transform: translate3d(0, -5px, 0);
+  }
+}
+
+
+// Theming for types
+.new-canvas-card_type_business {
+  .new-canvas-card__inner {
+    background-color: $bg-indigo;
+  }
+  &:hover,
+  &:focus {
+    .new-canvas-card__inner {
+      @include elevate(16, $color-indigo);
+    }
+  }
+  &:active {
+    .new-canvas-card__inner {
+      @include elevate(8, $color-indigo);
+    }
+  }
+}
+.new-canvas-card_type_value {
+  .new-canvas-card__inner {
+    background-color: $bg-orange;
+  }
+  &:hover,
+  &:focus {
+    .new-canvas-card__inner {
+      @include elevate(16, #eb933b);
+    }
+  }
+  &:active {
+    .new-canvas-card__inner {
+      @include elevate(8, #eb933b);
+    }
+  }
+}
+.new-canvas-card_type_lean {
+  .new-canvas-card__inner {
+    background-color: $bg-lime;
+  }
+  &:hover,
+  &:focus {
+    .new-canvas-card__inner {
+      @include elevate(16, #93eb3b);
+    }
+  }
+  &:active {
+    .new-canvas-card__inner {
+      @include elevate(8, #93eb3b);
+    }
+  }
+}

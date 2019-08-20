@@ -1,0 +1,54 @@
+@media print {
+  html,
+  body,
+  .layout__container,
+  .layout__container_bg_gradient {
+    background: none !important;
+  }
+  .layout__sidebar {
+    display: none !important;
+  }
+
+  .layout__container,
+  .layout__content {
+    padding: 0 !important;
+  }
+
+  .layout__header {
+    position: static !important;
+    margin-bottom: 0 !important;
+  }
+
+  .header {
+    background: none !important;
+    border: none !important;
+  }
+  .header__button,
+  .header__logo,
+  .header__aside,
+  .canvas-column__hints {
+    display: none !important;
+  }
+
+  .canvas-title__input {
+    padding: 0 !important;
+  }
+
+  .canvas-table {
+    min-height: 85vh !important;
+  }
+  .canvas-table,
+  .canvas-column {
+    border-color: #ccc !important;
+  }
+  .canvas-column {
+    min-height: 25vh !important;
+    background: none !important;
+  }
+
+  @page {
+    size: landscape;
+    margin: 8mm 12mm;
+    padding: 0;
+  }
+}

@@ -1,0 +1,172 @@
+@import "../../styles/variables";
+@import "../../styles/animation";
+
+.canvas-card {
+  position: relative;
+  display: block;
+  max-width: 350px;
+  transition: opacity 150ms ease;
+  animation: 800ms fade-in;
+}
+.canvas-card__link {
+  color: $color-black;
+  text-decoration: none;
+  position: relative;
+  display: block;
+  transition: box-shadow 150ms ease;
+}
+.canvas-card__media {
+  background: $color-gray9;
+  padding: 30px;
+  border-radius: $border-radius;
+
+  img {
+    vertical-align: top;
+  }
+}
+.canvas-card__body {
+  margin: 1rem 35px 0 0;
+}
+.canvas-card__title {
+  font-weight: bold;
+  font-size: 1.125rem;
+  line-height: 1.125;
+  margin: 0;
+}
+.canvas-card__title_no {
+  color: $color-gray3;
+  font-weight: normal;
+}
+.canvas-card__type {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: $color-gray5;
+  margin: 0;
+}
+
+
+// Canvas Styling by Type
+.canvas-card_type_business {
+  .canvas-card__media {
+    background-color: $bg-indigo;
+  }
+}
+.canvas-card_type_value {
+  .canvas-card__media {
+    background-color: $bg-orange;
+  }
+}
+.canvas-card_type_lean {
+  .canvas-card__media {
+    background-color: $bg-lime;
+  }
+}
+
+
+// Canvas Mockup for Loading State
+.canvas-card_mock {
+  $color: $color-gray0;
+  $color2: $color-gray8;
+
+  animation: none;
+
+  .canvas-card__media {
+    padding: 80% 0 0;
+    background: $color;
+    animation: 3s canvas-card-loading infinite;
+  }
+
+  .canvas-card__title,
+  .canvas-card__type {
+    &:before {
+      content: '';
+      display: inline-block;
+      vertical-align: middle;
+      background-color: $color;
+      animation: 3s canvas-card-loading infinite;
+    }
+  }
+
+  .canvas-card__title {
+    &:before {
+      height: 0.8rem;
+      width: 85%;
+    }
+  }
+
+  .canvas-card__type {
+    &:before {
+      height: 0.66rem;
+      width: 50%;
+    }
+  }
+
+  @keyframes canvas-card-loading {
+    0% {
+      background-color: $color;
+    }
+    50% {
+      background-color: $color2;
+    }
+    100% {
+      background-color: $color;
+    }
+  }
+}
+
+
+//
+// Card Deletion
+// =============
+.canvas-card__delete {
+  color: #999;
+  font-size: 20px;
+  line-height: 21px;
+  text-align: center;
+  vertical-align: middle;
+  position: absolute;
+  right: -7px;
+  top: -7px;
+  width: 24px;
+  height: 24px;
+  opacity: 0;
+  background: #fff;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 3px 1px -2px rgba(0,0,0,.2),
+              0 2px 2px 0 rgba(0,0,0,.14),
+              0 1px 5px 0 rgba(0,0,0,.12);
+  transition: box-shadow 150ms ease, opacity 150ms ease;
+}
+.canvas-card:hover .canvas-card__delete {
+  opacity: 1;
+}
+.canvas-card__delete:hover {
+  box-shadow: 0 3px 5px -1px rgba(0,0,0,.2),
+              0 6px 10px 0px rgba(0,0,0,.14),
+              0 1px 18px 0px rgba(0,0,0,.12);
+}
+.canvas-card__delete:active {
+  background: #e3e7e8;
+}
+.canvas-card__delete:focus {
+  outline: none;
+}
+.canvas-card__confirming-remove {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(#fff, .85);
+}
+.canvas-card__confirming-remove-inner {
+
+}
+
+.canvas-card_removing {
+  opacity: .2;
+}

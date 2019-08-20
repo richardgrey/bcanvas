@@ -1,0 +1,109 @@
+@import '../../styles/variables';
+@import '../../styles/utils';
+
+.button {
+  color: #fff;
+  font: bold 1.125rem/1.125 $font-sans;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  padding: 20px 60px;
+  background: transparent;
+  border: 0;
+  will-change: color;
+  transition: color $transition-enter;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: $color-primary;
+    border: 0;
+    border-radius: $border-radius;
+    box-shadow: 0 2px 4px rgba($color-primary, 0.3);
+    will-change: background, border, box-shadow;
+    transition:
+      background $transition-enter,
+      border $transition-enter,
+      box-shadow $transition-enter;
+  }
+
+  &:not([disabled]):hover {
+    &:before {
+      background: $color-primary-highlighted;
+    }
+  }
+  &:not([disabled]):active {
+    transform: translateY(1px);
+
+    &:before {
+      background: shade($color-primary-highlighted, 10%);
+      box-shadow: 0 1px 2px rgba($color-primary, 0.3);
+    }
+  }
+
+  // Disabled state
+  &[disabled] {
+    opacity: 0.75;
+  }
+
+  .icon_arrow {
+    width: 18px;
+    height: 12px;
+    margin-left: 10px;
+    transform: translate3d(0, 0, 0);
+    transition: transform 300ms ease;
+  }
+}
+.button__inner {
+  position: relative;
+}
+
+
+//
+.button_width_full {
+  width: 100%;
+}
+
+
+// Sign In with Google
+.button_google {
+  color: $color-gray1;
+  padding-left: 55px;
+  padding-right: 20px;
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    width: 25px;
+    height: 26px;
+    background: url("data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjI2IiB2aWV3Qm94PSIwIDAgMjUgMjYiIHdpZHRoPSIyNSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIj48cGF0aCBkPSJtMjQuOTg4MDg1OSAxMy4yNDMyMjljMC0xLjA2NTIwNjEtLjA4NTA1ODYtMS44NDI1MjY3LS4yNjkxNDA2LTIuNjQ4NjI1OWgtMTEuOTY5OTIxOXY0LjgwNzgxNjdoNy4wMjYwNzQzYy0uMTQxNjAxNiAxLjE5NDgwOTItLjkwNjU0MyAyLjk5NDE2OC0yLjYwNjQ0NTQgNC4yMDMyNjcybC0uMDIzODI4MS4xNjA5NjE5IDMuNzg0NjY4IDIuOTc5MzgxNi4yNjIyMDcuMDI2NTk1NWMyLjQwODEwNTUtMi4yNjAwMTUzIDMuNzk2Mzg2Ny01LjU4NTIzNjcgMy43OTYzODY3LTkuNTI5Mzk3IiBmaWxsPSIjNDI4NWY0Ii8+PHBhdGggZD0ibTEyLjc0OTAyMzQgMjUuOTEwNjg3YzMuNDQyMTg3NSAwIDYuMzMxOTMzNi0xLjE1MTY0MTIgOC40NDI2NzU4LTMuMTM4MDYxbC00LjAyMzA0NjktMy4xNjY5MzljLTEuMDc2NTYyNS43NjI5MzEzLTIuNTIxNDg0MyAxLjI5NTUzNDQtNC40MTk2Mjg5IDEuMjk1NTM0NC0zLjM3MTM4NjY4IDAtNi4yMzI4MTI0Ni0yLjI1OTkxNjEtNy4yNTI4MzE5OS01LjM4MzU4NzhsLS4xNDk1MTE3Mi4wMTI5MDA4LTMuOTM1MzUxNTYgMy4wOTQ4OTMxLS4wNTE0NjQ4NS4xNDUzODE3YzIuMDk2NDg0MzggNC4yMzIwNDU4IDYuNDAyODMyMDMgNy4xMzk4Nzc4IDExLjM4OTE2MDEyIDcuMTM5ODc3OCIgZmlsbD0iIzM0YTg1MyIvPjxwYXRoIGQ9Im01LjQ5NjE5MTQxIDE1LjUxNzYzMzZjLS4yNjkxNDA2My0uODA2MDk5Mi0uNDI0OTAyMzUtMS42Njk4NTUtLjQyNDkwMjM1LTIuNTYyMjkwMSAwLS44OTI1MzQzLjE1NTc2MTcyLTEuNzU2MTkwOC40MTA3NDIxOS0yLjU2MjI5MDFsLS4wMDcxMjg5MS0uMTcxNjc5NC0zLjk4NDY2Nzk2LTMuMTQ0NjEwNjQtLjEzMDM3MTEuMDYzMDE1MjdjLS44NjQwNjI1IDEuNzU2MTkwODQtMS4zNTk4NjMyOCAzLjcyODMyMDU3LTEuMzU5ODYzMjggNS44MTU1NjQ4N3MuNDk1ODAwNzggNC4wNTkyNzQ4IDEuMzU5ODYzMjggNS44MTU0NjU3eiIgZmlsbD0iI2ZiYmMwNSIvPjxwYXRoIGQ9Im0xMi43NDkwMjM0IDUuMDA5MzY2NDFjMi4zOTM5NDUzIDAgNC4wMDg3ODkxIDEuMDUwODE2OCA0LjkyOTU4OTkgMS45Mjg5NjE4M2wzLjU5ODA0NjktMy41Njk5Mzg5M2MtMi4yMDk3NjU3LTIuMDg3MjQ0MjctNS4wODU0NDkzLTMuMzY4Mzg5MzEtOC41Mjc2MzY4LTMuMzY4Mzg5MzEtNC45ODYzMjgwOSAwLTkuMjkyNjc1NzQgMi45MDc3MzI4Mi0xMS4zODkxNjAxMiA3LjEzOTc3ODYzbDQuMTIyMTY3OTcgMy4yNTMyNzQ3N2MxLjAzNDE3OTY5LTMuMTIzNjcxNzIgMy44OTU2MDU0Ny01LjM4MzY4Njk5IDcuMjY2OTkyMTUtNS4zODM2ODY5OSIgZmlsbD0iI2ViNDMzNSIvPjwvZz48L3N2Zz4=") no-repeat 50% 50%;
+    transform: translateY(-50%);
+  }
+
+  &:before {
+    background: #fff;
+    border: 1px solid $color-gray7;
+    box-shadow: none;
+  }
+
+  &:not([disabled]):hover,
+  &:not([disabled]):active {
+    &:before {
+      border-width: 1px;
+      background: transparent;
+      box-shadow: 0 2px 4px rgba($color-gray3, 0.15);
+    }
+    .icon_arrow {
+      transform: translate3d(7px, 0, 0);
+    }
+  }
+  &:not([disabled]):active:before {
+    box-shadow: none;
+  }
+}

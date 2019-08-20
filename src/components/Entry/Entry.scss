@@ -1,0 +1,75 @@
+@import "../../styles/variables";
+@import "../../styles/utils";
+
+$color-map: (
+  $bg-indigo, $bg-violet, $bg-fuschia, $bg-pink, $bg-red, $bg-orange,
+  $bg-yellow, $bg-lime, $bg-green, $bg-teal, $bg-cyan, $bg-blue
+);
+
+@mixin entryBg($clr) {
+  //$clr_focused: shade($clr, 2);
+
+  span {
+    background: $clr;
+    box-shadow:
+      -0.5em 0 0 $clr,
+      0.5em 0 0 $clr;
+  }
+  &:focus {
+    span {
+      background: none;
+      box-shadow: none;
+    }
+  }
+}
+
+.entry {
+  color: $color-black;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.45;
+  position: relative;
+  margin: 0 -0.75em 0.125em;
+  padding: .25em 2em 0.25em 0.75em;
+  border-radius: $border-radius;
+  transition: background-color 150ms ease;
+
+  span {
+    color: $color-black;
+    user-select: none;
+    transition: background-color 100ms;
+  }
+  @include entryBg($color-primary);
+
+  @each $clr in $color-map {
+    $i: index($color-map, $clr);
+    .canvas-column:nth-child(#{$i}n) & {
+      @include entryBg($clr);
+    }
+  }
+}
+.entry:hover {
+  outline: none;
+  background: $color-gray9;
+}
+.entry:focus {
+  outline: none;
+  background: $color-gray8;
+}
+.entry:before {
+  content: '⮐';
+  color: $color-gray3;
+  font-size: 0.75rem;
+  font-weight: normal;
+  line-height: 2;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  margin-top: -0.75rem;
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+.entry:focus:before {
+  opacity: 1;
+}

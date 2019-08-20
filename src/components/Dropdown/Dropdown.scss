@@ -1,0 +1,53 @@
+@import "../../styles/variables";
+@import "../../styles/elevate";
+@import "../../styles/animation";
+
+.dropdown__menu {
+  color: $color-gray3;
+  font-size: 1.125rem;
+  line-height: 1.125;
+  position: absolute;
+  z-index: 1000;
+  right: 10px;
+  top: 100%;
+  margin-top: 1px;
+  width: 20rem;
+  background: #fff;
+  border-radius: $border-radius;
+  @include elevate(6, $color-gray5);
+  animation: $transition-enter fade-in;
+}
+.dropdown__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.dropdown__item {
+  margin: 0;
+  padding: 0;
+}
+.dropdown__item + .dropdown__item {
+  border-top: 1px solid $color-gray9;
+}
+.dropdown__button {
+  display: block;
+  color: $color-gray3;
+  text-decoration: none;
+  padding: 20px 30px;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-gray1;
+    background-color: $color-gray0;
+  }
+}
+
+.dropdown__before {
+  padding: 20px 30px;
+  background: $color-gray0;
+  border-bottom: 1px solid $color-gray9;
+}
+.dropdown__after {
+  padding: 20px 30px;
+  border-top: 1px solid $color-gray9;
+}

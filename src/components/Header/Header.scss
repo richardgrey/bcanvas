@@ -1,0 +1,78 @@
+@import "../../styles/variables";
+
+.header {
+  position: relative;
+  width: 100%;
+  height: 60px;
+}
+.header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-content: stretch;
+  height: 60px;
+}
+.header__logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 60px;
+  line-height: 30px;
+
+  a {
+    padding: 15px 20px;
+
+    &:active {
+      background: $color-gray0;
+    }
+  }
+  svg {
+    width: 40px;
+    height: 30px;
+    vertical-align: top;
+  }
+}
+.header__left,
+.header__right {
+  display: flex;
+  flex-basis: 0;
+  flex-grow: 1;
+  // Half of the screen minus half of the logo space
+  width: calc(50% - 40px);
+}
+.header__left-inner,
+.header__right-inner {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+}
+.header__right-inner {
+  flex-direction: row-reverse;
+}
+
+
+.header_fixed {
+
+  .header__inner {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    right: 0;
+    left: 0;
+    background: #fff;
+    box-shadow: 0 1px 0 $color-gray9;
+  }
+
+  .header-button_dashboard,
+  .header-button_user {
+    .header-button__label {
+      display: none;
+    }
+  }
+  .header-button_dashboard {
+    border-right: 1px solid $color-gray9;
+  }
+  .header-button_user {
+    border-left: 1px solid $color-gray9;
+  }
+}

@@ -1,0 +1,17 @@
+@import "../../styles/variables";
+
+.icon_dashboard,
+.icon_user,
+.icon_arrow,
+.icon_arrow-back,
+.icon_canvas-business,
+.icon_canvas-value,
+.icon_canvas-lean {
+  stroke: $color-black;
+}
+
+.icon_cog,
+.icon_share,
+.icon_print {
+  fill: $color-black;
+}

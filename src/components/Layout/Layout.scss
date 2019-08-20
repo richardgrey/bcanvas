@@ -1,0 +1,33 @@
+@import "../../styles/variables";
+
+.layout {
+}
+.layout__container {
+  position: relative;
+  overflow: hidden;
+  max-width: $page-width-max;
+  //min-height: 100vh;
+  margin: 0 auto;
+  padding: 0 $page-gutter-desktop 120px;
+  //background: #fff;
+}
+
+.layout_fluid {
+  .layout__container {
+    max-width: none;
+  }
+}
+
+// Backgrounds
+// ===========
+.layout_background_gradient {
+  //background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+  //background-image: linear-gradient(to bottom, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%, #b12a5b 100%);
+  background-image: linear-gradient(to top left, #d299c2 0%, #fef9d7 100%);
+}
+.layout_background_magnus {
+  background: #e84700 url('./img/hodgepodge.png') repeat 50% 50%;
+}
+
+
+

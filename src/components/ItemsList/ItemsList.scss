@@ -1,0 +1,18 @@
+@import "../../styles/variables";
+
+.items-list {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  li {
+    width: 25%;
+    //width: 350px;
+    margin: 0 0 $gutter;
+    padding: 0 $gutter/2;
+  }
+}

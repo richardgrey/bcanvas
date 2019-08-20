@@ -1,12 +1,45 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import { Provider } from 'react-redux';
+import { Router, Route, Switch } from 'react-router-dom';
+
+import './styles/index.scss';
+import './styles/print.scss';
+
+import configureStore from './configureStore';
 import * as serviceWorker from './serviceWorker';
+import history from './history';
+import App from './components/App/App';
+import Landing from './routes/Landing';
+import CanvasPage from './routes/CanvasPage';
+import TermsPage from './routes/TermsPage';
+import CookiePage from './routes/CookiePage';
+import Register from './routes/Register';
+import SignIn from './routes/SignIn';
+import Dashboard from './routes/Dashboard';
+import ChangePassword from './routes/ChangePassword';
+import ChangeEmail from './routes/ChangeEmail';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const store = configureStore();
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+ReactDOM.render(
+  <Provider store={store}>
+    <App>
+      <Router history={history}>
+        <Switch>
+          <Route exact path="/" component={Landing} />
+          <Route path="/register" component={Register} />
+          <Route path="/sign-in" component={SignIn} />
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/account/change-password" component={ChangePassword} />
+          <Route path="/account/change-email" component={ChangeEmail} />
+          <Route path="/canvas/:id" component={CanvasPage} />
+          <Route path="/terms-of-services" component={TermsPage} />
+          <Route path="/cookie-policy" component={CookiePage} />
+        </Switch>
+      </Router>
+    </App>
+  </Provider>,
+  document.getElementById('root'),
+);
 serviceWorker.unregister();

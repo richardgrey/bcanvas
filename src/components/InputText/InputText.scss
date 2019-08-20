@@ -1,0 +1,122 @@
+@import "../../styles/variables";
+
+.input-text {
+  position: relative;
+  display: block;
+  padding: 0 0 3px;
+  cursor: text;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: $color-gray9;
+    border: 2px solid $color-gray9;
+    border-radius: $border-radius;
+    //z-index: -1;
+    will-change: border-color, backgrund-color;
+    transition: border-color 100ms, background-color 100ms;
+  }
+
+  &:hover {
+    &:before {
+      border-color: $color-gray8;
+      background-color: $color-gray8;
+    }
+  }
+}
+.input-text__input {
+  font: 1.125rem/1.5 $font-sans;
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: -2px 0 0;
+  padding: 1.625rem 1.5rem 0.375rem;
+  background: transparent;
+  border: 0;
+
+  &:focus {
+    outline: none;
+  }
+}
+.input-text__label {
+  color: $color-gray3;
+  font-size: .75rem;
+  line-height: 1.25rem;
+  position: absolute;
+  left: 1.5rem;
+  top: 0.375rem;
+  user-select: none;
+}
+.input-text__placeholder {
+  color: $color-gray3;
+  font: 1.125rem/2em $font-sans;
+  position: absolute;
+  left: 1.5rem;
+  top: 50%;
+  user-select: none;
+}
+
+// Fancy stuff
+.input-text__label,
+.input-text__placeholder {
+  will-change: opacity, transform;
+  transition: opacity 300ms 100ms, transform 300ms 100ms;
+}
+.input-text__label {
+  transform: translateY(0);
+}
+.input-text__placeholder {
+  transform: translateY(-1em);
+}
+.input-text__label_hidden,
+.input-text__placeholder_hidden {
+  opacity: 0;
+}
+.input-text__label_hidden {
+  transform: translateY(-0.25em);
+  transition-delay: unset;
+}
+.input-text__placeholder_hidden {
+  transform: translateY(-0.75em);
+  transition-delay: unset;
+}
+
+// Focused input
+.input-text_focused {
+  &,
+  &:hover {
+    &:before {
+      border-color: $color-primary;
+      background-color: $color-gray0;
+    }
+  }
+}
+
+// Input with error
+.input-text_error {
+  &,
+  &:hover {
+  //&.input-text__focused,
+  //&.input-text__focused:hover {
+    &:before {
+      border-color: $color-red;
+    }
+  }
+}
+
+// Disabled
+.input-text_disabled {
+  &,
+  &:hover {
+    opacity: .5;
+
+    &:before {
+      background: $color-gray9;
+      border-color: $color-gray9;
+    }
+  }
+}

@@ -1,0 +1,43 @@
+@import "../../styles/grid";
+$breakpoints: (
+  sm: $min-mobile,
+  md: $min-tablet,
+  xl: $min-desktop,
+);
+
+.grid__row {
+  @include grid-row();
+}
+.grid__row_justify_center {
+  justify-content: center;
+}
+
+
+%grid-col {
+  position: relative;
+  width: 100%;
+  padding-right: $gutter / 2;
+  padding-left: $gutter / 2;
+}
+
+@each $breakpoint, $min in $breakpoints {
+  $infix: $breakpoint;
+
+  @for $i from 1 through $grid-column-count {
+    .grid__col_#{$infix}_#{$i} {
+      @extend %grid-col;
+    }
+  }
+  @media (min-width: $min) {
+    @for $i from 1 through $grid-column-count {
+      .grid__col_#{$infix}_#{$i} {
+        width: convertify($i);
+      }
+    }
+    @for $i from 0 through ($grid-column-count - 1) {
+      .grid__col_offset-#{$infix}_#{$i} {
+        @include grid-offset-left($i);
+      }
+    }
+  }
+}

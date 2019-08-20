@@ -1,0 +1,111 @@
+// Grid
+$grid-column-count: 9;
+$gutter: 40px;
+
+// Page
+$page-width: 1240px;
+$page-gutter-mobile: 30px;
+$page-gutter-tablet: 60px;
+$page-gutter-desktop: 60px;
+$page-width-max: $page-width + ($page-gutter-desktop * 2);
+
+// Fonts
+$font-sans: sofia-pro, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$font-serif: orpheuspro, serif;
+
+// Colors
+$color-primary: #3b3beb;
+$color-primary-highlighted: #0d0dff;
+$color-black: #15151a;
+
+$color-gray0: #f9f9fa;
+$color-gray9: #ededf1;
+$color-gray8: #e0e0e7;
+$color-gray7: #d2d2dc;
+$color-gray6: #c2c2d0;
+$color-gray5: #b1b1c3;
+$color-gray4: #9d9db4;
+$color-gray3: #8686a2;
+$color-gray2: #6a6a80;
+$color-gray1: #3e3e4b;
+
+$color-indigo: #3b3beb;
+$color-violet: #732eb9;
+$color-fuschia: #ba2eba;
+$color-pink: #ba2e74;
+$color-red: #ba2e2e;
+$color-orange: #ba742e;
+$color-yellow: #bbbb2f;
+$color-lime: #75bb2e;
+$color-green: #2ebb2e;
+$color-teal: #2ebb75;
+$color-cyan: #2ebbbb;
+$color-blue: #2e74b9;
+
+$bg-indigo: #ececfd;
+$bg-violet: #f4ebfc;
+$bg-fuschia: #fdebfd;
+$bg-pink: #fdebf4;
+$bg-red: #fdebeb;
+$bg-orange: #fcf4eb;
+$bg-yellow: #fcfce4;
+$bg-lime: #f4fceb;
+$bg-green: #e9fce9;
+$bg-teal: #e8fcf2;
+$bg-cyan: #e8fcfc;
+$bg-blue: #e8f2fc;
+
+// Timings
+$transition-enter: 200ms;
+$transition-leave: 500ms;
+
+// Custom break point (Min)
+$min-1800: 1800px;
+$min-1440: 1440px;
+$min-1320: 1320px;
+$min-1280: 1280px;
+$min-1200: 1200px;
+$min-1080: 1080px;
+$min-1024: 1024px;
+$min-960: 960px;
+$min-880: 880px;
+$min-840: 840px;
+$min-768: 768px;
+$min-720: 720px;
+$min-640: 640px;
+$min-600: 600px;
+$min-560: 560px;
+$min-540: 540px;
+$min-480: 480px;
+$min-375: 375px;
+$min-360: 360px;
+$min-340: 340px;
+
+// Custom break points (Max)
+$max-1440: 1439px;
+$max-1320: 1319px;
+$max-1280: 1279px;
+$max-1200: 1199px;
+$max-1080: 1079px;
+$max-1024: 1023px;
+$max-960: 959px;
+$max-880: 879px;
+$max-840: 839px;
+$max-768: 767px;
+$max-720: 719px;
+$max-640: 639px;
+$max-600: 599px;
+$max-540: 539px;
+$max-480: 479px;
+$max-375: 374px;
+$max-360: 359px;
+$max-340: 339px;
+
+// Predefined breakpoints
+$min-mobile: $min-480;
+$min-tablet: $min-720;
+$min-desktop: $min-1080;
+
+
+// Radius
+$border-radius: 4px;
