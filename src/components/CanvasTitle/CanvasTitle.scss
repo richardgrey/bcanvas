@@ -70,9 +70,13 @@
   }
 }
 .canvas-title_empty {
-  color: #c8cbcc;
+  &,
+  & .canvas-title__input {
+    color: #c8cbcc;
+  }
 }
 .canvas-title_read-only,
 .canvas-title_read-only:hover {
   background: #fff;
+  cursor: default;
 }

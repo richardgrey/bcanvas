@@ -8,7 +8,7 @@ import CanvasTitle from '../components/CanvasTitle/CanvasTitle';
 import CanvasTable from '../components/CanvasTable/CanvasTable';
 import CanvasTableLoading from '../components/CanvasTable/CanvasTableLoading';
 import CanvasActions from '../components/CanvasActions/CanvasActions';
-import { fetchCanvas, setShareUrl, setPreloadedCanvas } from '../actions/canvas';
+import { fetchCanvas, setShareUrl } from '../actions/canvas';
 import { locationPropType } from '../utils/propTypes';
 
 class CanvasPage extends Component {
@@ -19,51 +19,44 @@ class CanvasPage extends Component {
     location: locationPropType.isRequired,
     dispatch: PropTypes.func.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
-    isFetching: PropTypes.bool,
-    isLoaded: PropTypes.bool,
+    isFetching: PropTypes.bool.isRequired,
     id: PropTypes.string.isRequired,
     title: PropTypes.string,
     type: PropTypes.string,
     entries: PropTypes.shape({}),
     canView: PropTypes.bool,
     canEdit: PropTypes.bool,
-    preloaded: PropTypes.shape({}),
+    lastFetch: PropTypes.number,
   };
 
   static defaultProps = {
-    isFetching: false,
     title: '',
     type: undefined,
     entries: {},
     canView: undefined,
     canEdit: undefined,
-    isLoaded: false,
-    preloaded: undefined,
+    lastFetch: 0,
   };
 
   componentDidMount() {
-    const { dispatch, id, isLoaded, preloaded, match } = this.props;
+    const { dispatch, id, lastFetch, match } = this.props;
     const url = `${window.location.origin}${match.url}`;
+    const timeSinceLastFetch = Date.now() - lastFetch;
 
-    console.log('componentDidMount');
-
-    if (!isLoaded) {
+    if (timeSinceLastFetch > 60 * 1000) {
       dispatch(fetchCanvas(id));
-    } else if (preloaded) {
-      dispatch(setPreloadedCanvas(preloaded));
     }
     dispatch(setShareUrl(url));
   }
 
-  componentWillReceiveProps(nextProps) {
-    // const { dispatch, id, match } = this.props;
-    // const url = `${window.location.origin}${match.url}`;
-    //
-    // if (id !== nextProps.id) {
-    //   dispatch(unloadCanvas());
-    //   dispatch(fetchCanvas(nextProps.id));
-    //   dispatch(setShareUrl(url));
-    // }
+  componentDidUpdate(prevProps) {
+    const { dispatch, id, match } = this.props;
+    const url = `${window.location.origin}${match.url}`;
+
+    if (id !== prevProps.id) {
+      dispatch(fetchCanvas(id));
+      dispatch(setShareUrl(url));
+    }
   }
 
   render() {
@@ -162,6 +155,7 @@ const mapStateToProps = (state, ownProps) => {
       .sort((a, b) => entries[a].createdAt - entries[b].createdAt)
       .reduce((obj, id) => {
         const entr = entries[id];
+        // eslint-disable-next-line no-param-reassign
         obj[entr.label] = obj[entr.label] || [];
         obj[entr.label].push({
           id,
@@ -176,7 +170,6 @@ const mapStateToProps = (state, ownProps) => {
       isOwner,
       canView,
       canEdit,
-      isLoaded: true,
       isAuthenticated,
     };
   };
@@ -191,16 +184,21 @@ const mapStateToProps = (state, ownProps) => {
     if (canvasFromList) {
       return {
         ...prepareData(canvasFromList),
-        preloaded: canvasFromList,
+        // canEdit: false,
+        // Fetching should always point on canvas store status
+        isFetching: canvas.isFetching,
       };
     }
   }
 
+  // We don't know anything about this canvas. Should be fetched.
   return {
+    isAuthenticated,
     id: canvasId,
     isFetching: canvas.isFetching,
     canEdit: canvas.isFetching,
-    isAuthenticated,
+    // This will force to fetch data
+    lastFetch: 0,
   };
 };
 

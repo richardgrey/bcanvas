@@ -229,12 +229,3 @@ export const setShareUrl = url => ({
   type: CANVAS_SET_SHARE_URL,
   payload: url,
 });
-
-// ---
-
-export const CANVAS_SET_PRELOADED_CANVAS = 'CANVAS_SET_PRELOADED_CANVAS';
-
-export const setPreloadedCanvas = canvas => ({
-  type: CANVAS_SET_PRELOADED_CANVAS,
-  payload: canvas,
-});

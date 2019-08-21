@@ -85,21 +85,10 @@ const canvas = {
 
   update: async (canvasId, data = {}) =>
     new Promise((resolve, reject) => {
-      // TODO: concurrent requests?
-      const { title, description, isPublic } = data;
       const payload = {
+        ...data,
         updatedAt: FieldValue.serverTimestamp(),
       };
-
-      if (title) {
-        payload.title = title;
-      }
-      if (description) {
-        payload.description = description;
-      }
-      if (typeof isPublic === 'boolean') {
-        payload.isPublic = isPublic;
-      }
 
       firestore
         .collection('canvases')

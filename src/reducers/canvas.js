@@ -6,7 +6,7 @@ import {
   CANVAS_FETCH_ERROR,
   CANVAS_SET_SHARE_URL,
   CANVAS_SHARING_SUCCESS,
-  CANVAS_REMOVE_SUCCESS, CANVAS_SET_PRELOADED_CANVAS,
+  CANVAS_REMOVE_SUCCESS,
 } from '../actions/canvas';
 import {
   ENTRY_ADD_REQUEST,
@@ -208,14 +208,9 @@ const canvas = (state = defaultState, action) => {
   switch (action.type) {
     case CANVAS_UNLOAD:
       return defaultState;
-    case CANVAS_SET_PRELOADED_CANVAS:
-      return {
-        ...defaultState,
-        ...action.payload,
-      };
     case CANVAS_FETCH_REQUEST:
       return {
-        ...state,
+        ...defaultState,
         isFetching: true,
       };
     case CANVAS_FETCH_ERROR:
@@ -235,11 +230,7 @@ const canvas = (state = defaultState, action) => {
         ...state,
         ...reduceCanvasData(action.payload),
         isFetching: false,
-      };
-    case CANVAS_SET_SHARE_URL:
-      return {
-        ...state,
-        shareUrl: action.payload,
+        lastFetch: Date.now(),
       };
     case CANVAS_REMOVE_SUCCESS:
       if (state.id === action.payload.canvasId) {
@@ -282,6 +273,11 @@ const canvas = (state = defaultState, action) => {
       return {
         ...state,
         ...removeEntryReducer(state, action.payload),
+      };
+    case CANVAS_SET_SHARE_URL:
+      return {
+        ...state,
+        shareUrl: action.payload,
       };
     case CANVAS_SHARING_SUCCESS:
       return updateSharingReducer(state, action.payload);
