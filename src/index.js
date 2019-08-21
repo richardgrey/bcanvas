@@ -24,8 +24,8 @@ const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
-    <App>
-      <Router history={history}>
+    <Router history={history}>
+      <App>
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route path="/register" component={Register} />
@@ -37,8 +37,8 @@ ReactDOM.render(
           <Route path="/terms-of-services" component={TermsPage} />
           <Route path="/cookie-policy" component={CookiePage} />
         </Switch>
-      </Router>
-    </App>
+      </App>
+    </Router>
   </Provider>,
   document.getElementById('root'),
 );
