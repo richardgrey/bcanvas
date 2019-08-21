@@ -42,6 +42,7 @@ class Entry extends Component {
     canvasId: PropTypes.string,
     isHidden: PropTypes.bool,
     isError: PropTypes.bool,
+    // Forwarded ref to access DOM element outside of the component
     inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   };
 
@@ -54,25 +55,33 @@ class Entry extends Component {
     inputRef: null,
   };
 
-  onPaste(e) {
+  onFocus = e => {
+    e.target.innerHTML = e.target.innerText;
+  };
+
+  onBlur = e => {
+    e.target.innerHTML = `<span>${e.target.innerText}</span>`;
+  };
+
+  onPaste = e => {
     e.preventDefault();
     document.execCommand('inserttext', false, e.clipboardData.getData('Text'));
-  }
+  };
 
-  onKeyUp(e) {
+  onKeyUp = e => {
     if (e.key === 'Escape') {
       e.target.innerText = this.props.value;
       e.target.blur();
     }
-  }
+  };
 
-  onKeyPress(e) {
+  onKeyPress = e => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       const val = e.target.innerText;
       this.submitEntry(val.trim(), e.target);
     }
-  }
+  };
 
   submitEntry(val, target) {
     const { dispatch, canvasId, id, value, label } = this.props;
@@ -113,15 +122,17 @@ class Entry extends Component {
     return canEdit ? (
       <div
         className="entry"
+        ref={inputRef}
         role="textbox"
         tabIndex="0"
         contentEditable
         suppressContentEditableWarning
         aria-placeholder="Type in something..."
-        onKeyPress={e => this.onKeyPress(e)}
-        onKeyUp={e => this.onKeyUp(e)}
-        onPaste={e => this.onPaste(e)}
-        ref={inputRef}
+        onFocus={this.onFocus}
+        onBlur={this.onBlur}
+        onKeyPress={this.onKeyPress}
+        onKeyUp={this.onKeyUp}
+        onPaste={this.onPaste}
       >
         <span>{value}</span>
       </div>
