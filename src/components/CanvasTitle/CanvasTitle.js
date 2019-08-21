@@ -40,14 +40,6 @@ class CanvasTitle extends Component {
     };
   }
 
-  // componentWillReceiveProps(newProps) {
-  //   const { title } = newProps;
-  //   this.setState({
-  //     title: title || '',
-  //     lastSavedTitle: title || '',
-  //   });
-  // }
-
   onChange(e) {
     const { value } = e.target;
     this.setState({ title: value });

@@ -14,6 +14,9 @@ export const fb = firebase.initializeApp({
 // Database
 export const firestore = firebase.firestore();
 firestore.settings({});
+firestore.enablePersistence().catch(error => {
+  console.error('Firestore persistence enablement error', error);
+});
 
 // Authorisation
 export const firebaseAuth = firebase.auth();

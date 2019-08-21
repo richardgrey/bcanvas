@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { hrefPropType } from '../../utils/propTypes';
-import isEventIn from '../../utils/isEventIn';
+import isDOMEventIn from '../../utils/isDOMEventIn';
 
 import './Dropdown.scss';
 
@@ -42,7 +42,7 @@ class Dropdown extends Component {
   onDocumentClick(e) {
     const { isShown } = this.state;
 
-    if (isShown && !isEventIn(e, this.dropdown)) {
+    if (isShown && !isDOMEventIn(e, this.dropdown)) {
       this.toggle(false);
     }
   }

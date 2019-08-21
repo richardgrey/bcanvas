@@ -1,5 +1,6 @@
 import { FieldValue, Timestamp } from '../firebase';
 import { CANVAS_TYPE_BUSINESS } from '../constants';
+import isObject from '../utils/isObject';
 
 export const CANVAS_DOCUMENT_DEFAULTS = {
   title: null,
@@ -12,23 +13,15 @@ export const CANVAS_DOCUMENT_DEFAULTS = {
   deletedAt: null,
 };
 
-export const ENTRY_DOCUMENT_DEFAULTS = {
-  label: null,
-  value: null,
-  createdAt: FieldValue.serverTimestamp(),
-  updatedAt: FieldValue.serverTimestamp(),
-};
-
-export const documentUpdatedTick = docRef =>
-  docRef.set({ updatedAt: FieldValue.serverTimestamp() }, { merge: true });
-
 export const timestampFieldsToMillis = doc => {
-  const data = doc.data();
+  const data = typeof doc.data === 'function' ? doc.data() : doc;
   const newData = {};
 
   Object.keys(data).forEach(key => {
     if (data[key] instanceof Timestamp) {
       newData[key] = data[key].toMillis();
+    } else if (isObject(data[key])) {
+      newData[key] = timestampFieldsToMillis(data[key]);
     } else {
       newData[key] = data[key];
     }
@@ -38,11 +31,6 @@ export const timestampFieldsToMillis = doc => {
 };
 
 export const normalizeCanvas = doc => ({
-  id: doc.id,
-  ...timestampFieldsToMillis(doc),
-});
-
-export const normalizeEntry = doc => ({
   id: doc.id,
   ...timestampFieldsToMillis(doc),
 });

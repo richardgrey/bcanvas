@@ -23,16 +23,17 @@
   left: 0;
   right: 0;
   height: 4px;
-}
-.canvas-table__loader:before {
-  display: block;
-  position: absolute;
-  content: "";
-  left: -30%;
-  width: 30%;
-  height: 100%;
-  background-color: $color-primary;
-  animation: loading 1s linear infinite;
+
+  &:before {
+    display: block;
+    position: absolute;
+    content: "";
+    left: -30%;
+    width: 30%;
+    height: 100%;
+    background-color: $color-primary;
+    animation: loading 1s linear infinite;
+  }
 }
 @keyframes loading {
     from {

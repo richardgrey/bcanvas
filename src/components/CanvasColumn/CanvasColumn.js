@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import b from 'b_';
 import Entry from '../Entry/Entry';
 import './CanvasColumn.scss';
 
 class CanvasColumn extends Component {
   static propTypes = {
+    dispatch: PropTypes.func.isRequired,
     canvasId: PropTypes.string.isRequired,
-
-    entries: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string,
-        label: PropTypes.string,
-        value: PropTypes.string,
-      }),
-    ),
+    canEdit: PropTypes.bool.isRequired,
 
     column: PropTypes.shape({
       label: PropTypes.string,
@@ -22,8 +17,13 @@ class CanvasColumn extends Component {
       description: PropTypes.arrayOf(PropTypes.string),
     }).isRequired,
 
-    dispatch: PropTypes.func.isRequired,
-    canEdit: PropTypes.bool.isRequired,
+    entries: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string,
+        label: PropTypes.string,
+        value: PropTypes.string,
+      }),
+    ),
   };
 
   static defaultProps = {
@@ -43,15 +43,15 @@ class CanvasColumn extends Component {
 
   render() {
     const { column, entries, canvasId, dispatch, canEdit } = this.props;
-    const { label, title, description } = column || {};
-    const readOnlyClass = !canEdit ? ' canvas-column_read-only' : '';
+    const { label, title, description } = column;
+    const cls = b('canvas-column', {
+      'read-only': !canEdit,
+      [label]: !!label,
+    });
 
     return (
       // eslint-disable-next-line jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events
-      <div
-        onClick={e => canEdit && this.onClick(e)}
-        className={`canvas-column canvas-column_${label}${readOnlyClass}`}
-      >
+      <div className={cls} onClick={e => canEdit && this.onClick(e)}>
         <h3 className="canvas-column__title">{title}</h3>
         <div className="canvas-column__hints">
           {description.map(descr => (

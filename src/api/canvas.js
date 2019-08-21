@@ -4,13 +4,7 @@ import {
   ERROR_UNAUTHORIZED_ACTION,
   CANVAS_PERMISSION_DENIED,
 } from '../constants';
-import {
-  CANVAS_DOCUMENT_DEFAULTS,
-  ENTRY_DOCUMENT_DEFAULTS,
-  documentUpdatedTick,
-  normalizeCanvas,
-  normalizeEntry,
-} from './helper';
+import { CANVAS_DOCUMENT_DEFAULTS, normalizeCanvas } from './helper';
 
 const CANVAS_ERROR_MAP = {
   'permission-denied': CANVAS_PERMISSION_DENIED,
@@ -91,26 +85,16 @@ const canvas = {
 
   update: async (canvasId, data = {}) =>
     new Promise((resolve, reject) => {
-      // TODO: concurrent requests?
-      const { title, description, isPublic } = data;
       const payload = {
+        ...data,
         updatedAt: FieldValue.serverTimestamp(),
       };
-
-      if (title) {
-        payload.title = title;
-      }
-      if (description) {
-        payload.description = description;
-      }
-      if (typeof isPublic === 'boolean') {
-        payload.isPublic = isPublic;
-      }
 
       firestore
         .collection('canvases')
         .doc(canvasId)
-        .set(payload, { merge: true })
+        .update(payload)
+        // .set(payload, { merge: true })
         .then(() => resolve())
         .catch(error => reject(error));
     }),
@@ -125,81 +109,46 @@ const canvas = {
         .catch(error => reject(error));
     }),
 
-  entries: async canvasId =>
+  addEntry: async (canvasId, newEntryId, label, value) =>
     new Promise((resolve, reject) => {
       firestore
         .collection('canvases')
         .doc(canvasId)
-        .collection('entries')
-        .orderBy('createdAt')
-        .get()
-        .then(snap => {
-          const entries = [];
-          snap.docs.forEach(doc => entries.push(normalizeEntry(doc)));
-          resolve(entries);
+        .update({
+          updatedAt: FieldValue.serverTimestamp(),
+          [`entries.${newEntryId}`]: {
+            label,
+            value,
+            createdAt: FieldValue.serverTimestamp(),
+          },
         })
+        .then(() => resolve(canvasId, newEntryId, label, value))
         .catch(error => reject(error));
     }),
 
-  addEntry: async (canvasId, data = {}) =>
+  updateEntry: async (canvasId, entryId, value) =>
     new Promise((resolve, reject) => {
-      const { label, value } = data;
-      // Should check for canvas existence but that will cost another request.
-      // Omitted for now.
-      const cnvsRef = firestore.collection('canvases').doc(canvasId);
-      cnvsRef
-        .collection('entries')
-        .add({
-          ...ENTRY_DOCUMENT_DEFAULTS,
-          label,
-          value,
+      firestore
+        .collection('canvases')
+        .doc(canvasId)
+        .update({
+          updatedAt: FieldValue.serverTimestamp(),
+          [`entries.${entryId}.value`]: value,
         })
-        .then(entryRef => {
-          documentUpdatedTick(cnvsRef);
-          resolve(entryRef.id);
-        })
-        .catch(error => reject(error));
-    }),
-
-  updateEntry: async (canvasId, entryId, data = {}) =>
-    new Promise((resolve, reject) => {
-      // Should check for canvas existence but that will cost another request.
-      // Omitted for now.
-      const { label, value } = data;
-      const payload = {
-        updatedAt: FieldValue.serverTimestamp(),
-      };
-
-      if (value) {
-        payload.value = value;
-      }
-      if (label) {
-        payload.label = label;
-      }
-
-      const cnvsRef = firestore.collection('canvases').doc(canvasId);
-      cnvsRef
-        .collection('entries')
-        .doc(entryId)
-        .set(payload, { merge: true })
-        .then(() => {
-          documentUpdatedTick(cnvsRef);
-          resolve();
-        })
+        .then(() => resolve())
         .catch(error => reject(error));
     }),
 
   removeEntry: async (canvasId, entryId) =>
     new Promise((resolve, reject) => {
-      const cnvsRef = firestore.collection('canvases').doc(canvasId);
-      cnvsRef
-        .collection('entries')
-        .doc(entryId)
-        .delete()
-        .then(() => {
-          documentUpdatedTick(cnvsRef);
-          resolve();
+      firestore
+        .collection('canvases')
+        .doc(canvasId)
+        .update({
+          updatedAt: FieldValue.serverTimestamp(),
+          [`entries.${entryId}`]: FieldValue.delete(),
         })
+        .then(() => resolve())
         .catch(error => reject(error));
     }),
 };
