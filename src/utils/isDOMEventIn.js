@@ -1,5 +1,5 @@
-export default (event = {}, node) => {
-  const { path } = event;
+export default function isDOMEventIn(e = {}, node) {
+  const { path } = e;
 
   if (path && Array.isArray(path)) {
     return path.indexOf(node) >= 0;
