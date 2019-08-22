@@ -64,7 +64,7 @@ const canvasList = (state = defaultState, action) => {
         isFetching: false,
         isLoaded: true,
         canvases: action.payload.canvases.map(c =>
-          reduceCanvasData(c, action.payload.currentUserId)
+          reduceCanvasData(c, action.payload.currentUserId),
         ),
       };
     case CANVAS_CREATE_SUCCESS:

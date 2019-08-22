@@ -7,6 +7,7 @@ import {
   CANVAS_SET_SHARE_URL,
   CANVAS_SHARING_SUCCESS,
   CANVAS_REMOVE_SUCCESS,
+  CANVAS_UPDATE_TITLE_SUCCESS,
 } from '../actions/canvas';
 import {
   ENTRY_ADD_REQUEST,
@@ -239,6 +240,14 @@ const canvas = (state = defaultState, action) => {
       if (state.id === action.payload.canvasId) {
         return {
           ...defaultState,
+        };
+      }
+      return state;
+    case CANVAS_UPDATE_TITLE_SUCCESS:
+      if (state.id === action.payload.canvasId) {
+        return {
+          ...state,
+          title: action.payload.title,
         };
       }
       return state;
