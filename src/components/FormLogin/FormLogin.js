@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Form, { InputRow } from '../Form/Form';
+import Form, { FormRow, InputRow } from '../Form/Form';
 import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
 import Separator from '../Separator/Separator';
@@ -55,7 +55,7 @@ class FormLogin extends Component {
 
     return (
       <Form className="form_auth" onSubmit={e => this.onSubmit(e)}>
-        <div className="form__row">
+        <FormRow>
           <Button
             type="button"
             styleType="google"
@@ -65,7 +65,7 @@ class FormLogin extends Component {
           >
             Continue with Google <Icon name="arrow" />
           </Button>
-        </div>
+        </FormRow>
         <Separator>Or, sign in with your email</Separator>
         <InputRow
           name="email"
@@ -85,14 +85,14 @@ class FormLogin extends Component {
           onChange={e => this.onChangeField('password', e.target.value)}
           required
         />
-        <div className="form__row form__row_submit">
+        <FormRow type="submit">
           <Button type="submit" styleType="primary" disabled={isSubmitting} isFullWidth>
             Sign In
           </Button>
-        </div>
-        <div className="form__row text_align_center">
+        </FormRow>
+        <FormRow className="text_align_center">
           <Link to="password-recovery">Forgot your password?</Link>
-        </div>
+        </FormRow>
       </Form>
     );
   }

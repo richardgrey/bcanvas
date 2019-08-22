@@ -8,6 +8,7 @@ import InputText from '../InputText/InputText';
 import InputRow from './InputRow';
 import FormError from './FormError';
 import FormHint from './FormHint';
+import FormRow from './FormRow';
 
 class Form extends Component {
   static propTypes = {
@@ -31,4 +32,4 @@ class Form extends Component {
 }
 
 export default Form;
-export { Checkbox, InputText, InputRow, FormError, FormHint };
+export { Checkbox, InputText, InputRow, FormError, FormHint, FormRow };

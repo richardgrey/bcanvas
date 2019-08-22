@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Button from '../Button/Button';
-import Form, { InputRow, FormHint } from '../Form/Form';
+import Form, { InputRow, FormHint, FormRow } from '../Form/Form';
 import Icon from '../Icon/Icon';
 import Separator from '../Separator/Separator';
 import { register, signInGoogle } from '../../actions/auth';
@@ -55,7 +55,7 @@ class FormRegister extends Component {
 
     return (
       <Form className="form_auth" onSubmit={e => this.onSubmit(e)}>
-        <div className="form__row">
+        <FormRow>
           <Button
             type="button"
             styleType="google"
@@ -65,7 +65,7 @@ class FormRegister extends Component {
           >
             Continue with Google <Icon name="arrow" />
           </Button>
-        </div>
+        </FormRow>
         <Separator>Or, register with your email</Separator>
         <InputRow
           name="name"
@@ -95,12 +95,12 @@ class FormRegister extends Component {
           minLength="6"
           required
         />
-        <div className="form__row form__row_submit">
+        <FormRow type="submit">
           <Button type="submit" styleType="primary" disabled={isSubmitting} isFullWidth>
             Create an Account
           </Button>
-        </div>
-        <div className="form__row text_align_center">
+        </FormRow>
+        <FormRow className="text_align_center">
           <FormHint>
             By signing in or creating an account, you agree with our{' '}
             <Link to="/terms-of-services" target="_blank">
@@ -111,7 +111,7 @@ class FormRegister extends Component {
               Privacy Statement
             </Link>
           </FormHint>
-        </div>
+        </FormRow>
       </Form>
     );
   }

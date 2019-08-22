@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import FormRow from './FormRow';
 import FormError from './FormError';
 import FormHint from './FormHint';
 import InputText from '../InputText/InputText';
@@ -8,7 +9,7 @@ class InputRow extends Component {
   static propTypes = {
     type: PropTypes.string,
     name: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
+    label: PropTypes.string,
     placeholder: PropTypes.string,
     value: PropTypes.string,
     hint: PropTypes.string,
@@ -19,12 +20,13 @@ class InputRow extends Component {
 
   static defaultProps = {
     type: 'text',
+    label: null,
     placeholder: null,
     value: '',
     hint: null,
     error: null,
     children: null,
-    onChange: () => {},
+    onChange: null,
   };
 
   render() {
@@ -42,7 +44,7 @@ class InputRow extends Component {
     } = this.props;
 
     return (
-      <div className={`form__row form__row_${type} form__row_for_${name}`}>
+      <FormRow type={type} className={`form__row_for_${name}`}>
         <InputText
           label={label}
           placeholder={placeholder}
@@ -56,7 +58,7 @@ class InputRow extends Component {
         {hint ? <FormHint>{hint}</FormHint> : null}
         {error ? <FormError>{error}</FormError> : null}
         {children}
-      </div>
+      </FormRow>
     );
   }
 }

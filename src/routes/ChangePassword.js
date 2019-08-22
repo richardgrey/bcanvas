@@ -7,7 +7,7 @@ import Header from '../components/Header/Header';
 import PageTitle from '../components/PageTitle/PageTitle';
 import AccountFormSuccess from '../components/AccountFormSuccess/AccountFormSuccess';
 import Button from '../components/Button/Button';
-import Form, { InputRow } from '../components/Form/Form';
+import Form, { InputRow, FormRow } from '../components/Form/Form';
 import { DEFAULT_USER_NAME, ERROR_ACCOUNT_CONFIRM_PASSWORD } from '../constants';
 import {
   updatePassword,
@@ -105,17 +105,17 @@ class ChangePassword extends Component {
             <AccountFormSuccess />
           ) : (
             <Form className="form_account" onSubmit={e => this.onSubmit(e)}>
-              <div className="form__row">
+              <FormRow>
                 <h2>Change password</h2>
-              </div>
+              </FormRow>
               {isGoogleOnly ? (
-                <div className="form__row">
+                <FormRow>
                   <p>
                     You are signed in with your Google account. However, you can set a password to{' '}
                     sign in with email/password in future.
                   </p>
                   <p>You’ll need to sign in to your Google account.</p>
-                </div>
+                </FormRow>
               ) : (
                 <InputRow
                   name="current-password"
@@ -148,11 +148,11 @@ class ChangePassword extends Component {
                 minLength="6"
                 required
               />
-              <div className="form__row form__row_submit">
+              <FormRow type="submit">
                 <Button type="submit" styleType="primary" disabled={isSubmitting} isFullWidth>
                   Change password
                 </Button>
-              </div>
+              </FormRow>
             </Form>
           )}
         </Layout.Container>

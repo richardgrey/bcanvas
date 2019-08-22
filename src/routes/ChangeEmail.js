@@ -7,7 +7,7 @@ import Header from '../components/Header/Header';
 import PageTitle from '../components/PageTitle/PageTitle';
 import AccountFormSuccess from '../components/AccountFormSuccess/AccountFormSuccess';
 import Button from '../components/Button/Button';
-import Form, { InputRow } from '../components/Form/Form';
+import Form, { InputRow, FormRow } from '../components/Form/Form';
 import { DEFAULT_USER_NAME } from '../constants';
 import { updateAccountFormReset, updateEmail } from '../actions/account';
 
@@ -78,9 +78,9 @@ class ChangeEmail extends Component {
             <AccountFormSuccess />
           ) : (
             <Form className="form_account" onSubmit={e => this.onSubmit(e)}>
-              <div className="form__row">
+              <FormRow className="form__row">
                 <h2>Change email</h2>
-              </div>
+              </FormRow>
               <InputRow
                 name="email"
                 type="email"
@@ -100,11 +100,11 @@ class ChangeEmail extends Component {
                 minLength="6"
                 required
               />
-              <div className="form__row form__row_submit">
+              <FormRow type="submit">
                 <Button type="submit" styleType="primary" disabled={isSubmitting} isFullWidth>
                   Send confirmation email
                 </Button>
-              </div>
+              </FormRow>
             </Form>
           )}
         </Layout.Container>
