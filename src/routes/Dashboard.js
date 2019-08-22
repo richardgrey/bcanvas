@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Layout from '../components/Layout/Layout';
-import PageTitle from '../components/PageTitle/PageTitle';
 import Header from '../components/Header/Header';
+import PageTitle from '../components/PageTitle/PageTitle';
 import ItemsList from '../components/ItemsList/ItemsList';
-import NewCanvasSection from '../components/NewCanvasSection/NewCanvasSection';
+import CreateCanvasSection from '../components/CreateCanvasSection/CreateCanvasSection';
+import DashboardActions from '../components/DashboardActions/DashboardActions';
 
 class Dashboard extends Component {
   static propTypes = {
+    dispatch: PropTypes.func.isRequired,
     isEmpty: PropTypes.bool.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
   };
@@ -33,7 +35,7 @@ class Dashboard extends Component {
                 title="Dashboard"
                 subtitle="Nothing here yet. Go ahead, create your first canvas!"
               />
-              <NewCanvasSection />
+              <CreateCanvasSection />
             </>
           ) : (
             <>

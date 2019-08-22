@@ -33,7 +33,7 @@
     margin-left: 12px;
     width: 18px;
     height: 12px;
-    transform: translate3d(0, 0, 0);
+    transform: translateX(0);
     transition: transform 300ms ease;
   }
 }
@@ -49,7 +49,7 @@
   }
   .new-canvas-card__cta {
     .icon {
-      transform: translate3d(15px, 0, 0);
+      transform: translateX(15px);
     }
   }
 }

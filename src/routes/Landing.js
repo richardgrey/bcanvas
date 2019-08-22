@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Layout from '../components/Layout/Layout';
 import Hero from '../components/Hero/Hero';
-import NewCanvasSection from '../components/NewCanvasSection/NewCanvasSection';
+import CreateCanvasSection from '../components/CreateCanvasSection/CreateCanvasSection';
 import Header from '../components/Header/Header';
 
 class Landing extends Component {
@@ -19,7 +19,7 @@ class Landing extends Component {
         </Layout.Header>
         <Layout.Container>
           <Hero />
-          <NewCanvasSection />
+          <CreateCanvasSection />
         </Layout.Container>
       </Layout>
     );

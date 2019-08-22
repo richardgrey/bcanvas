@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Icon from '../Icon/Icon';
 import { createCanvas } from '../../actions/canvas';
 import schemas from '../../constants/schemas';
-import './NewCanvasCard.scss';
+import './CreateCanvasCard.scss';
 
 import {
   CANVAS_TYPE_BUSINESS,
@@ -38,7 +38,7 @@ const content = {
   },
 };
 
-class NewCanvasCard extends Component {
+class CreateCanvasCard extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
@@ -101,4 +101,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(NewCanvasCard);
+export default connect(mapStateToProps)(CreateCanvasCard);

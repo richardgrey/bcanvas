@@ -1,14 +1,10 @@
 import React from 'react';
-import NewCanvasCard from '../NewCanvasCard/NewCanvasCard';
-import './NewCanvasSection.scss';
+import NewCanvasCard from '../CreateCanvasCard/CreateCanvasCard';
+import { CANVAS_TYPE_BUSINESS, CANVAS_TYPE_VALUE, CANVAS_TYPE_LEAN } from '../../constants';
+import './CreateCanvasSection.scss';
 
-import {
-  CANVAS_TYPE_BUSINESS,
-  CANVAS_TYPE_VALUE,
-  CANVAS_TYPE_LEAN,
-} from '../../constants';
 
-const NewCanvasSection = () => (
+const CreateCanvasSection = () => (
   <div className="new-canvas-section">
     <div className="new-canvas-section__col">
       <NewCanvasCard type={CANVAS_TYPE_BUSINESS} withDescription />
@@ -22,4 +18,4 @@ const NewCanvasSection = () => (
   </div>
 );
 
-export default NewCanvasSection;
+export default CreateCanvasSection;
