@@ -5,11 +5,13 @@ import PropTypes from 'prop-types';
 class Portal extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
+    container: PropTypes.instanceOf(Element),
     onRendered: PropTypes.func,
   };
 
   static defaultProps = {
     onRendered: null,
+    container: document.body,
   };
 
   componentDidMount() {
@@ -18,8 +20,8 @@ class Portal extends Component {
   }
 
   render() {
-    const { children } = this.props;
-    return ReactDOM.createPortal(children, document.body);
+    const { children, container } = this.props;
+    return ReactDOM.createPortal(children, container);
   }
 }
 

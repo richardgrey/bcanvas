@@ -1,9 +1,12 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import Portal from './Portal';
 import Icon from '../Icon/Icon';
-import './Modal.css';
+import './Modal.scss';
+
+const MOUNT_NODE_LOCK_CLASS = 'modal-scroll-lock';
 
 class Modal extends Component {
   static propTypes = {
@@ -12,13 +15,13 @@ class Modal extends Component {
     size: PropTypes.oneOf(['large', 'medium', 'small', 'tiny']),
     containerClassName: PropTypes.string,
     // Call callback that should change isOpened property.
-    onCloseEvent: PropTypes.func,
+    onClose: PropTypes.func,
   };
 
   static defaultProps = {
     size: 'medium',
     containerClassName: null,
-    onCloseEvent: () => {},
+    onClose: () => {},
   };
 
   constructor(props) {
@@ -56,38 +59,31 @@ class Modal extends Component {
   onOpen() {
     const doc = this.mountNode;
     doc.addEventListener('keydown', this.onDocumentKeyDown, false);
-    doc.classList.add('body_lock');
+    doc.classList.add(MOUNT_NODE_LOCK_CLASS);
   }
 
   onClose() {
     const doc = this.mountNode;
     doc.removeEventListener('keydown', this.onDocumentKeyDown, false);
-    doc.classList.remove('body_lock');
+    doc.classList.remove(MOUNT_NODE_LOCK_CLASS);
   }
 
-  onDocumentKeyDown(e) {
+  onDocumentKeyDown = (e) => {
     // Escape key
     if (e.key === 'Escape') {
-      this.props.onCloseEvent();
+      this.props.onClose();
     }
-  }
+  };
 
-  onBackdropClick(e) {
+  onBackdropClick = e => {
     if (e.target !== e.currentTarget) {
       return;
     }
-
-    this.props.onCloseEvent();
-  }
+    this.props.onClose();
+  };
 
   render() {
-    const {
-      isOpened,
-      children,
-      size,
-      containerClassName,
-      onCloseEvent,
-    } = this.props;
+    const { isOpened, children, size, containerClassName, onClose } = this.props;
     const modSize = ` modal__container_size_${size}`;
 
     if (!isOpened) {
@@ -97,13 +93,10 @@ class Modal extends Component {
     return (
       <Portal onRendered={this.onRendered}>
         <div className="modal">
-          <div
-            className="modal__backdrop"
-            onClick={e => this.onBackdropClick(e)}
-          >
+          <div className="modal__backdrop" onClick={this.onBackdropClick}>
             <div className={`modal__container${modSize} ${containerClassName || ''}`}>
               {children}
-              <button className="modal__close" onClick={() => onCloseEvent()}>
+              <button type="button" className="modal__close" onClick={() => onClose()}>
                 <Icon name="cross" />
               </button>
             </div>
@@ -113,5 +106,34 @@ class Modal extends Component {
     );
   }
 }
+
+Modal.open = function open(props) {
+  const { onClose, content, ...others } = props;
+  const div = document.createElement('div');
+  document.body.appendChild(div);
+
+  function destroy() {
+    const unmountResult = ReactDOM.unmountComponentAtNode(div);
+    if (unmountResult && div.parentNode) {
+      div.parentNode.removeChild(div);
+    }
+    if (onClose) {
+      onClose();
+    }
+  }
+
+  function render() {
+    ReactDOM.render(
+      <Modal isOpened onClose={destroy} {...others}>
+        {React.cloneElement(content, { close: destroy })}
+      </Modal>,
+      div,
+    );
+  }
+
+  render();
+
+  return { close: destroy };
+};
 
 export default Modal;
