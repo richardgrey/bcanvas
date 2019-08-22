@@ -6,10 +6,10 @@ import './InputText.scss';
 
 class InputText extends Component {
   static propTypes = {
-    name: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-    placeholder: PropTypes.string,
     type: PropTypes.oneOf(['text', 'password', 'email']),
+    name: PropTypes.string.isRequired,
+    label: PropTypes.string,
+    placeholder: PropTypes.string,
     value: PropTypes.string,
     error: PropTypes.string,
     disabled: PropTypes.bool,
@@ -19,12 +19,13 @@ class InputText extends Component {
 
   static defaultProps = {
     type: 'text',
+    label: null,
+    placeholder: null,
     value: '',
     error: null,
     disabled: false,
     autofocus: false,
-    onChange: () => {},
-    placeholder: null,
+    onChange: null,
   };
 
   constructor(props) {
@@ -42,13 +43,19 @@ class InputText extends Component {
     }
   }
 
-  onFocus() {
+  onFocus = e => {
+    if (typeof this.props.onFocus === 'function') {
+      this.props.onFocus(e);
+    }
     this.setState({ focused: true });
-  }
+  };
 
-  onBlur() {
+  onBlur = e => {
+    if (typeof this.props.onBlur === 'function') {
+      this.props.onBlur(e);
+    }
     this.setState({ focused: false });
-  }
+  };
 
   render() {
     const {
@@ -65,10 +72,16 @@ class InputText extends Component {
     } = this.props;
     const { focused, id } = this.state;
     const baseClass = 'input-text';
+    const cls = b(baseClass, {
+      focused,
+      disabled,
+      error: !!error,
+      'no-label': !label,
+    });
 
     return (
-      <label className={b(baseClass, { focused, error: !!error, disabled })} htmlFor={id}>
-        <span className={b(baseClass, 'label', { hidden: !value && !focused })}>{label}</span>
+      <label className={cls} htmlFor={id}>
+        <span className={b(baseClass, 'label', { hidden: label && !value && !focused })}>{label}</span>
         <span className={b(baseClass, 'placeholder', { hidden: !!value || !!focused })}>
           {placeholder || label}
         </span>
@@ -83,8 +96,8 @@ class InputText extends Component {
           value={value}
           disabled={disabled}
           onChange={onChange}
-          onFocus={() => this.onFocus()}
-          onBlur={() => this.onBlur()}
+          onFocus={this.onFocus}
+          onBlur={this.onBlur}
           {...other}
         />
       </label>

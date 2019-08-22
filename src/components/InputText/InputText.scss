@@ -112,11 +112,22 @@
 .input-text_disabled {
   &,
   &:hover {
-    opacity: .5;
-
     &:before {
       background: $color-gray9;
       border-color: $color-gray9;
     }
+  }
+  .input-text__input {
+    color: $color-gray2;
+  }
+  .input-text__placeholder {
+    color: $color-gray6;
+  }
+}
+
+// No label
+.input-text_no-label {
+  .input-text__input {
+    padding: 1rem 1.5rem 1rem;
   }
 }
