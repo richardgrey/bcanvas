@@ -79,6 +79,40 @@
 }
 
 
+// Danger Button
+.button_danger {
+  &:before {
+    background-color: $color-red;
+    box-shadow: 0 2px 4px rgba($color-red, 0.3);
+  }
+  &:hover:not([disabled]):before {
+    background-color: tint($color-red, 10%);
+    box-shadow: 0 1px 2px rgba($color-red, 0.3);
+  }
+  &:active:not([disabled]):before {
+    background: shade($color-red, 10%);
+    box-shadow: 0 1px 2px rgba($color-red, 0.3);
+  }
+}
+
+// Ghost Button
+.button_ghost {
+  color: $color-primary;
+
+  &:before {
+    background-color: transparent;
+    box-shadow: none;
+  }
+  &:hover:not([disabled]):before {
+    background-color: transparent;
+    box-shadow: none;
+  }
+  &:active:not([disabled]):before {
+    background: $color-gray0;
+    box-shadow: none;
+  }
+}
+
 // Sign In with Google
 .button_google {
   color: $color-gray1;

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import b from 'b_';
 import { removeCanvas } from '../../actions/canvas';
 import schemas from '../../constants/schemas';
-import Btn from '../Btn/Btn';
+import Button from '../Button/Button';
 import { DEFAULT_CANVAS_TITLE } from '../../constants';
 import './CanvasCard.scss';
 
@@ -45,6 +45,7 @@ class CanvasCard extends Component {
     const cls = b('canvas-card', {
       type: canvas.type,
       removing: isRemoving,
+      'removing-confirm': isConfirmingRemove,
     });
 
     return (
@@ -73,12 +74,26 @@ class CanvasCard extends Component {
         ) : (
           <div className="canvas-card__confirming-remove">
             <div className="canvas-card__confirming-remove-inner">
-              <Btn styleType="danger" size="small" onClick={e => this.removeCanvas(e)}>
-                Confirm
-              </Btn>{' '}
-              <Btn styleType="ghost" size="small" onClick={e => this.toggleRemoving(e, false)}>
-                Cancel
-              </Btn>
+              <p>
+                <Button
+                  styleType="danger"
+                  size="x-small"
+                  isFullWidth
+                  onClick={e => this.removeCanvas(e)}
+                >
+                  Confirm removal
+                </Button>
+              </p>
+              <p>
+                <Button
+                  styleType="ghost"
+                  size="x-small"
+                  isFullWidth
+                  onClick={e => this.toggleRemoving(e, false)}
+                >
+                  Cancel
+                </Button>
+              </p>
             </div>
           </div>
         )}
