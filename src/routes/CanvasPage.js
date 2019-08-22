@@ -196,7 +196,7 @@ const mapStateToProps = (state, ownProps) => {
     isAuthenticated,
     id: canvasId,
     isFetching: canvas.isFetching,
-    canEdit: canvas.isFetching,
+    canEdit: false,
     // This will force to fetch data
     lastFetch: 0,
   };
