@@ -4,7 +4,7 @@ import ModalShare from '../ModalShare/ModalShare';
 import HeaderButton from '../HeaderButton/HeaderButton';
 import ToolbarNewCanvas from '../ToolbarNewCanvas/ToolbarNewCanvas';
 
-class CanvasActionsToobar extends Component {
+class ToolbarCanvas extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     canvas: PropTypes.shape({}).isRequired,
@@ -49,4 +49,4 @@ class CanvasActionsToobar extends Component {
   }
 }
 
-export default CanvasActionsToobar;
+export default ToolbarCanvas;

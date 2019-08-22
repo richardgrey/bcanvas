@@ -7,7 +7,7 @@ import Header from '../components/Header/Header';
 import CanvasTitle from '../components/CanvasTitle/CanvasTitle';
 import CanvasTable from '../components/CanvasTable/CanvasTable';
 import CanvasTableLoading from '../components/CanvasTable/CanvasTableLoading';
-import CanvasActionsToobar from '../components/ToolbarCanvas/CanvasActionsToobar';
+import ToolbarCanvas from '../components/ToolbarCanvas/ToolbarCanvas';
 import { fetchCanvas, setShareUrl } from '../actions/canvas';
 import { locationPropType } from '../utils/propTypes';
 
@@ -102,7 +102,7 @@ class CanvasPage extends Component {
               left={
                 <CanvasTitle canvasId={id} title={title} canEdit={canEdit} dispatch={dispatch} />
               }
-              right={<CanvasActionsToobar canvas={this.props} dispatch={dispatch} />}
+              right={<ToolbarCanvas canvas={this.props} dispatch={dispatch} />}
             />
           </Layout.Header>
           <Layout.Container>
