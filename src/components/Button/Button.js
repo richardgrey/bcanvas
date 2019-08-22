@@ -9,8 +9,8 @@ class Btn extends Component {
     children: PropTypes.node.isRequired,
     href: PropTypes.string,
     type: PropTypes.oneOf(['button', 'submit', 'reset']),
-    size: PropTypes.oneOf(['small', 'medium', 'large']),
-    styleType: PropTypes.oneOf(['primary', 'danger', 'ghost', 'google']),
+    size: PropTypes.oneOf(['x-small', 'small', 'normal', 'large']),
+    styleType: PropTypes.oneOf(['primary', 'danger', 'google']),
     className: PropTypes.string,
     isFullWidth: PropTypes.bool,
   };
@@ -18,7 +18,7 @@ class Btn extends Component {
   static defaultProps = {
     href: null,
     type: 'button',
-    size: 'medium',
+    size: 'normal',
     styleType: null,
     className: null,
     isFullWidth: false,
@@ -28,9 +28,9 @@ class Btn extends Component {
     const { children, href, type, size, styleType, className, isFullWidth, ...other } = this.props;
     const inner = () => <span className="button__inner">{children}</span>;
     const cls = b('button', {
+      width: isFullWidth ? 'full' : false,
       [styleType]: !!styleType,
       size,
-      width: isFullWidth ? 'full' : false,
     });
 
     return href ? (
