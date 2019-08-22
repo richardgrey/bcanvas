@@ -9,10 +9,12 @@ import AccountFormSuccess from '../components/AccountFormSuccess/AccountFormSucc
 import Button from '../components/Button/Button';
 import Form, { InputRow, FormRow } from '../components/Form/Form';
 import { DEFAULT_USER_NAME } from '../constants';
+import { locationPropType } from '../utils/propTypes';
 import { updateAccountFormReset, updateEmail } from '../actions/account';
 
 class ChangeEmail extends Component {
   static propTypes = {
+    location: locationPropType.isRequired,
     dispatch: PropTypes.func.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
     isSuccess: PropTypes.bool,
@@ -61,7 +63,18 @@ class ChangeEmail extends Component {
   }
 
   render() {
-    const { isAuthenticated, displayName, email, errors, isSubmitting, isSuccess } = this.props;
+    const {
+      location,
+      isAuthenticated,
+      displayName,
+      email,
+      errors,
+      isSubmitting,
+      isSuccess,
+    } = this.props;
+
+    const historyState = location.state;
+    const cancelHref = (historyState && historyState.from) || '/';
 
     if (!isAuthenticated) {
       return <Redirect to="/sign-in" />;
@@ -103,6 +116,17 @@ class ChangeEmail extends Component {
               <FormRow type="submit">
                 <Button type="submit" styleType="primary" disabled={isSubmitting} isFullWidth>
                   Send confirmation email
+                </Button>
+              </FormRow>
+              <FormRow>
+                <Button
+                  href={cancelHref}
+                  type="button"
+                  styleType="secondary"
+                  disabled={isSubmitting}
+                  isFullWidth
+                >
+                  Cancel
                 </Button>
               </FormRow>
             </Form>

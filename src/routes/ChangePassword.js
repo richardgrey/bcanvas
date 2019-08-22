@@ -9,6 +9,7 @@ import AccountFormSuccess from '../components/AccountFormSuccess/AccountFormSucc
 import Button from '../components/Button/Button';
 import Form, { InputRow, FormRow } from '../components/Form/Form';
 import { DEFAULT_USER_NAME, ERROR_ACCOUNT_CONFIRM_PASSWORD } from '../constants';
+import { locationPropType } from '../utils/propTypes';
 import {
   updatePassword,
   updatePasswordForGoogleSignIn,
@@ -18,6 +19,7 @@ import {
 
 class ChangePassword extends Component {
   static propTypes = {
+    location: locationPropType.isRequired,
     dispatch: PropTypes.func.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
     isGoogleOnly: PropTypes.bool.isRequired,
@@ -81,6 +83,7 @@ class ChangePassword extends Component {
   render() {
     const { currentPassword, password, repassword } = this.state;
     const {
+      location,
       isAuthenticated,
       displayName,
       email,
@@ -89,6 +92,9 @@ class ChangePassword extends Component {
       isSubmitting,
       isSuccess,
     } = this.props;
+
+    const historyState = location.state;
+    const cancelHref = (historyState && historyState.from) || '/';
 
     if (!isAuthenticated) {
       return <Redirect to="/sign-in" />;
@@ -151,6 +157,17 @@ class ChangePassword extends Component {
               <FormRow type="submit">
                 <Button type="submit" styleType="primary" disabled={isSubmitting} isFullWidth>
                   Change password
+                </Button>
+              </FormRow>
+              <FormRow>
+                <Button
+                  href={cancelHref}
+                  type="button"
+                  styleType="secondary"
+                  disabled={isSubmitting}
+                  isFullWidth
+                >
+                  Cancel
                 </Button>
               </FormRow>
             </Form>

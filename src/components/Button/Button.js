@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import b from 'b_';
 import { Link } from 'react-router-dom';
+import { locationPropType } from '../../utils/propTypes';
 import './Button.scss';
 
-class Btn extends Component {
+class Button extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
-    href: PropTypes.string,
+    href: PropTypes.oneOfType([PropTypes.string, locationPropType]),
     type: PropTypes.oneOf(['button', 'submit', 'reset']),
     size: PropTypes.oneOf(['x-small', 'small', 'normal', 'large']),
-    styleType: PropTypes.oneOf(['primary', 'danger', 'google']),
+    styleType: PropTypes.oneOf(['primary', 'secondary', 'danger', 'ghost', 'google']),
     className: PropTypes.string,
     isFullWidth: PropTypes.bool,
   };
@@ -45,4 +46,4 @@ class Btn extends Component {
   }
 }
 
-export default Btn;
+export default Button;
