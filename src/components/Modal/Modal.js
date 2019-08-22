@@ -11,17 +11,17 @@ const MOUNT_NODE_LOCK_CLASS = 'modal-scroll-lock';
 
 class Modal extends Component {
   static propTypes = {
+    location: locationPropType.isRequired,
     isOpened: PropTypes.bool.isRequired,
     children: PropTypes.node.isRequired,
     size: PropTypes.oneOf(['large', 'medium', 'small', 'tiny']),
     // Call callback that should change isOpened property.
     onClose: PropTypes.func,
-    location: locationPropType,
   };
 
   static defaultProps = {
     size: 'medium',
-    onClose: () => {},
+    onClose: null,
   };
 
   constructor(props) {
@@ -37,31 +37,41 @@ class Modal extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.location.pathname !== prevProps.location.pathname) {
-      this.close();
+    const { location, isOpened } = this.props;
+    if (location.pathname !== prevProps.location.pathname) {
+      this.onClose();
+    }
+    if (isOpened !== prevProps.isOpened) {
+      this[isOpened ? 'onOpen' : 'onClose']();
     }
   }
 
   componentWillUnmount() {
     this.originalTarget = null;
+    if (this.props.isOpened) {
+      this.onClose();
+    }
   }
 
-  onOpen() {
+  onOpen = () => {
     const doc = this.mountNode;
     doc.addEventListener('keydown', this.onDocumentKeyDown, false);
     doc.classList.add(MOUNT_NODE_LOCK_CLASS);
-  }
+  };
 
-  onClose() {
+  onClose = () => {
     const doc = this.mountNode;
     doc.removeEventListener('keydown', this.onDocumentKeyDown, false);
     doc.classList.remove(MOUNT_NODE_LOCK_CLASS);
-  }
+    if (this.props.onClose) {
+      this.props.onClose();
+    }
+  };
 
   onDocumentKeyDown = e => {
     // Escape key
     if (e.key === 'Escape') {
-      this.props.onClose();
+      this.onClose();
     }
   };
 
@@ -71,7 +81,7 @@ class Modal extends Component {
 
   onBackdropMouseUp = e => {
     if (this.originalTarget === e.currentTarget) {
-      this.props.onClose();
+      this.onClose();
     }
   };
 
@@ -86,13 +96,14 @@ class Modal extends Component {
     return (
       <Portal>
         <div className="modal">
-          <div className="modal__backdrop"
+          <div
+            className="modal__backdrop"
             onMouseDown={this.onBackdropMouseDown}
             onMouseUp={this.onBackdropMouseUp}
           >
             <div className={`modal__container${modSize}`}>
               {children}
-              <button type="button" className="modal__close" onClick={() => onClose()}>
+              <button type="button" className="modal__close" onClick={onClose}>
                 <Icon name="cross" />
               </button>
             </div>

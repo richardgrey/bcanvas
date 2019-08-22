@@ -80,4 +80,9 @@
 
 // Used applying to body
 .modal-scroll-lock {
+  overflow: hidden;
+  padding-right: 15px;
+  .header_fixed .header__inner {
+    padding-right: 15px;
+  }
 }
