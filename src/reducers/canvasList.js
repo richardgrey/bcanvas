@@ -6,6 +6,7 @@ import {
   CANVAS_UPDATE_TITLE_SUCCESS,
 } from '../actions/canvas';
 import { AUTH_UNSET_USER } from '../actions/auth';
+import { reduceCanvasData } from './canvas';
 
 function addCanvasToList(state, canvas) {
   // Make a new copy of array
@@ -50,7 +51,7 @@ const defaultState = {
   canvases: [],
 };
 
-const canvas = (state = defaultState, action) => {
+const canvasList = (state = defaultState, action) => {
   switch (action.type) {
     case CANVAS_LIST_FETCH_REQUEST:
       return {
@@ -62,7 +63,9 @@ const canvas = (state = defaultState, action) => {
         ...state,
         isFetching: false,
         isLoaded: true,
-        canvases: action.payload,
+        canvases: action.payload.canvases.map(c =>
+          reduceCanvasData(c, action.payload.currentUserId)
+        ),
       };
     case CANVAS_CREATE_SUCCESS:
       return addCanvasToList(state, action.payload);
@@ -77,4 +80,4 @@ const canvas = (state = defaultState, action) => {
   }
 };
 
-export default canvas;
+export default canvasList;

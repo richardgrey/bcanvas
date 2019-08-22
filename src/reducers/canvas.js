@@ -22,11 +22,12 @@ import pick from '../utils/pick';
 /**
  * Converts API canvas data object to the state object
  *
- * @param payload {object}
+ * @param data {object}
+ * @param currentUserId {string}
  * @returns {object}
  */
-const reduceCanvasData = payload => {
-  return pick(payload, [
+export const reduceCanvasData = (data, currentUserId) => {
+  const picked = pick(data, [
     'id',
     'type',
     'slug',
@@ -38,6 +39,11 @@ const reduceCanvasData = payload => {
     'ownerId',
     'isPublic',
   ]);
+  const isOwner = data.ownerId === currentUserId;
+  const canView = !data.isDenied && (isOwner || data.isPublic);
+  const canEdit = isOwner;
+
+  return Object.assign({ isOwner, canView, canEdit }, picked);
 };
 
 /**
@@ -225,7 +231,7 @@ const canvas = (state = defaultState, action) => {
     case CANVAS_FETCH_SUCCESS:
       return {
         ...state,
-        ...reduceCanvasData(action.payload),
+        ...reduceCanvasData(action.payload, action.payload.currentUserId),
         isFetching: false,
         lastFetch: Date.now(),
       };

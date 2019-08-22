@@ -11,7 +11,7 @@ export const CANVAS_LIST_FETCH_ERROR = 'CANVAS_LIST_FETCH_ERROR';
  * @returns {Function}
  */
 export const fetchCanvasList = () => async (dispatch, getState) => {
-  const { canvasList } = getState();
+  const { canvasList, account } = getState();
 
   // Don't make another request if it's already loading
   if (canvasList.isFetching) {
@@ -25,7 +25,10 @@ export const fetchCanvasList = () => async (dispatch, getState) => {
     // Extends canvas info width generic data
     dispatch({
       type: CANVAS_LIST_FETCH_SUCCESS,
-      payload: canvases,
+      payload: {
+        canvases,
+        currentUserId: account.uid,
+      },
     });
   } catch (error) {
     dispatch({
@@ -47,7 +50,9 @@ export const CANVAS_FETCH_ERROR = 'CANVAS_FETCH_ERROR';
  * @param canvasId {uid}
  * @returns {Function}
  */
-export const fetchCanvas = canvasId => async dispatch => {
+export const fetchCanvas = canvasId => async (dispatch, getState) => {
+  const { account } = getState();
+
   dispatch({
     type: CANVAS_FETCH_REQUEST,
     payload: { canvasId },
@@ -57,7 +62,10 @@ export const fetchCanvas = canvasId => async dispatch => {
     const canvas = await api.canvas.get(canvasId);
     dispatch({
       type: CANVAS_FETCH_SUCCESS,
-      payload: canvas,
+      payload: {
+        ...canvas,
+        currentUserId: account.uid,
+      },
     });
   } catch (error) {
     dispatch({

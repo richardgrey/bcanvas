@@ -140,15 +140,11 @@ class CanvasPage extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   const { match } = ownProps;
-  const { canvas, auth, account, canvasList } = state;
+  const { canvas, auth, canvasList } = state;
   const canvasId = match.params.id;
   const { isAuthenticated } = auth;
 
   const prepareData = data => {
-    const isOwner = data.ownerId === account.uid;
-    const canView = !data.isDenied && (isOwner || data.isPublic);
-    const canEdit = isOwner && !data.isFetching;
-
     // Preparing entries for rendering
     const entries = data.entries || {};
     const preparedEntries = Object.keys(entries)
@@ -167,9 +163,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
       ...data,
       entries: preparedEntries,
-      isOwner,
-      canView,
-      canEdit,
+      canEdit: data.canEdit && !data.isFetching,
       isAuthenticated,
     };
   };
