@@ -79,7 +79,7 @@ class ChangeEmail extends Component {
           ) : (
             <Form className="form_account" onSubmit={e => this.onSubmit(e)}>
               <FormRow className="form__row">
-                <h2>Change email</h2>
+                <h3>Change email</h3>
               </FormRow>
               <InputRow
                 name="email"

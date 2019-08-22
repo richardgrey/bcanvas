@@ -55,9 +55,9 @@ class CanvasCard extends Component {
             <img src={`${process.env.PUBLIC_URL}${icon}`} alt={name} />
           </div>
           <div className="canvas-card__body">
-            <h3 className={b('canvas-card', 'title', { no: !canvas.title })}>
+            <h4 className={b('canvas-card', 'title', { no: !canvas.title })}>
               {canvas.title || DEFAULT_CANVAS_TITLE}
-            </h3>
+            </h4>
             <p className="canvas-card__type">{name}</p>
           </div>
         </Link>

@@ -52,7 +52,7 @@ class CanvasColumn extends Component {
     return (
       // eslint-disable-next-line jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events
       <div className={cls} onClick={e => canEdit && this.onClick(e)}>
-        <h3 className="canvas-column__title">{title}</h3>
+        <h2 className="canvas-column__title">{title}</h2>
         <div className="canvas-column__hints">
           {description.map(descr => (
             <p key={descr}>{descr}</p>

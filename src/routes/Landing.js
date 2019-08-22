@@ -5,6 +5,7 @@ import Layout from '../components/Layout/Layout';
 import Hero from '../components/Hero/Hero';
 import CreateCanvasSection from '../components/CreateCanvasSection/CreateCanvasSection';
 import Header from '../components/Header/Header';
+import ToolbarNewCanvas from '../components/ToolbarNewCanvas/ToolbarNewCanvas';
 
 class Landing extends Component {
   static propTypes = {
@@ -12,10 +13,11 @@ class Landing extends Component {
   };
 
   render() {
+    const { isAuthenticated } = this.props;
     return (
       <Layout>
         <Layout.Header>
-          <Header btnDashboard btnUser />
+          <Header btnDashboard btnUser right={isAuthenticated ? <ToolbarNewCanvas /> : null} />
         </Layout.Header>
         <Layout.Container>
           <Hero />

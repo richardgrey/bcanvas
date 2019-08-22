@@ -64,7 +64,7 @@ class ModalShare extends Component {
 
     return (
       <Modal isOpened={isOpened} size="medium" onClose={this.modalClose}>
-        <h2>Share with others</h2>
+        <h3>Share with others</h3>
         <FormRow>
           <p>Copy this link and share</p>
           <InputText

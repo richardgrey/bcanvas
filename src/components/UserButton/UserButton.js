@@ -44,7 +44,7 @@ const UserButton = ({ dispatch, isAuthenticated, displayName, email }) => {
 
   const profile = () => (
     <div>
-      <h3>{displayName || DEFAULT_USER_NAME}</h3>
+      <h4>{displayName || DEFAULT_USER_NAME}</h4>
       {email}
     </div>
   );

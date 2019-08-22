@@ -67,7 +67,7 @@ class CreateCanvasCard extends Component {
         <div className="create-canvas-card__media">
           <img src={`${process.env.PUBLIC_URL}${icon}`} alt={title} />
         </div>
-        <h2 className="create-canvas-card__title">{title}</h2>
+        <h3 className="create-canvas-card__title">{title}</h3>
         {withDescription ? <p className="create-canvas-card__desc">{description}</p> : null}
         {withCTA ? (
           <div className="create-canvas-card__cta">

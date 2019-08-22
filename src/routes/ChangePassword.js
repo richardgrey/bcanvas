@@ -106,7 +106,7 @@ class ChangePassword extends Component {
           ) : (
             <Form className="form_account" onSubmit={e => this.onSubmit(e)}>
               <FormRow>
-                <h2>Change password</h2>
+                <h3>Change password</h3>
               </FormRow>
               {isGoogleOnly ? (
                 <FormRow>

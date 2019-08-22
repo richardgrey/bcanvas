@@ -55,9 +55,9 @@ class Entry extends Component {
     inputRef: null,
   };
 
-  onFocus = e => {
-    e.target.innerHTML = e.target.innerText;
-  };
+  // onFocus = e => {
+  //   e.target.innerHTML = e.target.innerText;
+  // };
 
   onBlur = e => {
     e.target.innerHTML = `<span>${e.target.innerText}</span>`;
