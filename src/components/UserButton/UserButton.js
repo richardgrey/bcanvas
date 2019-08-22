@@ -24,11 +24,17 @@ const UserButton = ({ dispatch, isAuthenticated, displayName, email }) => {
   const menu = [
     {
       label: 'Change email',
-      href: '/account/change-email',
+      href: {
+        pathname: '/account/change-email',
+        state: { from: history.location },
+      },
     },
     {
       label: 'Change password',
-      href: '/account/change-password',
+      href: {
+        pathname: '/account/change-password',
+        state: { from: history.location },
+      },
     },
     {
       label: 'Sign Out',
