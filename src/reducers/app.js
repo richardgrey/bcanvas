@@ -4,10 +4,6 @@ import { AUTH_SET_USER, AUTH_UNSET_USER } from '../actions/auth';
 const defaultState = {
   baseUrl: '',
   isReady: false,
-  isSidebarOpened: false,
-  isAuthModalOpened: false,
-  isUserModalOpened: false,
-  isShareModalOpened: false,
 };
 
 const app = (state = defaultState, action) => {

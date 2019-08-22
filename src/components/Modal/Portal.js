@@ -14,11 +14,6 @@ class Portal extends Component {
     container: document.body,
   };
 
-  componentDidMount() {
-    // eslint-disable-next-line react/destructuring-assignment
-    this.forceUpdate(this.props.onRendered);
-  }
-
   render() {
     const { children, container } = this.props;
     return ReactDOM.createPortal(children, container);
