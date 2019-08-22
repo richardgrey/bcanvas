@@ -1,17 +1,14 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import ReactSwitch from 'react-switch';
-import Modal from '../Modal/Modal';
-import Btn from '../Btn/Btn';
-import { InputRow } from '../Form/Form';
-import { toggleShareModal } from '../../actions/app';
+import Button from '../Button/Button';
+import InputText from '../InputText/InputText';
+import { Checkbox, FormRow } from '../Form/Form';
 import { saveSharingSettings } from '../../actions/canvas';
 
 class ModalShare extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    isOpened: PropTypes.bool.isRequired,
+    close: PropTypes.func,
     canvas: PropTypes.shape({
       id: PropTypes.string,
       shareUrl: PropTypes.string,
@@ -22,6 +19,7 @@ class ModalShare extends Component {
 
   static defaultProps = {
     canvas: null,
+    close: null,
   };
 
   constructor(props) {
@@ -31,28 +29,21 @@ class ModalShare extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { isPublic } = this.state;
-    if (nextProps.canvas && nextProps.canvas.isPublic !== isPublic) {
-      this.setState({
-        isPublic: nextProps.canvas.isPublic,
-      });
-    }
-  }
-
-  toggleIsPublic() {
+  toggleIsPublic = () => {
     const { isPublic } = this.state;
     this.setState({
       isPublic: !isPublic,
     });
-  }
+  };
 
-  modalClose() {
-    const { dispatch } = this.props;
-    dispatch(toggleShareModal(false));
-  }
+  modalClose = () => {
+    const { close } = this.props;
+    if (close) {
+      close();
+    }
+  };
 
-  saveAndClose() {
+  saveAndClose = () => {
     const { dispatch, canvas } = this.props;
     const { isPublic } = this.state;
 
@@ -62,84 +53,45 @@ class ModalShare extends Component {
     if (canvas.isPublic !== isPublic) {
       dispatch(saveSharingSettings(canvas.id, { isPublic }));
     }
-  }
+  };
 
   render() {
-    const { canvas, isOpened } = this.props;
+    const { canvas } = this.props;
     const { isPublic } = this.state;
 
-    return !canvas ? null : (
-      <Modal
-        size="small"
-        containerClassName="modal-share"
-        isOpened={isOpened}
-        onCloseEvent={() => this.modalClose()}
-      >
-        <h1 className="modal__title">Share It</h1>
+    return (
+      <>
+        <h2>Share with others</h2>
+        <FormRow>
+          <p>Copy this link and share</p>
+          <InputText
+            name="url"
+            value={canvas.shareUrl}
+            disabled
+            onFocus={e => { e.target.select()}}
+          />
+        </FormRow>
         {canvas.isOwner ? (
-          <Fragment>
-            <div className="form__row">
-              <label htmlFor="ispublic" className="form__label">
-                Allow anyone with the link to see this canvas
-                <ReactSwitch
-                  checked={isPublic}
-                  onChange={() => this.toggleIsPublic()}
-                  className="form__switch"
-                  name="ispublic"
-                  id="ispublic"
-                  onColor="#63BBE4"
-                  onHandleColor="#2C96CE"
-                  handleDiameter={24}
-                  uncheckedIcon={false}
-                  checkedIcon={false}
-                  boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
-                  activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
-                  height={16}
-                  width={36}
-                />
-              </label>
-            </div>
-          </Fragment>
+          <FormRow>
+            <Checkbox name="s_public" isChecked={isPublic} onChange={this.toggleIsPublic}>
+              Allow anyone with the link to see this canvas
+            </Checkbox>
+          </FormRow>
         ) : null}
-        <InputRow
-          name="url"
-          value={canvas.shareUrl}
-          label="Copy this link and share"
-          disabled
-          onFocus={e => e.target.select()}
-        />
-        <div className="form__row form__row_submit modal__footer">
+        <FormRow type="submit">
           {canvas.isOwner ? (
-            <Btn
-              styleType="primary"
-              isRounded
-              onClick={() => this.saveAndClose()}
-            >
+            <Button styleType="primary" size="small" onClick={() => this.saveAndClose()}>
               Save & Close
-            </Btn>
+            </Button>
           ) : (
-            <Btn
-              styleType="primary"
-              isRounded
-              onClick={() => this.modalClose()}
-            >
+            <Button styleType="primary" size="small" onClick={() => this.modalClose()}>
               Close
-            </Btn>
+            </Button>
           )}
-        </div>
-      </Modal>
+        </FormRow>
+      </>
     );
   }
 }
 
-const mapStateToProps = state => {
-  const { app, canvas } = state;
-
-  return {
-    canvas,
-    isOpened: app.isShareModalOpened,
-    baseUrl: app.baseUrl,
-  };
-};
-
-export default connect(mapStateToProps)(ModalShare);
+export default ModalShare;

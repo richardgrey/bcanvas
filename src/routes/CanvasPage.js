@@ -102,7 +102,7 @@ class CanvasPage extends Component {
               left={
                 <CanvasTitle canvasId={id} title={title} canEdit={canEdit} dispatch={dispatch} />
               }
-              right={<CanvasActions dispatch={dispatch} />}
+              right={<CanvasActions canvas={this.props} dispatch={dispatch} />}
             />
           </Layout.Header>
           <Layout.Container>

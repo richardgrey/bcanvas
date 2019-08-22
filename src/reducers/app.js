@@ -1,4 +1,4 @@
-import { APP_SET_BASE_URL, MODAL_SHARE_TOGGLE } from '../actions/app';
+import { APP_SET_BASE_URL } from '../actions/app';
 import { AUTH_SET_USER, AUTH_UNSET_USER } from '../actions/auth';
 
 const defaultState = {
@@ -22,11 +22,6 @@ const app = (state = defaultState, action) => {
       return {
         ...state,
         baseUrl: action.payload,
-      };
-    case MODAL_SHARE_TOGGLE:
-      return {
-        ...state,
-        isShareModalOpened: action.payload,
       };
     default:
       return state;

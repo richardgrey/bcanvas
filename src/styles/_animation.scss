@@ -6,3 +6,7 @@
   from { opacity: 1; }
   to { opacity: 0; }
 }
+@keyframes zoom-in {
+  from { transform: scale(0.9); }
+  to { transform: scale(1); }
+}
