@@ -1,21 +1,20 @@
 @import "../../styles/variables";
 
-.new-canvas-section {
-  margin: 60px 0;
+.create-canvas-section {
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
   justify-content: center;
 }
-.new-canvas-section__col {
+.create-canvas-section__col {
   padding: 0 10px;
   margin-bottom: 40px;
 }
 @media (min-width: $min-tablet) {
-  .new-canvas-section {
-    margin: 60px -20px;
+  .create-canvas-section {
+    margin: 0 -20px;
   }
-  .new-canvas-section__col {
+  .create-canvas-section__col {
     max-width: 360px;
     width: 33%;
     padding: 0 20px;

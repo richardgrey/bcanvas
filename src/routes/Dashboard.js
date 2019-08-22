@@ -7,7 +7,7 @@ import Header from '../components/Header/Header';
 import PageTitle from '../components/PageTitle/PageTitle';
 import ItemsList from '../components/ItemsList/ItemsList';
 import CreateCanvasSection from '../components/CreateCanvasSection/CreateCanvasSection';
-import DashboardActions from '../components/DashboardActions/DashboardActions';
+import ToolbarNewCanvas from '../components/ToolbarNewCanvas/ToolbarNewCanvas';
 
 class Dashboard extends Component {
   static propTypes = {
@@ -17,7 +17,7 @@ class Dashboard extends Component {
   };
 
   render() {
-    const { isAuthenticated, isEmpty } = this.props;
+    const { dispatch, isAuthenticated, isEmpty } = this.props;
 
     if (!isAuthenticated) {
       return <Redirect to="/sign-in" />;
@@ -26,7 +26,7 @@ class Dashboard extends Component {
     return (
       <Layout>
         <Layout.Header>
-          <Header btnBack btnUser />
+          <Header btnBack btnUser right={<ToolbarNewCanvas dispatch={dispatch} />} />
         </Layout.Header>
         <Layout.Container>
           {isEmpty ? (
@@ -35,7 +35,7 @@ class Dashboard extends Component {
                 title="Dashboard"
                 subtitle="Nothing here yet. Go ahead, create your first canvas!"
               />
-              <CreateCanvasSection />
+              <CreateCanvasSection withDescription withCTA />
             </>
           ) : (
             <>

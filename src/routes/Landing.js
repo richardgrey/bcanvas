@@ -19,7 +19,7 @@ class Landing extends Component {
         </Layout.Header>
         <Layout.Container>
           <Hero />
-          <CreateCanvasSection />
+          <CreateCanvasSection withDescription withCTA />
         </Layout.Container>
       </Layout>
     );

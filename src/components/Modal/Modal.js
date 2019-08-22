@@ -1,8 +1,10 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import Portal from './Portal';
 import Icon from '../Icon/Icon';
+import { locationPropType } from '../../utils/propTypes';
 import './Modal.scss';
 
 const MOUNT_NODE_LOCK_CLASS = 'modal-scroll-lock';
@@ -14,6 +16,7 @@ class Modal extends Component {
     size: PropTypes.oneOf(['large', 'medium', 'small', 'tiny']),
     // Call callback that should change isOpened property.
     onClose: PropTypes.func,
+    location: locationPropType,
   };
 
   static defaultProps = {
@@ -34,12 +37,8 @@ class Modal extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { isOpened } = this.props;
-
-    if (isOpened && !prevProps.isOpened) {
-      this.onOpen();
-    } else if (!isOpened && prevProps.isOpened) {
-      this.onClose();
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      this.close();
     }
   }
 
@@ -104,4 +103,4 @@ class Modal extends Component {
   }
 }
 
-export default Modal;
+export default withRouter(Modal);

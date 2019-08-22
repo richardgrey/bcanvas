@@ -8,11 +8,7 @@ import { createCanvas } from '../../actions/canvas';
 import schemas from '../../constants/schemas';
 import './CreateCanvasCard.scss';
 
-import {
-  CANVAS_TYPE_BUSINESS,
-  CANVAS_TYPE_LEAN,
-  CANVAS_TYPE_VALUE,
-} from '../../constants';
+import { CANVAS_TYPE_BUSINESS, CANVAS_TYPE_LEAN, CANVAS_TYPE_VALUE } from '../../constants';
 
 const content = {
   [CANVAS_TYPE_BUSINESS]: {
@@ -43,11 +39,15 @@ class CreateCanvasCard extends Component {
     dispatch: PropTypes.func.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
     type: PropTypes.oneOf(['business', 'value', 'lean']).isRequired,
+    size: PropTypes.oneOf(['small', null]),
     withDescription: PropTypes.bool,
+    withCTA: PropTypes.bool,
   };
 
   static defaultProps = {
+    size: null,
     withDescription: false,
+    withCTA: false,
   };
 
   onClick() {
@@ -58,27 +58,29 @@ class CreateCanvasCard extends Component {
   }
 
   render() {
-    const { type, withDescription, isAuthenticated } = this.props;
+    const { type, size, withDescription, withCTA, isAuthenticated } = this.props;
     const { title, description } = content[type];
     const { icon } = schemas[type];
 
     const inner = () => (
-      <div className="new-canvas-card__inner">
-        <div className="new-canvas-card__media">
+      <div className="create-canvas-card__inner">
+        <div className="create-canvas-card__media">
           <img src={`${process.env.PUBLIC_URL}${icon}`} alt={title} />
         </div>
-        <h2 className="new-canvas-card__title">{title}</h2>
-        {withDescription ? <p className="new-canvas-card__desc">{description}</p> : null}
-        <div className="new-canvas-card__cta">
-          <span>Create</span>
-          <Icon name="arrow" />
-        </div>
+        <h2 className="create-canvas-card__title">{title}</h2>
+        {withDescription ? <p className="create-canvas-card__desc">{description}</p> : null}
+        {withCTA ? (
+          <div className="create-canvas-card__cta">
+            <span>Create</span>
+            <Icon name="arrow" />
+          </div>
+        ) : null}
       </div>
     );
 
     return isAuthenticated ? (
       <div
-        className={b('new-canvas-card', { type })}
+        className={b('create-canvas-card', { type, size })}
         role="button"
         tabIndex="0"
         onClick={() => this.onClick()}
@@ -87,7 +89,7 @@ class CreateCanvasCard extends Component {
         {inner()}
       </div>
     ) : (
-      <Link to="/register" className={b('new-canvas-card', { type })}>
+      <Link to="/register" className={b('create-canvas-card', { type })}>
         {inner()}
       </Link>
     );
