@@ -3,6 +3,15 @@ export default {
   icon: '/img/canvas/business-model.svg',
   schema: [
     {
+      label: 'customers',
+      number: 1,
+      title: 'Customer Segments',
+      description: [
+        'For whom are you creating value?',
+        'What are the customer segments that either pay, receive or decide on your value proposition?',
+      ],
+    },
+    {
       label: 'partners',
       number: 2,
       title: 'Key Partners',
@@ -21,10 +30,13 @@ export default {
       ],
     },
     {
-      label: 'resources',
-      number: 7,
-      title: 'Key Resources',
-      description: ['What are the resources you need to create & deliver your Value Proposition?'],
+      label: 'revenue',
+      number: 4,
+      title: 'Revenue Streams',
+      description: [
+        'How do customers reward you for the value you provide to them?',
+        'What are the different revenue models?',
+      ],
     },
     {
       label: 'proposition',
@@ -34,16 +46,7 @@ export default {
         'What is the value you deliver to your customer?',
         'Which of your customer’s problems are you helping to solve?',
         'What is the customer need that your value proposition addresses?',
-        // 'What is your promise to your customers?',
         'What are the products and services you create for your customers?',
-      ],
-    },
-    {
-      label: 'relationships',
-      number: 8,
-      title: 'Customer Relationships',
-      description: [
-        'What relationship does each customer segment expect you to establish and maintain?',
       ],
     },
     {
@@ -56,12 +59,17 @@ export default {
       ],
     },
     {
-      label: 'customers',
-      number: 1,
-      title: 'Customer Segments',
+      label: 'resources',
+      number: 7,
+      title: 'Key Resources',
+      description: ['What are the resources you need to create & deliver your Value Proposition?'],
+    },
+    {
+      label: 'relationships',
+      number: 8,
+      title: 'Customer Relationships',
       description: [
-        'For whom are you creating value?',
-        'What are the customer segments that either pay, receive or decide on your value proposition?',
+        'What relationship does each customer segment expect you to establish and maintain?',
       ],
     },
     {
@@ -70,15 +78,6 @@ export default {
       title: 'Cost Structure',
       description: [
         'What are the important costs you make to create & delivery your value proposition?',
-      ],
-    },
-    {
-      label: 'revenue',
-      number: 4,
-      title: 'Revenue Streams',
-      description: [
-        'How do customers reward you for the value you provide to them?',
-        'What are the different revenue models?',
       ],
     },
   ],

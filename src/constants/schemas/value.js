@@ -3,82 +3,73 @@ export default {
   icon: '/img/canvas/value-proposition.svg',
   schema: [
     {
-      label: 'partners',
-      number: 2,
-      title: 'Key Partners',
-      description: [
-        'Who are your key partners/suppliers?',
-        'What are the motivations for the partnerships?',
-        'Which key activities do your partners perform?',
-      ],
-    },
-    {
-      label: 'activities',
-      number: 3,
-      title: 'Key Activities',
-      description: [
-        'What are the activities you perform every day to create & deliver your value proposition?',
-      ],
-    },
-    {
-      label: 'resources',
-      number: 7,
-      title: 'Key resources',
-      description: ['What are the resources you need to create & deliver your value proposition?'],
-    },
-    {
-      label: 'proposition',
-      number: 5,
-      title: 'Value Proposition',
-      description: [
-        'What is the value you deliver to your customer?',
-        'Which of your customer’s problems are you helping to solve?',
-        'What is the customer need that your value proposition addresses?',
-        // 'What is your promise to your customers?',
-        'What are the products and services you create for your customers?',
-      ],
-    },
-    {
-      label: 'relationships',
-      number: 8,
-      title: 'Customer Relationships',
-      description: [
-        'What relationship does each customer segment expect you to establish and maintain?',
-      ],
-    },
-    {
-      label: 'channels',
-      number: 6,
-      title: 'Channels',
-      description: [
-        'For whom are you creating value?',
-        'What are the customer segments that either pay, receive or decide on your value proposition?',
-      ],
-    },
-    {
-      label: 'customers',
+      label: 'jobs',
       number: 1,
-      title: 'Customer Segments',
+      title: 'Jobs-To-Be-Done',
+      description: [
+        'What is the job the customer wants to get done in their work or life?',
+        'It could be the tasks they are trying to perform and complete, the problems they are trying to solve, or the needs they are trying to satisfy.'
+      ],
+    },
+    {
+      label: 'pains',
+      number: 2,
+      title: 'Pains',
+      description: [
+        'What is annoying or troubling your customer?',
+        'What is preventing them from getting their job done?',
+        'Pains can be functional, social, emotional, or ancillary.',
+      ],
+    },
+    {
+      label: 'gains',
+      number: 3,
+      title: 'Gains',
+      description: [
+        'What would make your customer happy?',
+        'What would make their life and job-to-be-done easier?',
+      ],
+    },
+    {
+      label: 'substitution',
+      number: 4,
+      title: 'Substitution',
+      description: ['What your customer are doing now to get their job done?'],
+    },
+    {
+      label: 'products',
+      number: 5,
+      title: 'Products & Services',
+      description: [
+        'What are the products and services you can offer you customer so they can get their job done?',
+      ],
+    },
+    {
+      label: 'gain-creators',
+      number: 6,
+      title: 'Gain Creators',
+      description: [
+        'What can you offer you customer to help them achieve their gains?',
+        'How do they create benefits your customer expects, desires or would be surprised by?',
+        'It could include functional utility, social gains, positive emotions, and cost savings.',
+      ],
+    },
+    {
+      label: 'pain-relievers',
+      number: 7,
+      title: 'Pain Relievers',
+      description: [
+        'How can you help your customers to relieve their pains?',
+        'What problems can you eradicate?',
+      ],
+    },
+    {
+      label: 'segment',
+      number: 8,
+      title: 'Customer Segment',
       description: [
         'For whom are you creating value?',
-        'What are the customer segments that either pay, receive or decide on your value proposition?',
-      ],
-    },
-    {
-      label: 'cost',
-      number: 9,
-      title: 'Cost structure',
-      description: [
-        'What are the important costs you make to create & delivery your value proposition?',
-      ],
-    },
-    {
-      label: 'revenue',
-      number: 4,
-      title: 'Revenue Streams',
-      description: [
-        'How do customers reward you for the value you provide to them?',
-        'What are the different revenue models?',
+        'Describe you customer his role at work and life.',
       ],
     },
   ],

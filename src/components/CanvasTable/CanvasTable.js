@@ -9,7 +9,7 @@ const CanvasTable = props => {
   const { schema } = schemas[type];
 
   return (
-    <div className="canvas-table">
+    <div className={`canvas-table canvas-table_type_${type}`}>
       {schema.map(column => {
         const { label } = column;
         return (
