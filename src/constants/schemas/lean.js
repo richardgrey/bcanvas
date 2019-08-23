@@ -1,6 +1,6 @@
 export default {
   name: 'Lean Canvas',
-  icon: '/img/canvas/lean-canvas.svg',
+  icon: '/img/canvas/canvas-lean.svg',
   schema: [
     {
       label: 'customers',

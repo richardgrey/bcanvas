@@ -7,6 +7,7 @@ import schemas from '../../constants/schemas';
 import Button from '../Button/Button';
 import { DEFAULT_CANVAS_TITLE } from '../../constants';
 import './CanvasCard.scss';
+import IconCanvas from '../Icon/IconCanvas';
 
 class CanvasCard extends Component {
   static propTypes = {
@@ -40,7 +41,7 @@ class CanvasCard extends Component {
   render() {
     const { canvas } = this.props;
     const { isConfirmingRemove, isRemoving } = this.state;
-    const { name, icon } = schemas[canvas.type];
+    const { name } = schemas[canvas.type];
 
     const cls = b('canvas-card', {
       type: canvas.type,
@@ -52,7 +53,7 @@ class CanvasCard extends Component {
       <div className={cls}>
         <Link to={`/canvas/${canvas.id}`} className="canvas-card__link">
           <div className="canvas-card__media">
-            <img src={`${process.env.PUBLIC_URL}${icon}`} alt={name} />
+            <IconCanvas type={canvas.type} />
           </div>
           <div className="canvas-card__body">
             <h4 className={b('canvas-card', 'title', { no: !canvas.title })}>

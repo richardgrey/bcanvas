@@ -10,7 +10,7 @@ import configureStore from './configureStore';
 import * as serviceWorker from './serviceWorker';
 import history from './history';
 import App from './components/App/App';
-import Landing from './routes/Landing';
+import LandingPage from './routes/LandingPage';
 import CanvasPage from './routes/CanvasPage';
 import TermsPage from './routes/TermsPage';
 import CookiePage from './routes/CookiePage';
@@ -27,7 +27,7 @@ ReactDOM.render(
     <Router history={history}>
       <App>
         <Switch>
-          <Route exact path="/" component={Landing} />
+          <Route exact path="/" component={LandingPage} />
           <Route path="/register" component={Register} />
           <Route path="/sign-in" component={SignIn} />
           <Route path="/dashboard" component={Dashboard} />

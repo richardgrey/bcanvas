@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Layout from '../components/Layout/Layout';
-import Hero from '../components/Hero/Hero';
-import CreateCanvasSection from '../components/CreateCanvasSection/CreateCanvasSection';
+import Landing from '../components/Landing/Landing';
 import Header from '../components/Header/Header';
 import ToolbarNewCanvas from '../components/ToolbarNewCanvas/ToolbarNewCanvas';
 
-class Landing extends Component {
+class LandingPage extends Component {
   static propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
   };
@@ -20,8 +19,7 @@ class Landing extends Component {
           <Header btnDashboard btnUser right={isAuthenticated ? <ToolbarNewCanvas /> : null} />
         </Layout.Header>
         <Layout.Container>
-          <Hero />
-          <CreateCanvasSection withDescription withCTA />
+          <Landing />
         </Layout.Container>
       </Layout>
     );
@@ -37,4 +35,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Landing);
+export default connect(mapStateToProps)(LandingPage);

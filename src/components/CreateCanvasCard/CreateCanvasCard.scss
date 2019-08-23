@@ -19,8 +19,13 @@
 .create-canvas-card__media {
   margin-bottom: 40px;
 
-  img {
+  img,
+  svg {
+    max-width: 100%;
     vertical-align: top;
+  }
+  svg {
+    opacity: 0.3;
   }
 }
 .create-canvas-card__title {

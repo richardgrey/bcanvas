@@ -14,7 +14,7 @@ class Layout extends Component {
   static propTypes = {
     children: PropTypes.node,
     fluid: PropTypes.bool,
-    background: PropTypes.oneOf(['gradient', 'magnus']),
+    background: PropTypes.string,
   };
 
   static defaultProps = {

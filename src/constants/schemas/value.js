@@ -1,6 +1,6 @@
 export default {
   name: 'Value Proposition',
-  icon: '/img/canvas/value-proposition.svg',
+  icon: '/img/canvas/canvas-value.svg',
   schema: [
     {
       label: 'jobs',

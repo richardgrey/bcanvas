@@ -1,6 +1,6 @@
 export default {
   name: 'Business Model',
-  icon: '/img/canvas/business-model.svg',
+  icon: '/img/canvas/canvas-business.svg',
   schema: [
     {
       label: 'customers',

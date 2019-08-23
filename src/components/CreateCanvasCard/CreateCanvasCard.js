@@ -4,6 +4,7 @@ import b from 'b_';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Icon from '../Icon/Icon';
+import IconCanvas from '../Icon/IconCanvas';
 import { createCanvas } from '../../actions/canvas';
 import schemas from '../../constants/schemas';
 import './CreateCanvasCard.scss';
@@ -60,12 +61,11 @@ class CreateCanvasCard extends Component {
   render() {
     const { type, size, withDescription, withCTA, isAuthenticated } = this.props;
     const { title, description } = content[type];
-    const { icon } = schemas[type];
 
     const inner = () => (
       <div className="create-canvas-card__inner">
         <div className="create-canvas-card__media">
-          <img src={`${process.env.PUBLIC_URL}${icon}`} alt={title} />
+          <IconCanvas type={type} />
         </div>
         <h3 className="create-canvas-card__title">{title}</h3>
         {withDescription ? <p className="create-canvas-card__desc">{description}</p> : null}

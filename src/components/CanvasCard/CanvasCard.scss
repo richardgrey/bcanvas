@@ -30,8 +30,13 @@
   transition: box-shadow 200ms ease, transform 200ms ease;
   will-change: transform, box-shadow;
 
-  img {
+  img,
+  svg {
+    max-width: 100%;
     vertical-align: top;
+  }
+  svg {
+    opacity: 0.3;
   }
 }
 .canvas-card__body {
