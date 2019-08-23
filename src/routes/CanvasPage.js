@@ -8,7 +8,7 @@ import CanvasTitle from '../components/CanvasTitle/CanvasTitle';
 import CanvasTable from '../components/CanvasTable/CanvasTable';
 import CanvasTableLoading from '../components/CanvasTable/CanvasTableLoading';
 import ToolbarCanvas from '../components/ToolbarCanvas/ToolbarCanvas';
-import { fetchCanvas, setShareUrl } from '../actions/canvas';
+import { fetchCanvas } from '../actions/canvas';
 import { locationPropType } from '../utils/propTypes';
 
 class CanvasPage extends Component {
@@ -46,7 +46,6 @@ class CanvasPage extends Component {
     if (timeSinceLastFetch > 60 * 1000) {
       dispatch(fetchCanvas(id));
     }
-    dispatch(setShareUrl(url));
   }
 
   componentDidUpdate(prevProps) {
@@ -55,7 +54,6 @@ class CanvasPage extends Component {
 
     if (id !== prevProps.id) {
       dispatch(fetchCanvas(id));
-      dispatch(setShareUrl(url));
     }
   }
 
@@ -138,6 +136,7 @@ class CanvasPage extends Component {
   }
 }
 
+// TODO: Not found
 const mapStateToProps = (state, ownProps) => {
   const { match } = ownProps;
   const { canvas, auth, canvasList } = state;

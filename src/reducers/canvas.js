@@ -4,7 +4,6 @@ import {
   CANVAS_FETCH_REQUEST,
   CANVAS_FETCH_SUCCESS,
   CANVAS_FETCH_ERROR,
-  CANVAS_SET_SHARE_URL,
   CANVAS_SHARING_SUCCESS,
   CANVAS_REMOVE_SUCCESS,
   CANVAS_UPDATE_TITLE_SUCCESS,
@@ -289,11 +288,6 @@ const canvas = (state = defaultState, action) => {
       return {
         ...state,
         ...removeEntryReducer(state, action.payload),
-      };
-    case CANVAS_SET_SHARE_URL:
-      return {
-        ...state,
-        shareUrl: action.payload,
       };
     case CANVAS_SHARING_SUCCESS:
       return updateSharingReducer(state, action.payload);

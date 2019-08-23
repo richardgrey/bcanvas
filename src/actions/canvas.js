@@ -222,18 +222,3 @@ export const CANVAS_UNLOAD = 'CANVAS_UNLOAD';
 export const unloadCanvas = () => ({
   type: CANVAS_UNLOAD,
 });
-
-// ---
-
-export const CANVAS_SET_SHARE_URL = 'CANVAS_SET_SHARE_URL';
-
-/**
- * Set sharing URL in state
- *
- * @param url
- * @returns {{payload: string, type: string}}
- */
-export const setShareUrl = url => ({
-  type: CANVAS_SET_SHARE_URL,
-  payload: url,
-});

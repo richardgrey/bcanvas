@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import Icon from '../Icon/Icon';
 import IconCanvas from '../Icon/IconCanvas';
 import { createCanvas } from '../../actions/canvas';
-import schemas from '../../constants/schemas';
 import './CreateCanvasCard.scss';
 
 import { CANVAS_TYPE_BUSINESS, CANVAS_TYPE_LEAN, CANVAS_TYPE_VALUE } from '../../constants';

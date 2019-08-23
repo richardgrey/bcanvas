@@ -5,6 +5,7 @@ import Button from '../Button/Button';
 import InputText from '../InputText/InputText';
 import { Checkbox, FormRow } from '../Form/Form';
 import { saveSharingSettings } from '../../actions/canvas';
+import canvasShareUrl from '../../utils/canvasShareUrl';
 
 class ModalShare extends Component {
   static propTypes = {
@@ -13,7 +14,6 @@ class ModalShare extends Component {
     close: PropTypes.func,
     canvas: PropTypes.shape({
       id: PropTypes.string,
-      shareUrl: PropTypes.string,
       isPublic: PropTypes.bool,
       isOwner: PropTypes.bool,
     }),
@@ -61,6 +61,7 @@ class ModalShare extends Component {
   render() {
     const { canvas, isOpened } = this.props;
     const { isPublic } = this.state;
+    const shareUrl = canvasShareUrl(canvas.id);
 
     return (
       <Modal isOpened={isOpened} size="medium" onClose={this.modalClose}>
@@ -69,9 +70,11 @@ class ModalShare extends Component {
           <p>Copy this link and share</p>
           <InputText
             name="url"
-            value={canvas.shareUrl}
+            value={shareUrl}
             disabled
-            onFocus={e => { e.target.select()}}
+            onFocus={e => {
+              e.target.select();
+            }}
           />
         </FormRow>
         {canvas.isOwner ? (
