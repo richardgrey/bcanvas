@@ -7,6 +7,7 @@ import {
   CANVAS_SHARING_SUCCESS,
   CANVAS_REMOVE_SUCCESS,
   CANVAS_UPDATE_TITLE_SUCCESS,
+  CANVAS_CREATE_REQUEST, CANVAS_CREATE_SUCCESS,
 } from '../actions/canvas';
 import {
   ENTRY_ADD_REQUEST,
@@ -194,6 +195,10 @@ const defaultState = {
   // Flag
   isFetching: false,
   isDenied: false,
+  // When new canvas is in process of creation will contain its ID or False
+  // See action.canvas.createCanvas to go dipper in the process
+  isCreating: false,
+
   // From API
   id: undefined,
   slug: undefined,
@@ -205,7 +210,8 @@ const defaultState = {
   deletedAt: undefined,
   ownerId: undefined,
   isPublic: undefined,
-  // Generic
+
+  // Generic properties
   isOwner: undefined,
   canView: undefined,
   canEdit: undefined,
@@ -215,6 +221,16 @@ const canvas = (state = defaultState, action) => {
   switch (action.type) {
     case CANVAS_UNLOAD:
       return defaultState;
+    case CANVAS_CREATE_REQUEST:
+      return {
+        ...state,
+        isCreating: action.payload.id,
+      };
+    case CANVAS_CREATE_SUCCESS:
+      return {
+        ...state,
+        isCreating: action.payload.id === state.isCreating ? false : state.isCreating,
+      };
     case CANVAS_FETCH_REQUEST:
       return {
         ...defaultState,

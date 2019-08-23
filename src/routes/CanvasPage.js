@@ -20,6 +20,7 @@ class CanvasPage extends Component {
     dispatch: PropTypes.func.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
     isFetching: PropTypes.bool.isRequired,
+    isCreating: PropTypes.bool,
     id: PropTypes.string.isRequired,
     title: PropTypes.string,
     type: PropTypes.string,
@@ -33,26 +34,28 @@ class CanvasPage extends Component {
     title: '',
     type: undefined,
     entries: {},
+    isCreating: false,
     canView: undefined,
     canEdit: undefined,
     lastFetch: 0,
   };
 
   componentDidMount() {
-    const { dispatch, id, lastFetch, match } = this.props;
-    const url = `${window.location.origin}${match.url}`;
+    const { dispatch, id, lastFetch, isCreating } = this.props;
     const timeSinceLastFetch = Date.now() - lastFetch;
 
-    if (timeSinceLastFetch > 60 * 1000) {
+    if (timeSinceLastFetch > 60 * 1000 && !isCreating) {
       dispatch(fetchCanvas(id));
     }
   }
 
   componentDidUpdate(prevProps) {
-    const { dispatch, id, match } = this.props;
-    const url = `${window.location.origin}${match.url}`;
+    const { dispatch, id, isCreating } = this.props;
 
-    if (id !== prevProps.id) {
+    if (
+      (prevProps.id === id && prevProps.isCreating && !isCreating) ||
+      (prevProps.id !== id && !isCreating)
+    ) {
       dispatch(fetchCanvas(id));
     }
   }
@@ -188,6 +191,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     isAuthenticated,
     id: canvasId,
+    isCreating: canvas.isCreating === canvasId,
     isFetching: canvas.isFetching,
     canEdit: false,
     // This will force to fetch data

@@ -83,16 +83,16 @@ export const CANVAS_CREATE_ERROR = 'CANVAS_CREATE_ERROR';
 
 /**
  * Creates new canvas with given type and title
- * @param data
+ * @param type {string}
  * @returns {Function}
  */
-export const createCanvas = (data = {}) => async dispatch => {
+export const DEPRICAETD_createCanvas = type => async dispatch => {
   dispatch({
     type: CANVAS_CREATE_REQUEST,
-    payload: { data },
+    payload: { type },
   });
   try {
-    const canvasId = await api.canvas.create(data);
+    const canvasId = await api.canvas.create(type);
     const canvas = await api.canvas.get(canvasId);
 
     dispatch({
@@ -103,6 +103,43 @@ export const createCanvas = (data = {}) => async dispatch => {
     history.push(`/canvas/${canvasId}`);
     // Fetch updated list of canvases
     // dispatch(fetchCanvasList());
+  } catch (error) {
+    dispatch({
+      type: CANVAS_CREATE_ERROR,
+      payload: { error },
+    });
+  }
+};
+
+/**
+ * Creates new canvas with given type and title
+ * @param type {string}
+ * @returns {Function}
+ */
+export const createCanvas = type => async dispatch => {
+  // Create document reference with unique ID
+  const canvasRef = api.canvas.createRef();
+  const canvasId = canvasRef.id;
+
+  dispatch({
+    type: CANVAS_CREATE_REQUEST,
+    payload: {
+      id: canvasId,
+      type,
+    },
+  });
+
+  try {
+    // Go to canvas that will be created
+    history.push(`/canvas/${canvasId}`);
+
+    // Using created document reference create document with given type
+    await api.canvas.createFromRef(canvasRef, { type });
+
+    dispatch({
+      type: CANVAS_CREATE_SUCCESS,
+      payload: { id: canvasId, type },
+    });
   } catch (error) {
     dispatch({
       type: CANVAS_CREATE_ERROR,

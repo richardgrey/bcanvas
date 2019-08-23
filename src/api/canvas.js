@@ -83,6 +83,37 @@ const canvas = {
         .catch(error => reject(error));
     }),
 
+  createRef: () => firestore.collection('canvases').doc(),
+
+  /**
+   * @param doc {firebase.DocumentReference}
+   * @param data {object}
+   * @param data.type {string}
+   * @returns {Promise<any>} Gives document ID on resolve
+   */
+  createFromRef: (doc, data) =>
+    new Promise((resolve, reject) => {
+      const { currentUser } = firebaseAuth;
+
+      if (!currentUser || !currentUser.uid) {
+        reject(ERROR_UNAUTHORIZED_ACTION);
+        return;
+      }
+
+      const payload = {
+        ...data,
+        ownerId: currentUser.uid,
+      };
+
+      doc
+        .set({
+          ...CANVAS_DOCUMENT_DEFAULTS,
+          ...payload,
+        })
+        .then(() => resolve(doc.id))
+        .catch(error => reject(error));
+    }),
+
   update: async (canvasId, data = {}) =>
     new Promise((resolve, reject) => {
       const payload = {
