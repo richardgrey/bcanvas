@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import b from 'b_';
 import CanvasCard from '../CanvasCard/CanvasCard';
+import CanvasCardMock from '../CanvasCard/CanvasCardMock';
 import { fetchCanvasList } from '../../actions/canvas';
 import './ItemsList.scss';
-import CanvasCardMock from '../CanvasCard/CanvasCardMock';
 
 class ItemsList extends Component {
   static propTypes = {
@@ -45,7 +46,7 @@ class ItemsList extends Component {
 
   render() {
     const { isLoaded, canvases, dispatch, type, limit } = this.props;
-    const sortByLatestChange = (a, b) => b.updatedAt - a.updatedAt;
+    const sortByLatestChange = (o1, o2) => o2.updatedAt - o1.updatedAt;
     const renderItems = () => {
       // Show dummy for loading state
       if (!isLoaded) {
@@ -68,7 +69,7 @@ class ItemsList extends Component {
     };
 
     return (
-      <div className={`items-list items-list_${type}`}>
+      <div className={b('items-list', { [type]: !!type })}>
         <ul>{renderItems()}</ul>
       </div>
     );
