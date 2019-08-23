@@ -206,6 +206,10 @@ const defaultState = {
   deletedAt: undefined,
   ownerId: undefined,
   isPublic: undefined,
+  // Generic
+  isOwner: undefined,
+  canView: undefined,
+  canEdit: undefined,
 };
 
 const canvas = (state = defaultState, action) => {

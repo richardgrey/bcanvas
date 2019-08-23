@@ -11,7 +11,7 @@ import { reduceCanvasData } from './canvas';
 function addCanvasToList(state, canvas) {
   // Make a new copy of array
   const canvases = state.canvases.slice(0);
-  canvases.push(canvas);
+  canvases.push(reduceCanvasData(canvas, canvas.ownerId));
 
   return {
     ...state,
