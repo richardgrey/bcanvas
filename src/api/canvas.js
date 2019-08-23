@@ -52,9 +52,8 @@ const canvas = {
         .catch(error => reject(CANVAS_ERROR_MAP[error.code] || error));
     }),
 
-  create: async (data = {}) =>
+  create: async (type, title, description) =>
     new Promise((resolve, reject) => {
-      const { title, description } = data;
       const { currentUser } = firebaseAuth;
 
       if (!currentUser || !currentUser.uid) {
@@ -63,6 +62,7 @@ const canvas = {
       }
 
       const payload = {
+        type,
         ownerId: currentUser.uid,
       };
 

@@ -51,9 +51,9 @@ class CreateCanvasCard extends Component {
   };
 
   onClick() {
-    const { dispatch, isAuthenticated } = this.props;
+    const { dispatch, isAuthenticated, type } = this.props;
     if (isAuthenticated) {
-      dispatch(createCanvas());
+      dispatch(createCanvas(type));
     }
   }
 
