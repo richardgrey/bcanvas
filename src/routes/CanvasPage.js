@@ -8,6 +8,7 @@ import CanvasTitle from '../components/CanvasTitle/CanvasTitle';
 import CanvasTable from '../components/CanvasTable/CanvasTable';
 import CanvasTableLoading from '../components/CanvasTable/CanvasTableLoading';
 import ToolbarCanvas from '../components/ToolbarCanvas/ToolbarCanvas';
+import ToolbarNewCanvas from '../components/ToolbarNewCanvas/ToolbarNewCanvas';
 import { fetchCanvas } from '../actions/canvas';
 import { locationPropType } from '../utils/propTypes';
 
@@ -103,7 +104,12 @@ class CanvasPage extends Component {
               left={
                 <CanvasTitle canvasId={id} title={title} canEdit={canEdit} dispatch={dispatch} />
               }
-              right={<ToolbarCanvas canvas={this.props} dispatch={dispatch} />}
+              right={
+                <>
+                  {isAuthenticated ? <ToolbarNewCanvas /> : null}
+                  <ToolbarCanvas canvas={this.props} dispatch={dispatch} />
+                </>
+              }
             />
           </Layout.Header>
           <Layout.Container>
@@ -143,8 +149,8 @@ class CanvasPage extends Component {
 const mapStateToProps = (state, ownProps) => {
   const { match } = ownProps;
   const { canvas, auth, canvasList } = state;
-  const canvasId = match.params.id;
   const { isAuthenticated } = auth;
+  const canvasId = match.params.id;
 
   const prepareData = data => {
     // Preparing entries for rendering
@@ -165,6 +171,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
       ...data,
       entries: preparedEntries,
+      // User can't edit while loading. (Overwrite state value)
       canEdit: data.canEdit && !data.isFetching,
       isAuthenticated,
     };
@@ -193,6 +200,7 @@ const mapStateToProps = (state, ownProps) => {
     id: canvasId,
     isCreating: canvas.isCreating === canvasId,
     isFetching: canvas.isFetching,
+    canView: canvas.canView,
     canEdit: false,
     // This will force to fetch data
     lastFetch: 0,

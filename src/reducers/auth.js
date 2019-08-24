@@ -1,3 +1,4 @@
+import errorCodeToState from '../utils/errorCodeToState';
 import {
   AUTH_SET_USER,
   AUTH_REGISTER_ERROR,
@@ -9,8 +10,6 @@ import {
   AUTH_REGISTER_SUCCESS,
   AUTH_RESET_FORM,
 } from '../actions/auth';
-
-import errorCodeToState from '../utils/errorCodeToState';
 
 // Default state
 const defaultState = {

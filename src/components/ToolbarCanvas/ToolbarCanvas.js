@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ModalShare from '../ModalShare/ModalShare';
 import HeaderButton from '../HeaderButton/HeaderButton';
-import ToolbarNewCanvas from '../ToolbarNewCanvas/ToolbarNewCanvas';
 
 class ToolbarCanvas extends Component {
   static propTypes = {
@@ -35,7 +34,6 @@ class ToolbarCanvas extends Component {
     const { isShareModalOpened } = this.state;
     return (
       <>
-        <ToolbarNewCanvas />
         <HeaderButton icon="print" label="Print" onClick={this.onPrintClick} />
         <HeaderButton icon="share" label="Share" onClick={this.onShareClick} />
         <ModalShare

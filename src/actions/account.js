@@ -1,6 +1,6 @@
 import api from '../api';
 
-export const ACCOUNT_UPDATE_ACCOUNT_RESET = 'ACCOUNT_UPDATE_NAME_RESET';
+export const ACCOUNT_UPDATE_FORM_RESET = 'ACCOUNT_UPDATE_FORM_RESET';
 export const ACCOUNT_UPDATE_NAME_REQUEST = 'ACCOUNT_UPDATE_NAME_REQUEST';
 export const ACCOUNT_UPDATE_NAME_SUCCESS = 'ACCOUNT_UPDATE_NAME_SUCCESS';
 export const ACCOUNT_UPDATE_NAME_ERROR = 'ACCOUNT_UPDATE_EMAIL_RESET';
@@ -47,7 +47,7 @@ export const updateEmail = (email, password) => async dispatch => {
 };
 
 /**
- * Set new password
+ * Set new password for users signed in with email/password
  *
  * @param currentPassword {string}
  * @param newPassword {string}
@@ -70,7 +70,8 @@ export const updatePassword = (currentPassword, newPassword) => async dispatch =
 };
 
 /**
- * Set new password
+ * Set new password for users signed in with Google, so they'll be able
+ * to sign in with email password as well.
  *
  * @param newPassword {string}
  * @returns {Function}
@@ -96,6 +97,10 @@ export const updatePasswordError = error => dispatch => {
   dispatch({ type: ACCOUNT_UPDATE_PASSWORD_ERROR, payload: error });
 };
 
+/**
+ * Reset account forms
+ * @returns {Function}
+ */
 export const updateAccountFormReset = () => dispatch => {
-  dispatch({ type: ACCOUNT_UPDATE_ACCOUNT_RESET });
+  dispatch({ type: ACCOUNT_UPDATE_FORM_RESET });
 };

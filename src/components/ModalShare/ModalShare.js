@@ -28,7 +28,7 @@ class ModalShare extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isPublic: props.canvas ? props.canvas.isPublic : false,
+      isPublic: (props.canvas && props.canvas.isPublic) || false,
     };
   }
 

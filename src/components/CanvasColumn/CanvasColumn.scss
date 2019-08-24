@@ -127,16 +127,16 @@
     grid-column: 1;
     grid-row: 3;
     width: 200%;
+    margin-left: 200%;
     padding-right: 25%;
-    border-width: 1px 1px 0 0;
+    border-width: 1px 0 0 0;
   }
   .canvas-column_substitution {
     grid-column: 1;
     grid-row: 3;
     width: 200%;
-    margin-left: 200%;
     padding-right: 25%;
-    border-width: 1px 0 0 0;
+    border-width: 1px 1px 0 0;
   }
 }
 
@@ -186,6 +186,7 @@
   .canvas-column_adopters {
     grid-column: 5;
     grid-row: 2;
+    border-width: 0;
   }
   .canvas-column_cost {
     grid-column: 1;

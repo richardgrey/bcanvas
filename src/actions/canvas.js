@@ -11,12 +11,7 @@ export const CANVAS_LIST_FETCH_ERROR = 'CANVAS_LIST_FETCH_ERROR';
  * @returns {Function}
  */
 export const fetchCanvasList = () => async (dispatch, getState) => {
-  const { canvasList, account } = getState();
-
-  // Don't make another request if it's already loading
-  if (canvasList.isFetching) {
-    return;
-  }
+  const { account } = getState();
 
   dispatch({ type: CANVAS_LIST_FETCH_REQUEST });
   try {
@@ -112,11 +107,14 @@ export const DEPRICAETD_createCanvas = type => async dispatch => {
 };
 
 /**
- * Creates new canvas with given type and title
+ * Creates new canvas of given type
+ *
  * @param type {string}
  * @returns {Function}
  */
-export const createCanvas = type => async dispatch => {
+export const createCanvas = type => async (dispatch, getState) => {
+  const { account } = getState();
+
   // Create document reference with unique ID
   const canvasRef = api.canvas.createRef();
   const canvasId = canvasRef.id;
@@ -124,8 +122,12 @@ export const createCanvas = type => async dispatch => {
   dispatch({
     type: CANVAS_CREATE_REQUEST,
     payload: {
-      id: canvasId,
-      type,
+      currentUserId: account.uid,
+      canvas: {
+        type,
+        id: canvasId,
+        ownerId: account.uid,
+      },
     },
   });
 
@@ -138,7 +140,14 @@ export const createCanvas = type => async dispatch => {
 
     dispatch({
       type: CANVAS_CREATE_SUCCESS,
-      payload: { id: canvasId, type },
+      payload: {
+        currentUserId: account.uid,
+        canvas: {
+          type,
+          id: canvasId,
+          ownerId: account.uid,
+        },
+      },
     });
   } catch (error) {
     dispatch({

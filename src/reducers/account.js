@@ -11,7 +11,7 @@ import {
   ACCOUNT_UPDATE_EMAIL_REQUEST,
   ACCOUNT_UPDATE_PASSWORD_REQUEST,
   ACCOUNT_REAUTH_PASSWORD_ERROR,
-  ACCOUNT_UPDATE_ACCOUNT_RESET,
+  ACCOUNT_UPDATE_FORM_RESET,
 } from '../actions/account';
 
 import errorCodeToState from '../utils/errorCodeToState';
@@ -33,6 +33,13 @@ const reduceUser = user => {
   };
 };
 
+/**
+ * Uses to replace authentication password error in the from
+ * from 'password' field to 'confirmPassword'
+ *
+ * @param payload {string}
+ * @returns {Object}
+ */
 const reduceCurrentPasswordErrors = payload => {
   const errorsObj = errorCodeToState(payload);
 
@@ -48,12 +55,16 @@ const reduceCurrentPasswordErrors = payload => {
 };
 
 const defaultState = {
+  // Profile information
   uid: undefined,
   displayName: undefined,
   email: undefined,
   emailVerified: undefined,
   photoURL: undefined,
+  // Contains methods user has signed in
   providers: undefined,
+
+  // Account forms states
   errors: undefined,
   isSubmitting: false,
   isSuccess: false,
@@ -105,7 +116,7 @@ export default function account(state = defaultState, action) {
         isSubmitting: false,
         isSuccess: false,
       };
-    case ACCOUNT_UPDATE_ACCOUNT_RESET:
+    case ACCOUNT_UPDATE_FORM_RESET:
       return {
         ...state,
         errors: undefined,

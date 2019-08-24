@@ -1,3 +1,4 @@
+import pick from '../utils/pick';
 import { CANVAS_PERMISSION_DENIED } from '../constants';
 import {
   CANVAS_UNLOAD,
@@ -18,16 +19,35 @@ import {
   ENTRY_REMOVE_SUCCESS,
   ENTRY_REMOVE_ERROR,
 } from '../actions/entry';
-import pick from '../utils/pick';
+import { AUTH_UNSET_USER } from '../actions/auth';
 
 /**
- * Converts API canvas data object to the state object
+ * Returns set of permissions of canvas for provided user ID
  *
  * @param data {object}
- * @param currentUserId {string}
+ * @param data.ownerId {string}
+ * @param data.isPublic {string}
+ * @param userId {string}
  * @returns {object}
  */
-export const reduceCanvasData = (data, currentUserId) => {
+const canvasPermissions = (data, userId) => {
+  const isOwner = data.ownerId === userId;
+  const canView = isOwner || data.isPublic || false;
+  const canEdit = isOwner;
+
+  return { isOwner, canView, canEdit };
+};
+
+/**
+ * @public
+ * Converts API canvas data object to the state object.
+ * NOTE: this method although used in reducers/canvasList.
+ *
+ * @param data {object}
+ * @param userId {string}
+ * @returns {object}
+ */
+export const reduceCanvasData = (data, userId) => {
   const picked = pick(data, [
     'id',
     'type',
@@ -40,11 +60,8 @@ export const reduceCanvasData = (data, currentUserId) => {
     'ownerId',
     'isPublic',
   ]);
-  const isOwner = data.ownerId === currentUserId;
-  const canView = !data.isDenied && (isOwner || data.isPublic);
-  const canEdit = isOwner;
 
-  return Object.assign({ isOwner, canView, canEdit }, picked);
+  return Object.assign({ ...canvasPermissions(data, userId) }, picked);
 };
 
 /**
@@ -106,6 +123,7 @@ const entryUpdateErrorReducer = (state, payload) => {
  * Update entry in canvas state
  *
  * @param state {object}
+ * @param state.entries {object}
  * @param payload {object}
  * @param payload.canvasId {string}
  * @param payload.entryId {string}
@@ -129,6 +147,17 @@ const updateEntryReducer = (state, payload) => {
   return state;
 };
 
+/**
+ * Marks entry with provided ID as hidden.
+ *
+ * @param state {object}
+ * @param state.entries {object}
+ * @param payload {object}
+ * @param payload.canvasId {string}
+ * @param payload.entryId {string}
+ * @param flag {boolean}
+ * @returns {object}
+ */
 const toggleEntryHidden = (state, payload, flag) => {
   const { canvasId, entryId } = payload;
   const { entries = {} } = state;
@@ -154,7 +183,7 @@ const toggleEntryHidden = (state, payload, flag) => {
  * @param payload {object}
  * @param payload.canvasId {string}
  * @param payload.entryId {string}
- * @returns {{entries}|*}
+ * @returns {object}
  */
 const removeEntryReducer = (state, payload) => {
   const { canvasId, entryId } = payload;
@@ -177,6 +206,16 @@ const removeEntryReducer = (state, payload) => {
   return state;
 };
 
+/**
+ * Change sharing setting of the canvas
+ *
+ * @param state {object}
+ * @param payload {object}
+ * @param payload.canvasId {string}
+ * @param payload.options {object}
+ * @param payload.options.isPublic {boolean}
+ * @returns {object}
+ */
 const updateSharingReducer = (state, payload) => {
   const { canvasId, options } = payload;
 
@@ -190,11 +229,14 @@ const updateSharingReducer = (state, payload) => {
   return state;
 };
 
-// Default State Map
+/**
+ * Default state
+ *
+ * @type {object}
+ */
 const defaultState = {
   // Flag
   isFetching: false,
-  isDenied: false,
   // When new canvas is in process of creation will contain its ID or False
   // See action.canvas.createCanvas to go dipper in the process
   isCreating: false,
@@ -217,6 +259,15 @@ const defaultState = {
   canEdit: undefined,
 };
 
+/**
+ * Canvas reducer
+ *
+ * @param state {object}
+ * @param action {object}
+ * @param action.action {string}
+ * @param action.payload {*}
+ * @returns {object}
+ */
 const canvas = (state = defaultState, action) => {
   switch (action.type) {
     case CANVAS_UNLOAD:
@@ -224,12 +275,12 @@ const canvas = (state = defaultState, action) => {
     case CANVAS_CREATE_REQUEST:
       return {
         ...state,
-        isCreating: action.payload.id,
+        isCreating: action.payload.canvas.id,
       };
     case CANVAS_CREATE_SUCCESS:
       return {
         ...state,
-        isCreating: action.payload.id === state.isCreating ? false : state.isCreating,
+        isCreating: action.payload.canvas.id === state.isCreating ? false : state.isCreating,
       };
     case CANVAS_FETCH_REQUEST:
       return {
@@ -241,7 +292,7 @@ const canvas = (state = defaultState, action) => {
         return {
           ...defaultState,
           isFetching: false,
-          isDenied: false,
+          canView: false,
         };
       }
       return {
@@ -307,6 +358,11 @@ const canvas = (state = defaultState, action) => {
       };
     case CANVAS_SHARING_SUCCESS:
       return updateSharingReducer(state, action.payload);
+    case AUTH_UNSET_USER:
+      return {
+        ...state,
+        ...canvasPermissions(state, null),
+      };
     default:
       return state;
   }

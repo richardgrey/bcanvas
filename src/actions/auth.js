@@ -97,8 +97,8 @@ export const signOut = () => async dispatch => {
   dispatch({ type: AUTH_SIGN_OUT_REQUEST });
   try {
     await api.auth.signOut();
-    history.push('/');
     dispatch({ type: AUTH_SIGN_OUT_SUCCESS });
+    history.push('/');
   } catch (error) {
     dispatch({ type: AUTH_SIGN_OUT_ERROR });
   }
