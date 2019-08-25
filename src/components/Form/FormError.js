@@ -1,19 +1,15 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import './Form.scss';
 
-class FormError extends PureComponent {
-  static propTypes = {
-    children: PropTypes.node,
-  };
+const FormError = ({ children }) => <div className="form__error">{children}</div>;
 
-  static defaultProps = {
-    children: null,
-  };
+FormError.propTypes = {
+  children: PropTypes.node,
+};
 
-  render() {
-    const { children } = this.props;
-    return <div className="form__error">{children}</div>;
-  }
-}
+FormError.defaultProps = {
+  children: null,
+};
 
 export default FormError;

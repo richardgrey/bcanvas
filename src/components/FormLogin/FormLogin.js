@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Form, { FormRow, InputRow } from '../Form/Form';
 import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
-import Separator from '../Separator/Separator';
+import Divider from '../Divider/Divider';
 import { login, signInGoogle } from '../../actions/auth';
 
 class FormLogin extends Component {
@@ -29,7 +29,12 @@ class FormLogin extends Component {
     password: '',
   };
 
-  onSubmit(e) {
+  onChangeField = key => e => {
+    const { value } = e.target;
+    this.setState({ [key]: value });
+  };
+
+  onSubmit = e => {
     const { dispatch, onSubmit, isSubmitting } = this.props;
     const { email, password } = this.state;
 
@@ -42,19 +47,14 @@ class FormLogin extends Component {
     if (typeof onSubmit === 'function') {
       onSubmit(email, password);
     }
-  }
-
-  onChangeField(key, value) {
-    const newState = { [key]: value };
-    this.setState(newState);
-  }
+  };
 
   render() {
     const { email, password } = this.state;
     const { errors, isSubmitting, dispatch } = this.props;
 
     return (
-      <Form className="form_auth" onSubmit={e => this.onSubmit(e)}>
+      <Form className="form_auth" onSubmit={this.onSubmit}>
         <FormRow>
           <Button
             type="button"
@@ -66,14 +66,14 @@ class FormLogin extends Component {
             Continue with Google <Icon name="arrow" />
           </Button>
         </FormRow>
-        <Separator>Or, sign in with your email</Separator>
+        <Divider>Or, sign in with your email</Divider>
         <InputRow
           name="email"
           type="email"
           label="Business Email"
           value={email}
           error={errors.email}
-          onChange={e => this.onChangeField('email', e.target.value)}
+          onChange={this.onChangeField('email')}
           required
         />
         <InputRow
@@ -82,7 +82,7 @@ class FormLogin extends Component {
           label="Password"
           value={password}
           error={errors.password}
-          onChange={e => this.onChangeField('password', e.target.value)}
+          onChange={this.onChangeField('password')}
           required
         />
         <FormRow type="submit">

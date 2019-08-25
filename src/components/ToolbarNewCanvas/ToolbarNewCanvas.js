@@ -17,12 +17,13 @@ class ToolbarNewCanvas extends Component {
   };
 
   render() {
+    const { isOpened } = this.state;
     return (
       <div className="toolbar-new-canvas">
         <Button size="x-small" onClick={this.open}>
           New Canvas
         </Button>
-        <ModalNew isOpened={this.state.isOpened} close={this.close} />
+        <ModalNew isOpened={isOpened} close={this.close} />
       </div>
     );
   }

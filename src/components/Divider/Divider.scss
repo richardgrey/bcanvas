@@ -1,6 +1,6 @@
 @import "../../styles/variables";
 
-.separator {
+.divider {
   font-size: 0;
   text-align: center;
   position: relative;
@@ -17,7 +17,7 @@
     background: $color-gray8;
   }
 }
-.separator__inner {
+.divider__inner {
   font-size: 1.125rem;
   line-height: 1.125;
   position: relative;

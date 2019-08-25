@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Button from '../Button/Button';
 import Form, { InputRow, FormHint, FormRow } from '../Form/Form';
 import Icon from '../Icon/Icon';
-import Separator from '../Separator/Separator';
+import Divider from '../Divider/Divider';
 import { register, signInGoogle } from '../../actions/auth';
 
 class FormRegister extends Component {
@@ -30,7 +30,12 @@ class FormRegister extends Component {
     name: '',
   };
 
-  onSubmit(e) {
+  onChangeField = key => e => {
+    const { value } = e.target;
+    this.setState({ [key]: value });
+  };
+
+  onSubmit = e => {
     const { dispatch, onSubmit, isSubmitting } = this.props;
     const { email, password, name } = this.state;
 
@@ -43,11 +48,7 @@ class FormRegister extends Component {
     if (typeof onSubmit === 'function') {
       onSubmit(email, password, name);
     }
-  }
-
-  onChangeField(key, value) {
-    this.setState({ [key]: value });
-  }
+  };
 
   render() {
     const { name, email, password } = this.state;
@@ -66,13 +67,13 @@ class FormRegister extends Component {
             Continue with Google <Icon name="arrow" />
           </Button>
         </FormRow>
-        <Separator>Or, register with your email</Separator>
+        <Divider>Or, register with your email</Divider>
         <InputRow
           name="name"
           label="Full Name"
           value={name}
           error={errors.name}
-          onChange={e => this.onChangeField('name', e.target.value)}
+          onChange={this.onChangeField('name')}
           required
         />
         <InputRow
@@ -81,7 +82,7 @@ class FormRegister extends Component {
           label="Business Email"
           value={email}
           error={errors.email}
-          onChange={e => this.onChangeField('email', e.target.value)}
+          onChange={this.onChangeField('email')}
           required
         />
         <InputRow
@@ -91,7 +92,7 @@ class FormRegister extends Component {
           placeholder="Password (at least 6 characters)"
           value={password}
           error={errors.password}
-          onChange={e => this.onChangeField('password', e.target.value)}
+          onChange={this.onChangeField('password')}
           minLength="6"
           required
         />

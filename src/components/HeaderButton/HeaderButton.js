@@ -5,7 +5,7 @@ import b from 'b_';
 import Icon from '../Icon/Icon';
 import './HeaderButton.scss';
 
-// Location object for Link _must_ contain location
+// Location object for Link *must* contain pathname property
 const isLocationObject = obj => {
   const { toString, hasOwnProperty } = Object.prototype;
   return toString.call(obj) === '[object Object]' && hasOwnProperty.call(obj, 'pathname');
@@ -21,7 +21,7 @@ const HeaderButton = ({ icon, label, href, referrer, align, onClick, ...other })
     align,
     [icon]: !!icon,
   });
-  const inner = () => (
+  const HeaderButtonInner = (
     <span className="header-button__inner">
       <span className="header-button__icon">
         <Icon name={icon} />
@@ -35,14 +35,14 @@ const HeaderButton = ({ icon, label, href, referrer, align, onClick, ...other })
 
     return (
       <Link to={path} className={cls} title={label} {...other}>
-        {inner()}
+        {HeaderButtonInner}
       </Link>
     );
   }
 
   return (
     <button type="button" className={cls} onClick={onClick} title={label} {...other}>
-      {inner()}
+      {HeaderButtonInner}
     </button>
   );
 };

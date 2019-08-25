@@ -1,36 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './Checkbox.scss';
 
-class Checkbox extends Component {
-  static propTypes = {
-    name: PropTypes.string.isRequired,
-    isChecked: PropTypes.bool.isRequired,
-    onChange: PropTypes.func.isRequired,
-    children: PropTypes.node,
-  };
+const Checkbox = ({ name, children, isChecked, onChange, ...inputProps }) => (
+  <label htmlFor={name} className="checkbox">
+    <input
+      id={name}
+      name={name}
+      type="checkbox"
+      checked={isChecked}
+      onChange={onChange}
+      {...inputProps}
+    />
+    <span className="checkbox__box" />
+    <span className="form__label">{children}</span>
+  </label>
+);
 
-  static defaultProps = {
-    children: null,
-  };
+Checkbox.propTypes = {
+  name: PropTypes.string.isRequired,
+  isChecked: PropTypes.bool.isRequired,
+  onChange: PropTypes.func.isRequired,
+  children: PropTypes.node,
+};
 
-  render() {
-    const { name, children, isChecked, onChange, ...inputProps } = this.props;
-    return (
-      <label htmlFor={name} className="checkbox">
-        <input
-          id={name}
-          name={name}
-          type="checkbox"
-          checked={isChecked}
-          onChange={onChange}
-          {...inputProps}
-        />
-        <span className="checkbox__box" />
-        <span className="form__label">{children}</span>
-      </label>
-    );
-  }
-}
+Checkbox.defaultProps = {
+  children: null,
+};
 
 export default Checkbox;

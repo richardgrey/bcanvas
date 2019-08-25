@@ -1,6 +1,7 @@
 import React from 'react';
 import b from 'b_';
 import PropTypes from 'prop-types';
+import './Form.scss';
 
 const FormRow = ({ type, className, children }) => {
   const cls = b('form__row', {

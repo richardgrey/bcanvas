@@ -1,19 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import './Form.scss';
 
-class FormError extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-  };
+const FormHint = ({ children }) => <div className="form__hint">{children}</div>;
 
-  static defaultProps = {
-    children: null,
-  };
+FormHint.propTypes = {
+  children: PropTypes.node,
+};
 
-  render() {
-    const { children } = this.props;
-    return <div className="form__hint">{children}</div>;
-  }
-}
+FormHint.defaultProps = {
+  children: null,
+};
 
-export default FormError;
+export default FormHint;

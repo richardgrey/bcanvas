@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Separator.scss';
+import './Divider.scss';
 
-const Separator = ({ children }) => (
+const Divider = ({ children }) => (
   <div className="separator">
     {children ? <span className="separator__inner">{children}</span> : null}
   </div>
 );
 
-Separator.propTypes = {
+Divider.propTypes = {
   children: PropTypes.node,
 };
 
-Separator.defaultProps = {
+Divider.defaultProps = {
   children: null,
 };
 
-export default Separator;
+export default Divider;
