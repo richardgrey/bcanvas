@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import Portal from './Portal';
+import Portal from '../Portal/Portal';
 import Icon from '../Icon/Icon';
 import { locationPropType } from '../../utils/propTypes';
 import './Modal.scss';

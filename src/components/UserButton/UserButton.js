@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Dropdown from '../Dropdown/Dropdown';
 import HeaderButton from '../HeaderButton/HeaderButton';
+import MiniProfile from '../MiniProfile/MiniProfile';
 import { signOut } from '../../actions/auth';
-import { DEFAULT_USER_NAME } from '../../constants';
 import history from '../../history';
 
-const UserButton = ({ dispatch, isAuthenticated, displayName, email }) => {
+const UserButton = ({ dispatch, isAuthenticated, account }) => {
   // Render Sign In button if not authenticated
   if (!isAuthenticated) {
     return (
@@ -42,43 +42,33 @@ const UserButton = ({ dispatch, isAuthenticated, displayName, email }) => {
     },
   ];
 
-  const profile = () => (
-    <div>
-      <h4>{displayName || DEFAULT_USER_NAME}</h4>
-      {email}
-    </div>
-  );
-
   return (
-    <Dropdown
-      toggle={<HeaderButton icon="user" label="Account" align="right" />}
-      items={menu}
-      before={profile()}
-    />
+    <Dropdown items={menu} before={<MiniProfile account={account} />}>
+      <HeaderButton icon="user" label="Account" align="right" />
+    </Dropdown>
   );
 };
 
 UserButton.propTypes = {
   dispatch: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
-  email: PropTypes.string,
-  displayName: PropTypes.string,
+  account: PropTypes.shape({
+    email: PropTypes.string,
+    displayName: PropTypes.string,
+  }),
 };
 
 UserButton.defaultProps = {
-  displayName: null,
-  email: null,
+  account: null,
 };
 
 const mapStateToProps = state => {
   const { auth, account } = state;
   const { isAuthenticated } = auth;
-  const { displayName, email } = account;
 
   return {
     isAuthenticated,
-    displayName,
-    email,
+    account,
   };
 };
 

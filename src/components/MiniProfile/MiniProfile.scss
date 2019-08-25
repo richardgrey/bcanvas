@@ -1,0 +1,9 @@
+.mini-profile {
+}
+.mini-profile__name,
+.mini-profile__email {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 16rem;
+}

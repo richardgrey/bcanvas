@@ -7,6 +7,8 @@ import CanvasCardMock from '../CanvasCard/CanvasCardMock';
 import { fetchCanvasList } from '../../actions/canvas';
 import './ItemsList.scss';
 
+const MAX_MOCK_ITEMS_COUNT = 7;
+
 class ItemsList extends Component {
   static propTypes = {
     type: PropTypes.oneOf(['vertical', 'grid']),
@@ -44,33 +46,40 @@ class ItemsList extends Component {
     }
   }
 
-  render() {
-    const { isLoaded, canvases, dispatch, type, limit } = this.props;
+  renderItems = () => {
+    const { isLoaded, canvases, dispatch, limit } = this.props;
     const sortByLatestChange = (o1, o2) => o2.updatedAt - o1.updatedAt;
-    const renderItems = () => {
-      // Show dummy for loading state
-      if (!isLoaded) {
-        return [1, 2, 3, 4, 5, 6, 7].map(i => (
-          <li key={i}>
-            <CanvasCardMock />
-          </li>
-        ));
-      }
 
-      // Renders list of loaded canvases sorted by latest change
-      return canvases
-        .sort(sortByLatestChange)
-        .slice(0, limit || canvases.length)
-        .map(canvas => (
-          <li key={canvas.id}>
-            <CanvasCard canvas={canvas} dispatch={dispatch} />
-          </li>
-        ));
-    };
+    // Show dummy for loading state
+    if (!isLoaded) {
+      const mockCount = Math.min(limit, MAX_MOCK_ITEMS_COUNT);
+      const mockItems = Array(mockCount).fill(0);
+
+      return mockItems.map((i, j) => (
+        <li className="items-list__item" key={j}>
+          <CanvasCardMock />
+        </li>
+      ));
+    }
+
+    // Renders list of loaded canvases sorted by latest change
+    return canvases
+      .sort(sortByLatestChange)
+      .slice(0, limit || canvases.length)
+      .map(canvas => (
+        <li className="items-list__item" key={canvas.id}>
+          <CanvasCard canvas={canvas} dispatch={dispatch} />
+        </li>
+      ));
+  };
+
+  render() {
+    const { type } = this.props;
 
     return (
       <div className={b('items-list', { [type]: !!type })}>
-        <ul>{renderItems()}</ul>
+        {/* eslint-disable-next-line no-undef */}
+        <ul className="items-list__list">{this.renderItems()}</ul>
       </div>
     );
   }

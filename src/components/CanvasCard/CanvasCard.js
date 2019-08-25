@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import b from 'b_';
-import { removeCanvas } from '../../actions/canvas';
-import schemas from '../../constants/schemas';
-import Button from '../Button/Button';
-import { DEFAULT_CANVAS_TITLE } from '../../constants';
-import './CanvasCard.scss';
 import IconCanvas from '../Icon/IconCanvas';
+import { removeCanvas } from '../../actions/canvas';
+import { DEFAULT_CANVAS_TITLE } from '../../constants';
+import schemas from '../../constants/schemas';
+import './CanvasCard.scss';
 
 class CanvasCard extends Component {
   static propTypes = {
@@ -24,7 +23,7 @@ class CanvasCard extends Component {
     isConfirmingRemove: false,
   };
 
-  toggleRemoving(e, flag) {
+  toggleRemoving(flag) {
     this.setState({
       isConfirmingRemove: flag,
     });
@@ -62,13 +61,14 @@ class CanvasCard extends Component {
             <p className="canvas-card__type">{name}</p>
           </div>
         </Link>
+
         {!isConfirmingRemove ? (
           // eslint-disable-next-line jsx-a11y/click-events-have-key-events
           <div
             className="canvas-card__delete"
             role="button"
             tabIndex="0"
-            onClick={e => this.toggleRemoving(e, true)}
+            onClick={() => this.toggleRemoving(true)}
           >
             ×
           </div>
@@ -90,7 +90,7 @@ class CanvasCard extends Component {
                   styleType="ghost"
                   size="x-small"
                   isFullWidth
-                  onClick={e => this.toggleRemoving(e, false)}
+                  onClick={() => this.toggleRemoving(false)}
                 >
                   Cancel
                 </Button>

@@ -2,6 +2,9 @@
 @import "../../styles/elevate";
 @import "../../styles/animation";
 
+.dropdown {
+  position: relative;
+}
 .dropdown__menu {
   color: $color-gray3;
   font-size: 1.125rem;
@@ -10,8 +13,8 @@
   z-index: 1000;
   right: 10px;
   top: 100%;
+  min-width: 20rem;
   margin-top: 1px;
-  width: 20rem;
   background: #fff;
   border-radius: $border-radius;
   @include elevate(6, $color-gray5);
@@ -28,6 +31,9 @@
 }
 .dropdown__item + .dropdown__item {
   border-top: 1px solid $color-gray9;
+}
+.dropdown__item_danger {
+  color: $color-red;
 }
 .dropdown__button {
   display: block;

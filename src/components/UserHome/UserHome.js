@@ -17,7 +17,7 @@ const UserHome = () => (
       </div>
     </div>
     <div>
-      <h2 className="text_align_center">Tips & trick on business ideation</h2>
+      <h2 className="text_align_center">Tips & tricks on business ideation</h2>
     </div>
   </div>
 );
