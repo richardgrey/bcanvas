@@ -8,7 +8,7 @@ import './Dropdown.scss';
 
 class Dropdown extends Component {
   static propTypes = {
-    toggle: PropTypes.node,
+    children: PropTypes.element,
     items: PropTypes.arrayOf(
       PropTypes.shape({
         label: PropTypes.string.isRequired,
@@ -21,7 +21,7 @@ class Dropdown extends Component {
   };
 
   static defaultProps = {
-    toggle: null,
+    children: null,
     before: null,
     after: null,
   };
@@ -47,15 +47,7 @@ class Dropdown extends Component {
     }
   }
 
-  bindDocumentClick() {
-    document.addEventListener('click', this.onDocumentClick, false);
-  }
-
-  unbindDocumentClick() {
-    document.removeEventListener('click', this.onDocumentClick, false);
-  }
-
-  toggle(flag) {
+  toggle = flag => {
     const { isShown } = this.state;
     const newIsShown = typeof flag === 'boolean' ? flag : !isShown;
 
@@ -68,6 +60,18 @@ class Dropdown extends Component {
     this.setState({
       isShown: newIsShown,
     });
+  };
+
+  triggerOnClick = () => {
+    this.toggle();
+  };
+
+  bindDocumentClick() {
+    document.addEventListener('click', this.onDocumentClick, false);
+  }
+
+  unbindDocumentClick() {
+    document.removeEventListener('click', this.onDocumentClick, false);
   }
 
   renderMenu() {
@@ -109,16 +113,22 @@ class Dropdown extends Component {
 
   render() {
     const { isShown } = this.state;
-    const { toggle } = this.props;
+    const { children } = this.props;
+    const { triggerOnClick } = this;
+
+    const child = React.Children.only(children);
+    const dropdownTrigger = React.cloneElement(child, {
+      onClick: triggerOnClick,
+    });
 
     return (
       <div
         className="dropdown"
-        ref={ref => { this.dropdown = ref; }}
+        ref={ref => {
+          this.dropdown = ref;
+        }}
       >
-        {React.cloneElement(toggle, {
-          onClick: () => this.toggle(),
-        })}
+        {dropdownTrigger}
         {isShown ? this.renderMenu() : null}
       </div>
     );
