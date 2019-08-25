@@ -40,30 +40,30 @@ class CanvasTitle extends Component {
     };
   }
 
-  onChange(e) {
+  onChange = e => {
     const { value } = e.target;
     this.setState({ title: value });
-  }
+  };
 
-  onKeyPress(e) {
+  onKeyPress = e => {
     if (e.key === 'Enter') {
       // Blur will dispatch changes
       e.target.blur();
     }
-  }
+  };
 
-  onFocus() {
+  onFocus = () => {
     this.setState({
       isFocused: true,
     });
-  }
+  };
 
-  onBlur() {
+  onBlur = () => {
     this.setState({
       isFocused: false,
     });
     this.dispatchChanges();
-  }
+  };
 
   dispatchChanges() {
     const { dispatch, canvasId } = this.props;
@@ -93,10 +93,10 @@ class CanvasTitle extends Component {
             value={title}
             autoFocus={!title && canEdit}
             placeholder="Canvas Title..."
-            onKeyPress={e => this.onKeyPress(e)}
-            onChange={e => this.onChange(e)}
-            onFocus={e => this.onFocus(e)}
-            onBlur={e => this.onBlur(e)}
+            onKeyPress={this.onKeyPress}
+            onChange={this.onChange}
+            onFocus={this.onFocus}
+            onBlur={this.onBlur}
             disabled={!canEdit}
             maxLength="140"
           />

@@ -2,30 +2,28 @@
   html,
   body,
   .layout__container,
-  .layout__container_bg_gradient {
+  .layout__container {
     background: none !important;
   }
   .layout__sidebar {
     display: none !important;
   }
 
-  .layout__container,
-  .layout__content {
+  .layout__container {
     padding: 0 !important;
   }
 
-  .layout__header {
+  .header,
+  .header__inner {
     position: static !important;
-    margin-bottom: 0 !important;
-  }
-
-  .header {
     background: none !important;
     border: none !important;
+    box-shadow: none !important;
   }
-  .header__button,
   .header__logo,
-  .header__aside,
+  .header .header-button,
+  .toolbar-canvas,
+  .toolbar-new-canvas,
   .canvas-column__hints {
     display: none !important;
   }
@@ -35,6 +33,7 @@
   }
 
   .canvas-table {
+    margin: 0 !important;
     min-height: 85vh !important;
   }
   .canvas-table,
@@ -44,6 +43,10 @@
   .canvas-column {
     min-height: 25vh !important;
     background: none !important;
+  }
+  .entry span {
+    background: none !important;
+    box-shadow: none !important;
   }
 
   @page {

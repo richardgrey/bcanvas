@@ -33,16 +33,16 @@ class ToolbarCanvas extends Component {
     const { canvas, dispatch } = this.props;
     const { isShareModalOpened } = this.state;
     return (
-      <>
-        <HeaderButton icon="print" label="Print" onClick={this.onPrintClick} />
+      <div className="toolbar-canvas">
         <HeaderButton icon="share" label="Share" onClick={this.onShareClick} />
+        <HeaderButton icon="print" label="Print" onClick={this.onPrintClick} />
         <ModalShare
           isOpened={isShareModalOpened}
           canvas={canvas}
           dispatch={dispatch}
           close={this.shareClose}
         />
-      </>
+      </div>
     );
   }
 }

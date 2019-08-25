@@ -127,7 +127,6 @@ class Entry extends Component {
         tabIndex="0"
         contentEditable
         suppressContentEditableWarning
-        aria-placeholder="Type in something..."
         onFocus={this.onFocus}
         onBlur={this.onBlur}
         onKeyPress={this.onKeyPress}
