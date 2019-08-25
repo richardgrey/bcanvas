@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Layout from '../components/Layout/Layout';
 import Landing from '../components/Landing/Landing';
+import UserHome from '../components/UserHome/UserHome';
 import Header from '../components/Header/Header';
 import ToolbarNewCanvas from '../components/ToolbarNewCanvas/ToolbarNewCanvas';
 
-class LandingPage extends Component {
+class Home extends Component {
   static propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
   };
@@ -18,9 +19,7 @@ class LandingPage extends Component {
         <Layout.Header>
           <Header btnDashboard btnUser right={isAuthenticated ? <ToolbarNewCanvas /> : null} />
         </Layout.Header>
-        <Layout.Container>
-          <Landing />
-        </Layout.Container>
+        <Layout.Container>{isAuthenticated ? <UserHome /> : <Landing />}</Layout.Container>
       </Layout>
     );
   }
@@ -35,4 +34,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(LandingPage);
+export default connect(mapStateToProps)(Home);

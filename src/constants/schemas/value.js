@@ -3,40 +3,6 @@ export default {
   icon: '/img/canvas/canvas-value.svg',
   schema: [
     {
-      label: 'jobs',
-      number: 1,
-      title: 'Jobs-To-Be-Done',
-      description: [
-        'What is the job the customer wants to get done in their work or life?',
-        'It could be the tasks they are trying to perform and complete, the problems they are trying to solve, or the needs they are trying to satisfy.'
-      ],
-    },
-    {
-      label: 'pains',
-      number: 2,
-      title: 'Pains',
-      description: [
-        'What is annoying or troubling your customer?',
-        'What is preventing them from getting their job done?',
-        'Pains can be functional, social, emotional, or ancillary.',
-      ],
-    },
-    {
-      label: 'gains',
-      number: 3,
-      title: 'Gains',
-      description: [
-        'What would make your customer happy?',
-        'What would make their life and job-to-be-done easier?',
-      ],
-    },
-    {
-      label: 'substitution',
-      number: 4,
-      title: 'Substitution',
-      description: ['What your customer are doing now to get their job done?'],
-    },
-    {
       label: 'products',
       number: 5,
       title: 'Products & Services',
@@ -62,6 +28,40 @@ export default {
         'How can you help your customers to relieve their pains?',
         'What problems can you eradicate?',
       ],
+    },
+    {
+      label: 'gains',
+      number: 3,
+      title: 'Gains',
+      description: [
+        'What would make your customer happy?',
+        'What would make their life and job-to-be-done easier?',
+      ],
+    },
+    {
+      label: 'pains',
+      number: 2,
+      title: 'Pains',
+      description: [
+        'What is annoying or troubling your customer?',
+        'What is preventing them from getting their job done?',
+        'Pains can be functional, social, emotional, or ancillary.',
+      ],
+    },
+    {
+      label: 'jobs',
+      number: 1,
+      title: 'Jobs-To-Be-Done',
+      description: [
+        'What is the job the customer wants to get done in their work or life?',
+        'It could be the tasks they are trying to perform and complete, the problems they are trying to solve, or the needs they are trying to satisfy.'
+      ],
+    },
+    {
+      label: 'substitution',
+      number: 4,
+      title: 'Substitution',
+      description: ['What your customer are doing now to get their job done?'],
     },
     {
       label: 'segment',

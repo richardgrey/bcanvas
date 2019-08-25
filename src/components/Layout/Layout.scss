@@ -1,13 +1,12 @@
 @import "../../styles/variables";
 
 .layout {
-  transition: background 1s;
 }
 .layout__container {
   position: relative;
   overflow: hidden;
   max-width: $page-width-max;
-  //min-height: 100vh;
+  min-height: calc(100vh - 60px);
   margin: 0 auto;
   padding: 0 $page-gutter-desktop 120px;
   //background: #fff;
@@ -21,50 +20,50 @@
 
 // Backgrounds
 // ===========
-.layout_background_gradient {
-  background-image: linear-gradient(to top left, #d299c2 0%, #fef9d7 100%);
+.layout_background_gradient .layout__container {
+  background: linear-gradient(to top left, #d299c2 0%, #fef9d7 100%);
 }
-.layout_background_gradient_0 {
+.layout_background_gradient_0 .layout__container {
   // 013 Heavy Rain
-  background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+  background: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
 }
-.layout_background_gradient_1 {
+.layout_background_gradient_1 .layout__container {
   // 02 Night Fade
-  background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+  background: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
 }
-.layout_background_gradient_2 {
-  background-image: linear-gradient(to bottom, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%, #b12a5b 100%);
+.layout_background_gradient_2 .layout__container {
+  background: linear-gradient(to bottom, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%, #b12a5b 100%);
 }
-.layout_background_gradient_3 {
+.layout_background_gradient_3 .layout__container {
    // 025 Wilde Apple
-  background-image: linear-gradient(to top left, #d299c2 0%, #fef9d7 100%);
+  background: linear-gradient(to top left, #d299c2 0%, #fef9d7 100%);
 }
-.layout_background_gradient_4 {
+.layout_background_gradient_4 .layout__container {
    // 003 Spring Warmth
-  background-image: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);
+  background: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);
 }
-.layout_background_gradient_5 {
+.layout_background_gradient_5 .layout__container {
    // 070 Aqua Splash
-  background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+  background: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
 }
-.layout_background_gradient_6 {
+.layout_background_gradient_6 .layout__container {
    // 091 Eternal Constance
-  background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+  background: linear-gradient(to top, #09203f 0%, #537895 100%);
 }
-.layout_background_gradient_7 {
+.layout_background_gradient_7 .layout__container {
   // 012 Tempting Azure
-  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 }
-.layout_background_gradient_8 {
+.layout_background_gradient_8 .layout__container {
   // 031 Blessing
-  background-image: linear-gradient(to top left, #fddb92 0%, #d1fdff 100%);
+  background: linear-gradient(to top left, #fddb92 0%, #d1fdff 100%);
 }
-.layout_background_gradient_9 {
+.layout_background_gradient_9 .layout__container {
   // 037 Old Hat
-  background-image: linear-gradient(to right, #e4afcb 0%, #b8cbb8 0%, #b8cbb8 0%, #e2c58b 30%, #c2ce9c 64%, #7edbdc 100%);
+  background: linear-gradient(to right, #e4afcb 0%, #b8cbb8 0%, #b8cbb8 0%, #e2c58b 30%, #c2ce9c 64%, #7edbdc 100%);
 }
 
-.layout_background_pic_magnus {
+.layout_background_pic_magnus .layout__container {
   background: #e84700 url('./img/hodgepodge.png') repeat 50% 50%;
 }
 

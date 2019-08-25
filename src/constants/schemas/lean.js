@@ -3,12 +3,6 @@ export default {
   icon: '/img/canvas/canvas-lean.svg',
   schema: [
     {
-      label: 'customers',
-      number: 1,
-      title: 'Customer Segments',
-      description: ['List your target customers and users'],
-    },
-    {
       label: 'problems',
       number: 2,
       title: 'Problems',
@@ -27,10 +21,10 @@ export default {
       description: ['Outline possible solution for each problem.'],
     },
     {
-      label: 'revenue',
-      number: 4,
-      title: 'Revenue Streams',
-      description: ['List your sources of revenue'],
+      label: 'metrics',
+      number: 7,
+      title: 'Key Metrics',
+      description: ['List the key numbers that tell you how your business is doing.'],
     },
     {
       label: 'proposition',
@@ -47,22 +41,22 @@ export default {
       description: ['List your X for Y analogy (e.g. YouTube = Flickr for videos)'],
     },
     {
+      label: 'advantage',
+      number: 8,
+      title: 'Unfair Advantage',
+      description: ['Something that can not easily be bought or copied'],
+    },
+    {
       label: 'channels',
       number: 6,
       title: 'Channels',
       description: ['List your path to customers inbound and outbound.'],
     },
     {
-      label: 'metrics',
-      number: 7,
-      title: 'Key Metrics',
-      description: ['List the key numbers that tell you how your business is doing.'],
-    },
-    {
-      label: 'advantage',
-      number: 8,
-      title: 'Unfair Advantage',
-      description: ['Something that can not easily be bought or copied'],
+      label: 'customers',
+      number: 1,
+      title: 'Customer Segments',
+      description: ['List your target customers and users'],
     },
     {
       label: 'adopters',
@@ -75,6 +69,12 @@ export default {
       number: 9,
       title: 'Cost structure',
       description: ['List your fixed and variable costs'],
+    },
+    {
+      label: 'revenue',
+      number: 4,
+      title: 'Revenue Streams',
+      description: ['List your sources of revenue'],
     },
   ],
 };

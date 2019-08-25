@@ -54,12 +54,22 @@
     opacity: 0.75;
   }
 
+  .icon {
+    fill: #fff;
+  }
   .icon_arrow {
     width: 18px;
     height: 12px;
     margin-left: 10px;
     transform: translate3d(0, 0, 0);
     transition: transform 300ms ease;
+  }
+  .icon_dashboard {
+    vertical-align: top;
+    width: 18px;
+    height: 18px;
+    margin-right: 0.75em;
+    margin-top: 1px;
   }
 }
 .button__inner {
@@ -102,6 +112,11 @@
 // Secondary Button
 .button_secondary {
   color: $color-primary;
+  font-weight: 500;
+
+  .icon {
+    fill: $color-primary;
+  }
 
   &:before {
     background-color: $color-gray0;
@@ -120,6 +135,10 @@
 // Ghost Button
 .button_ghost {
   color: $color-primary;
+
+  .icon {
+    fill: $color-primary;
+  }
 
   &:before {
     background-color: transparent;
@@ -140,6 +159,10 @@
   color: $color-gray1;
   padding-left: 55px;
   padding-right: 20px;
+
+  .icon {
+    fill: $color-gray1;
+  }
 
   &:after {
     content: '';
