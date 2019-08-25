@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import b from 'b_';
 import IconCanvas from '../Icon/IconCanvas';
+import Button from '../Button/Button';
 import { removeCanvas } from '../../actions/canvas';
 import { DEFAULT_CANVAS_TITLE } from '../../constants';
 import schemas from '../../constants/schemas';
