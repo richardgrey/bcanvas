@@ -98,6 +98,7 @@ class CanvasTitle extends Component {
             onFocus={e => this.onFocus(e)}
             onBlur={e => this.onBlur(e)}
             disabled={!canEdit}
+            maxLength="140"
           />
         ) : (
           <div className="canvas-title__input">{title || DEFAULT_CANVAS_TITLE}</div>

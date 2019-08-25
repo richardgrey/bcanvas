@@ -46,7 +46,13 @@
   font-weight: bold;
   font-size: 1.125rem;
   line-height: 1.125;
+  overflow: hidden;
+  max-height: 1.125em * 3;
   margin: 0;
+  // Supported by all major browser with -webkit- prefix only
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 .canvas-card__title_no {
   color: $color-gray3;
