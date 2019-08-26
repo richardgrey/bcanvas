@@ -12,11 +12,15 @@
 }
 @media (min-width: $min-tablet) {
   .create-canvas-section {
-    margin: 60px -20px;
+    margin: 0 -20px;
   }
   .create-canvas-section__col {
     max-width: 360px;
     width: 33%;
     padding: 0 20px;
+  }
+  .modal .create-canvas-section {
+    margin-top: 60px;
+    margin-bottom: 40px;
   }
 }

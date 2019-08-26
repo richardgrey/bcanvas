@@ -28,8 +28,8 @@ const content = {
   [CANVAS_TYPE_LEAN]: {
     title: 'Lean Canvas',
     description: `
-      The Business Model Canvas is a strategic management and entrepreneurial tool. It allows 
-      you to describe, design, challenge, invent, and pivot your business model.
+      Lean Canvas is a 1-page business plan template that helps you deconstruct your idea into 
+      its key assumptions. It’s adapted Business Model Canvas and optimized for Lean Startups.
     `,
   },
 };
@@ -62,7 +62,7 @@ class CreateCanvasCard extends Component {
     const { title, description } = content[type];
 
     const inner = () => (
-      <div className="create-canvas-card__inner">
+      <>
         <div className="create-canvas-card__media">
           <IconCanvas type={type} />
         </div>
@@ -74,7 +74,7 @@ class CreateCanvasCard extends Component {
             <Icon name="arrow" />
           </div>
         ) : null}
-      </div>
+      </>
     );
 
     return isAuthenticated ? (

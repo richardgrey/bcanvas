@@ -5,13 +5,18 @@
   color: $color-gray1;
   text-decoration: none;
   max-width: 320px;
-  cursor: pointer;
-}
-.create-canvas-card__inner {
+  min-height: 100%;
+
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex-direction: column;
+
   overflow: hidden;
   padding: 40px;
   background: $color-gray9;
   border-radius: $border-radius;
+  cursor: pointer;
   transform: translate3d(0, 0, 0);
   transition: box-shadow 200ms ease, transform 200ms ease;
   will-change: transform, box-shadow;
@@ -36,6 +41,7 @@
   }
 }
 .create-canvas-card__desc {
+  flex-grow: 1;
   margin-bottom: 40px;
 }
 .create-canvas-card__cta {
@@ -55,11 +61,9 @@
 .create-canvas-card:hover,
 .create-canvas-card:focus {
   outline: none;
+  transform: translate3d(0, -10px, 0);
+  @include elevate(16);
 
-  .create-canvas-card__inner {
-    @include elevate(16);
-    transform: translate3d(0, -10px, 0);
-  }
   .create-canvas-card__cta {
     .icon {
       transform: translateX(15px);
@@ -67,68 +71,49 @@
   }
 }
 .create-canvas-card:active {
-  .create-canvas-card__inner {
-    @include elevate(8);
-    transform: translate3d(0, -5px, 0);
-  }
+  @include elevate(8);
+  transform: translate3d(0, -5px, 0);
 }
 
 
 // Theming for types
 .create-canvas-card_type_business {
-  .create-canvas-card__inner {
-    background-color: $bg-indigo;
-  }
+  background-color: $bg-indigo;
+
   &:hover,
   &:focus {
-    .create-canvas-card__inner {
-      @include elevate(16, $color-indigo);
-    }
+    @include elevate(16, $color-indigo);
   }
   &:active {
-    .create-canvas-card__inner {
-      @include elevate(8, $color-indigo);
-    }
+    @include elevate(8, $color-indigo);
   }
 }
 .create-canvas-card_type_value {
-  .create-canvas-card__inner {
-    background-color: $bg-orange;
-  }
+  background-color: $bg-orange;
   &:hover,
   &:focus {
-    .create-canvas-card__inner {
-      @include elevate(16, #eb933b);
-    }
+    @include elevate(16, #eb933b);
   }
   &:active {
-    .create-canvas-card__inner {
-      @include elevate(8, #eb933b);
-    }
+    @include elevate(8, #eb933b);
   }
 }
 .create-canvas-card_type_lean {
-  .create-canvas-card__inner {
-    background-color: $bg-lime;
-  }
+  background-color: $bg-lime;
+
   &:hover,
   &:focus {
-    .create-canvas-card__inner {
-      @include elevate(16, #93eb3b);
-    }
+    @include elevate(16, #93eb3b);
   }
   &:active {
-    .create-canvas-card__inner {
-      @include elevate(8, #93eb3b);
-    }
+    @include elevate(8, #93eb3b);
   }
 }
 
 
 .create-canvas-card_size_small {
-  .create-canvas-card__inner {
-    padding: 20px;
-  }
+  padding: 20px;
+
   .create-canvas-card__media {
     margin-bottom: 20px;
   }
