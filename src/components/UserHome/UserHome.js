@@ -1,25 +1,55 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import ItemsList from '../ItemsList/ItemsList';
 import './UserHome.scss';
 import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
+import CreateCanvasSection from '../CreateCanvasSection/CreateCanvasSection';
+import PageTitle from '../PageTitle/PageTitle';
 
-const UserHome = () => (
+const LATEST_CANVASES_COUNT = 4;
+
+const UserHome = ({ isEmpty }) => (
   <div className="user-home">
-    <div className="user-home__latest">
-      <h3>My latest canvases</h3>
-      <ItemsList limit={4} />
-      <div className="user-home__latest-more">
-        <Button href="/dashboard" styleType="secondary" isFullWidth>
-          <Icon name="dashboard" />
-          All my canvases
-        </Button>
+    {isEmpty ? (
+      <div className="user-home__latest">
+        <PageTitle
+          title="Welcome! Lets get started"
+          subtitle="Choose a canvas types below you want to start with"
+        />
+        <CreateCanvasSection withDescription withCTA />
       </div>
-    </div>
+    ) : (
+      <div className="user-home__latest">
+        <h3>My latest canvases</h3>
+        <ItemsList limit={LATEST_CANVASES_COUNT} />
+        <div className="user-home__latest-more">
+          <Button href="/dashboard" styleType="secondary" isFullWidth>
+            <Icon name="dashboard" />
+            All my canvases
+          </Button>
+        </div>
+      </div>
+    )}
     <div>
       <h2 className="text_align_center">Tips & tricks on business ideation</h2>
     </div>
   </div>
 );
 
-export default UserHome;
+UserHome.propTypes = {
+  isEmpty: PropTypes.bool.isRequired,
+};
+
+const mapStateToProps = state => {
+  const { canvasList } = state;
+  const { isLoaded, canvases } = canvasList;
+  const isEmpty = isLoaded && !canvases.length;
+
+  return {
+    isEmpty,
+  };
+};
+
+export default connect(mapStateToProps)(UserHome);
