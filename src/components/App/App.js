@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { subscribeOnAuthStateChanged } from '../../actions/auth';
-import { setBaseUrl } from '../../actions/app';
 import IconsSprite from '../Icon/IconSprite';
 import { locationPropType } from '../../utils/propTypes';
 
@@ -18,8 +17,6 @@ class App extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     this.unsubscribe = dispatch(subscribeOnAuthStateChanged());
-    // Set base URL. Used for sharing URLs.
-    dispatch(setBaseUrl(window.location.origin));
   }
 
   componentDidUpdate(prevProps) {
