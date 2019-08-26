@@ -6,13 +6,16 @@
   position: relative;
   display: block;
   max-width: 350px;
-  animation: 800ms fade-in;
 
   &:hover {
     .canvas-card__media {
       transform: translate3d(0, -10px, 0);
       @include elevate(12, $color-indigo);
     }
+  }
+
+  .items-list_load & {
+    animation: 800ms fade-in;
   }
 }
 .canvas-card__link {
@@ -71,24 +74,39 @@
   .canvas-card__media {
     background-color: $bg-indigo;
   }
-  &:hover .canvas-card__media {
-    @include elevate(12, $color-indigo);
+  &:hover {
+    .canvas-card__media {
+      @include elevate(12, $color-indigo);
+    }
+    .canvas-card__delete {
+      @include elevate(2, $color-indigo);
+    }
   }
 }
 .canvas-card_type_value {
   .canvas-card__media {
     background-color: $bg-orange;
   }
-  &:hover .canvas-card__media {
-    @include elevate(12, $color-orange);
+  &:hover {
+    .canvas-card__media {
+      @include elevate(12, $color-orange);
+    }
+    .canvas-card__delete {
+      @include elevate(2, $color-orange);
+    }
   }
 }
 .canvas-card_type_lean {
   .canvas-card__media {
     background-color: $bg-lime;
   }
-  &:hover .canvas-card__media {
-    @include elevate(12, $color-lime);
+  &:hover {
+    .canvas-card__media {
+      @include elevate(12, $color-lime);
+    }
+    .canvas-card__delete {
+      @include elevate(2, $color-lime);
+    }
   }
 }
 
@@ -154,37 +172,32 @@
 // Card Deletion
 // =============
 .canvas-card__delete {
-  color: #999;
-  font-size: 20px;
-  line-height: 21px;
+  color: $color-gray4;
+  font-size: 1.25rem;
+  line-height: 1.25rem;
   text-align: center;
   vertical-align: middle;
   position: absolute;
-  right: -7px;
-  top: -17px;
-  width: 24px;
-  height: 24px;
+  right: -.75rem;
+  top: -1.375rem;
+  width: 1.5rem;
+  height: 1.5rem;
   opacity: 0;
   background: #fff;
-  border-radius: 12px;
+  border-radius: 1.5rem;
   cursor: pointer;
-  box-shadow:
-    0 3px 1px -2px rgba(0,0,0,.2),
-    0 2px 2px 0 rgba(0,0,0,.14),
-    0 1px 5px 0 rgba(0,0,0,.12);
+  user-select: none;
+  will-change: opacity, box-shadow;
   transition: box-shadow 150ms ease, opacity 150ms ease;
+  @include elevate(2, $color-gray3);
 }
-.canvas-card:hover .canvas-card__delete {
-  opacity: 1;
-}
-.canvas-card__delete:hover {
-  box-shadow:
-    0 3px 5px -1px rgba(0,0,0,.2),
-    0 6px 10px 0px rgba(0,0,0,.14),
-    0 1px 18px 0px rgba(0,0,0,.12);
+.canvas-card:hover {
+  .canvas-card__delete {
+    opacity: 1;
+  }
 }
 .canvas-card__delete:active {
-  background: #e3e7e8;
+  color: $color-red;
 }
 .canvas-card__delete:focus {
   outline: none;

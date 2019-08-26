@@ -30,6 +30,10 @@ class ItemsList extends Component {
     limit: null,
   };
 
+  state = {
+    load: !this.props.isLoaded,
+  };
+
   componentDidMount() {
     const { dispatch, isAuthenticated } = this.props;
 
@@ -75,9 +79,14 @@ class ItemsList extends Component {
 
   render() {
     const { type } = this.props;
+    const { load } = this.state;
+    const cls = b('items-list', {
+      [type]: !!type,
+      load,
+    });
 
     return (
-      <div className={b('items-list', { [type]: !!type })}>
+      <div className={cls}>
         {/* eslint-disable-next-line no-undef */}
         <ul className="items-list__list">{this.renderItems()}</ul>
       </div>
