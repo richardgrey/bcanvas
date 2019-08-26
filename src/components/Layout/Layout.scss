@@ -5,15 +5,18 @@
 .layout__container {
   position: relative;
   overflow: hidden;
-  max-width: $page-width-max;
   min-height: calc(100vh - 60px);
+  background: #fff;
+  padding-bottom: 90px;
+}
+.layout__inner {
+  max-width: $page-width-max;
   margin: 0 auto;
-  padding: 0 $page-gutter-desktop 120px;
-  //background: #fff;
+  padding: 0 $page-gutter-desktop;
 }
 
 .layout_fluid {
-  .layout__container {
+  .layout__inner {
     max-width: none;
   }
 }

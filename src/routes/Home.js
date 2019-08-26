@@ -19,7 +19,7 @@ class Home extends Component {
         <Layout.Header>
           <Header btnDashboard btnUser right={isAuthenticated ? <ToolbarNewCanvas /> : null} />
         </Layout.Header>
-        <Layout.Container>{isAuthenticated ? <UserHome /> : <Landing />}</Layout.Container>
+        {isAuthenticated ? <UserHome /> : <Landing />}
       </Layout>
     );
   }

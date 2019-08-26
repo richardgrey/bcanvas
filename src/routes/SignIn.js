@@ -53,8 +53,10 @@ class SignIn extends Component {
           />
         </Layout.Header>
         <Layout.Container>
-          <PageTitle title="Welcome back" subtitle="It’s nice to see you again." />
-          <FormLogin dispatch={dispatch} errors={errorLogin} isSubmitting={isSubmitting} />
+          <Layout.Inner>
+            <PageTitle title="Welcome back" subtitle="It’s nice to see you again." />
+            <FormLogin dispatch={dispatch} errors={errorLogin} isSubmitting={isSubmitting} />
+          </Layout.Inner>
         </Layout.Container>
       </Layout>
     );

@@ -86,51 +86,53 @@ class ChangeEmail extends Component {
           <Header btnBack btnUser />
         </Layout.Header>
         <Layout.Container>
-          <PageTitle title={displayName} subtitle={email} />
-          {isSuccess ? (
-            <AccountFormSuccess />
-          ) : (
-            <Form className="form_account" onSubmit={e => this.onSubmit(e)}>
-              <FormRow className="form__row">
-                <h3>Change email</h3>
-              </FormRow>
-              <InputRow
-                name="email"
-                type="email"
-                label="New email"
-                value={this.state.email}
-                error={errors.email}
-                onChange={e => this.onChangeField('email', e.target.value)}
-                required
-              />
-              <InputRow
-                name="password"
-                type="password"
-                label="Password"
-                value={this.state.password}
-                error={errors.password}
-                onChange={e => this.onChangeField('password', e.target.value)}
-                minLength="6"
-                required
-              />
-              <FormRow type="submit">
-                <Button type="submit" styleType="primary" disabled={isSubmitting} isFullWidth>
-                  Send confirmation email
-                </Button>
-              </FormRow>
-              <FormRow>
-                <Button
-                  href={cancelHref}
-                  type="button"
-                  styleType="secondary"
-                  disabled={isSubmitting}
-                  isFullWidth
-                >
-                  Cancel
-                </Button>
-              </FormRow>
-            </Form>
-          )}
+          <Layout.Inner>
+            <PageTitle title={displayName} subtitle={email} />
+            {isSuccess ? (
+              <AccountFormSuccess />
+            ) : (
+              <Form className="form_account" onSubmit={e => this.onSubmit(e)}>
+                <FormRow className="form__row">
+                  <h3>Change email</h3>
+                </FormRow>
+                <InputRow
+                  name="email"
+                  type="email"
+                  label="New email"
+                  value={this.state.email}
+                  error={errors.email}
+                  onChange={e => this.onChangeField('email', e.target.value)}
+                  required
+                />
+                <InputRow
+                  name="password"
+                  type="password"
+                  label="Password"
+                  value={this.state.password}
+                  error={errors.password}
+                  onChange={e => this.onChangeField('password', e.target.value)}
+                  minLength="6"
+                  required
+                />
+                <FormRow type="submit">
+                  <Button type="submit" styleType="primary" disabled={isSubmitting} isFullWidth>
+                    Send confirmation email
+                  </Button>
+                </FormRow>
+                <FormRow>
+                  <Button
+                    href={cancelHref}
+                    type="button"
+                    styleType="secondary"
+                    disabled={isSubmitting}
+                    isFullWidth
+                  >
+                    Cancel
+                  </Button>
+                </FormRow>
+              </Form>
+            )}
+          </Layout.Inner>
         </Layout.Container>
       </Layout>
     );

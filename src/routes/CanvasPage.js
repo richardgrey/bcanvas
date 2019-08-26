@@ -113,14 +113,16 @@ class CanvasPage extends Component {
             />
           </Layout.Header>
           <Layout.Container>
-            <CanvasTable
-              canvasId={id}
-              type={type}
-              entries={entries}
-              isLoading={isFetching}
-              canEdit={canEdit}
-              dispatch={dispatch}
-            />
+            <Layout.Inner>
+              <CanvasTable
+                canvasId={id}
+                type={type}
+                entries={entries}
+                isLoading={isFetching}
+                canEdit={canEdit}
+                dispatch={dispatch}
+              />
+            </Layout.Inner>
           </Layout.Container>
         </Layout>
       );

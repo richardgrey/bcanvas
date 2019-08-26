@@ -30,18 +30,18 @@ class Dashboard extends Component {
         </Layout.Header>
         <Layout.Container>
           {isEmpty ? (
-            <>
+            <Layout.Inner>
               <PageTitle
                 title="Dashboard"
                 subtitle="Nothing here yet. Go ahead, create your first canvas!"
               />
               <CreateCanvasSection withDescription withCTA />
-            </>
+            </Layout.Inner>
           ) : (
-            <>
+            <Layout.Inner>
               <PageTitle title="Dashboard" />
               <ItemsList type="grid" />
-            </>
+            </Layout.Inner>
           )}
         </Layout.Container>
       </Layout>

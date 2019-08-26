@@ -106,72 +106,74 @@ class ChangePassword extends Component {
           <Header btnBack btnUser />
         </Layout.Header>
         <Layout.Container>
-          <PageTitle title={displayName} subtitle={email} />
-          {isSuccess ? (
-            <AccountFormSuccess />
-          ) : (
-            <Form className="form_account" onSubmit={e => this.onSubmit(e)}>
-              <FormRow>
-                <h3>Change password</h3>
-              </FormRow>
-              {isGoogleOnly ? (
+          <Layout.Inner>
+            <PageTitle title={displayName} subtitle={email} />
+            {isSuccess ? (
+              <AccountFormSuccess />
+            ) : (
+              <Form className="form_account" onSubmit={e => this.onSubmit(e)}>
                 <FormRow>
-                  <p>
-                    You are signed in with your Google account. However, you can set a password to{' '}
-                    sign in with email/password in future.
-                  </p>
-                  <p>You’ll need to sign in to your Google account.</p>
+                  <h3>Change password</h3>
                 </FormRow>
-              ) : (
+                {isGoogleOnly ? (
+                  <FormRow>
+                    <p>
+                      You are signed in with your Google account. However, you can set a password to{' '}
+                      sign in with email/password in future.
+                    </p>
+                    <p>You’ll need to sign in to your Google account.</p>
+                  </FormRow>
+                ) : (
+                  <InputRow
+                    name="current-password"
+                    type="password"
+                    label="Current password"
+                    value={currentPassword}
+                    error={errors.confirmPassword}
+                    onChange={e => this.onChangeField('currentPassword', e.target.value)}
+                    minLength="6"
+                    required
+                  />
+                )}
                 <InputRow
-                  name="current-password"
+                  name="password"
                   type="password"
-                  label="Current password"
-                  value={currentPassword}
-                  error={errors.confirmPassword}
-                  onChange={e => this.onChangeField('currentPassword', e.target.value)}
+                  label="New password"
+                  value={password}
+                  error={errors.password}
+                  onChange={e => this.onChangeField('password', e.target.value)}
                   minLength="6"
                   required
                 />
-              )}
-              <InputRow
-                name="password"
-                type="password"
-                label="New password"
-                value={password}
-                error={errors.password}
-                onChange={e => this.onChangeField('password', e.target.value)}
-                minLength="6"
-                required
-              />
-              <InputRow
-                name="repassword"
-                type="password"
-                label="Confirm password"
-                value={repassword}
-                error={errors.repassword}
-                onChange={e => this.onChangeField('repassword', e.target.value)}
-                minLength="6"
-                required
-              />
-              <FormRow type="submit">
-                <Button type="submit" styleType="primary" disabled={isSubmitting} isFullWidth>
-                  Change password
-                </Button>
-              </FormRow>
-              <FormRow>
-                <Button
-                  href={cancelHref}
-                  type="button"
-                  styleType="secondary"
-                  disabled={isSubmitting}
-                  isFullWidth
-                >
-                  Cancel
-                </Button>
-              </FormRow>
-            </Form>
-          )}
+                <InputRow
+                  name="repassword"
+                  type="password"
+                  label="Confirm password"
+                  value={repassword}
+                  error={errors.repassword}
+                  onChange={e => this.onChangeField('repassword', e.target.value)}
+                  minLength="6"
+                  required
+                />
+                <FormRow type="submit">
+                  <Button type="submit" styleType="primary" disabled={isSubmitting} isFullWidth>
+                    Change password
+                  </Button>
+                </FormRow>
+                <FormRow>
+                  <Button
+                    href={cancelHref}
+                    type="button"
+                    styleType="secondary"
+                    disabled={isSubmitting}
+                    isFullWidth
+                  >
+                    Cancel
+                  </Button>
+                </FormRow>
+              </Form>
+            )}
+          </Layout.Inner>
         </Layout.Container>
       </Layout>
     );

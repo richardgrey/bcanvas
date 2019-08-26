@@ -54,8 +54,10 @@ class Register extends Component {
           />
         </Layout.Header>
         <Layout.Container>
-          <PageTitle title="Create your account" subtitle="One step away from your first canvas." />
-          <FormRegister dispatch={dispatch} errors={errorRegister} isSubmitting={isSubmitting} />
+          <Layout.Inner>
+            <PageTitle title="Create your account" subtitle="One step away from your first canvas." />
+            <FormRegister dispatch={dispatch} errors={errorRegister} isSubmitting={isSubmitting} />
+          </Layout.Inner>
         </Layout.Container>
       </Layout>
     );

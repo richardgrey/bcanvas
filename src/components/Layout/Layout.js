@@ -4,11 +4,12 @@ import b from 'b_';
 import './Layout.scss';
 
 const LayoutHeader = ({ children }) => <>{children}</>;
-
 const LayoutContainer = ({ children }) => <div className="layout__container">{children}</div>;
+const LayoutInner = ({ children }) => <div className="layout__inner">{children}</div>;
 
 LayoutHeader.propTypes = { children: PropTypes.node.isRequired };
 LayoutContainer.propTypes = LayoutHeader.propTypes;
+LayoutInner.propTypes = LayoutHeader.propTypes;
 
 class Layout extends Component {
   static propTypes = {
@@ -36,5 +37,6 @@ class Layout extends Component {
 
 Layout.Header = LayoutHeader;
 Layout.Container = LayoutContainer;
+Layout.Inner = LayoutInner;
 
 export default Layout;
