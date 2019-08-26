@@ -21,7 +21,7 @@ class ToolbarNewCanvas extends Component {
     return (
       <div className="toolbar-new-canvas">
         <Button size="x-small" onClick={this.open}>
-          New Canvas
+          New canvas
         </Button>
         <ModalNew isOpened={isOpened} close={this.close} />
       </div>

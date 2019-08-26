@@ -2,8 +2,11 @@
 }
 .mini-profile__name,
 .mini-profile__email {
+  font-size: 1.125rem;
+  line-height: 1.25;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
   max-width: 16rem;
+  margin: 0;
 }

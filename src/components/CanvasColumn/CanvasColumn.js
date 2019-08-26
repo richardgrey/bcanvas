@@ -4,6 +4,16 @@ import b from 'b_';
 import Entry from '../Entry/Entry';
 import './CanvasColumn.scss';
 
+const hasTextboxParent = node => {
+  if (node.getAttribute('role') === 'textbox') {
+    return true;
+  }
+  if (node.parentElement) {
+    return hasTextboxParent(node.parentElement);
+  }
+  return false;
+};
+
 class CanvasColumn extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
@@ -36,7 +46,7 @@ class CanvasColumn extends Component {
   }
 
   onClick(e) {
-    if (!(e.target.nodeName === 'INPUT' || e.target.getAttribute('role') === 'textbox')) {
+    if (!(e.target.nodeName === 'INPUT' || hasTextboxParent(e.target))) {
       this.newEntryRef.current.focus();
     }
   }

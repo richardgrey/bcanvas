@@ -6,7 +6,7 @@ import Modal from '../Modal/Modal';
 const ModalNew = ({ isOpened, close }) => (
   <Modal size="large" isOpened={isOpened} onClose={close}>
     <div className="modal-new">
-      <h2 className="text_align_center">Create New Canvas</h2>
+      <h2 className="text_align_center">Create new canvas</h2>
       <CreateCanvasSection size="small" />
     </div>
   </Modal>

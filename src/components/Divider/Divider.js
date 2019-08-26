@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import './Divider.scss';
 
 const Divider = ({ children }) => (
-  <div className="separator">
-    {children ? <span className="separator__inner">{children}</span> : null}
+  <div className="divider">
+    {children ? <span className="divider__inner">{children}</span> : null}
   </div>
 );
 

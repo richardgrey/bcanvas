@@ -21,15 +21,15 @@ class InputText extends Component {
 
   static defaultProps = {
     type: 'text',
-    label: null,
-    placeholder: null,
+    label: undefined,
+    placeholder: undefined,
     value: '',
-    error: null,
+    error: undefined,
     disabled: false,
     autofocus: false,
-    onChange: null,
-    onFocus: null,
-    onBlur: null,
+    onChange: undefined,
+    onFocus: undefined,
+    onBlur: undefined,
   };
 
   constructor(props) {
@@ -48,11 +48,11 @@ class InputText extends Component {
   }
 
   onFocus = e => {
+    this.setState({ focused: true });
     const { onFocus } = this.props;
     if (typeof onFocus === 'function') {
       onFocus(e);
     }
-    this.setState({ focused: true });
   };
 
   onBlur = e => {
@@ -74,6 +74,8 @@ class InputText extends Component {
       onChange,
       disabled,
       autofocus,
+      onFocus,
+      onBlur,
       ...other
     } = this.props;
     const { focused, id } = this.state;
@@ -87,9 +89,7 @@ class InputText extends Component {
 
     return (
       <label className={cls} htmlFor={id}>
-        {label ? (
-          <span className={b(baseClass, 'label', { hidden: !value && !focused })}>{label}</span>
-        ) : null}
+        <span className={b(baseClass, 'label', { hidden: !value && !focused })}>{label}</span>
         <span className={b(baseClass, 'placeholder', { hidden: !!value || !!focused })}>
           {placeholder || label}
         </span>

@@ -4,24 +4,13 @@ import { addEntry, updateEntry, removeEntry } from '../../actions/entry';
 import './Entry.scss';
 
 const setCursorToTheEnd = contentEditableElement => {
-  let range;
-  let selection;
-
-  if (document.createRange) {
-    // Firefox, Chrome, Opera, Safari, IE 9+
-    range = document.createRange();
-    range.selectNodeContents(contentEditableElement);
-    range.collapse(false);
-    selection = window.getSelection();
-    selection.removeAllRanges();
-    selection.addRange(range);
-  } else if (document.selection) {
-    // IE 8 and lower
-    range = document.body.createTextRange();
-    range.moveToElementText(contentEditableElement);
-    range.collapse(false);
-    range.select();
-  }
+  // Firefox, Chrome, Opera, Safari, IE 9+
+  const range = document.createRange();
+  range.selectNodeContents(contentEditableElement);
+  range.collapse(false);
+  const selection = window.getSelection();
+  selection.removeAllRanges();
+  selection.addRange(range);
 };
 
 const focusNextEntry = el => {
@@ -69,17 +58,19 @@ class Entry extends Component {
   };
 
   onKeyUp = e => {
+    const { value } = this.props;
     if (e.key === 'Escape') {
-      e.target.innerText = this.props.value;
+      e.target.innerText = value;
       e.target.blur();
     }
   };
 
   onKeyPress = e => {
+    const { target } = e;
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
-      const val = e.target.innerText;
-      this.submitEntry(val.trim(), e.target);
+      const val = target.innerText.trim();
+      this.submitEntry(val, target);
     }
   };
 
@@ -106,8 +97,9 @@ class Entry extends Component {
       }
       focusNextEntry(target);
     } else if (val) {
-      // Creates new entry that will render via state update
+      // Creates new entry that will render via state update. Clear input for next entry
       dispatch(addEntry(canvasId, label, val));
+      // eslint-disable-next-line no-param-reassign
       target.innerText = '';
     }
   }
