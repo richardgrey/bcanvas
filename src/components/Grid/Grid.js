@@ -1,59 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import b from 'b_';
+import GridCol from './GridCol';
 import './Grid.scss';
 
-export const Grid = ({ children }) => (
-  <div className="grid">{children}</div>
+const Grid = ({ children, valign, reverse }) => (
+  <div className={b('grid', { valign, reverse })}>{children}</div>
 );
+
 Grid.propTypes = {
   children: PropTypes.node,
+  valign: PropTypes.oneOf(['top', 'center', 'bottom', 'baseline']),
+  reverse: PropTypes.bool,
 };
+
 Grid.defaultProps = {
   children: null,
+  valign: undefined,
+  reverse: false,
 };
 
-export const GridRow = ({ children, justify }) => (
-  <div className={b('grid', 'row', { justify })}>{children}</div>
-);
-GridRow.propTypes = {
-  children: PropTypes.node,
-  justify: PropTypes.oneOf(['center']),
-};
-GridRow.defaultProps = {
-  children: null,
-  justify: undefined,
-};
+Grid.Col = GridCol;
 
-export const GridCol = ({ children, xl, md, sm, xlOffset, mdOffset, smOffset }) => (
-  <div
-    className={b('grid', 'col', {
-      xl,
-      md,
-      sm,
-      'offset-xl': xlOffset,
-      'offset-md': mdOffset,
-      'offset-sm': smOffset,
-    })}
-  >
-    {children}
-  </div>
-);
-GridCol.propTypes = {
-  children: PropTypes.node,
-  xl: PropTypes.number,
-  md: PropTypes.number,
-  sm: PropTypes.number,
-  xlOffset: PropTypes.number,
-  mdOffset: PropTypes.number,
-  smOffset: PropTypes.number,
-};
-GridCol.defaultProps = {
-  children: null,
-  xl: undefined,
-  md: undefined,
-  sm: undefined,
-  xlOffset: undefined,
-  mdOffset: undefined,
-  smOffset: undefined,
-};
+export default Grid;

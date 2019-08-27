@@ -1,0 +1,81 @@
+@import "../../styles/variables";
+
+.footer {
+  color: $color-gray6;
+  padding: 40px 0;
+
+  a {
+    color:$color-gray6;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+.footer__logo {
+  text-align: center;
+  margin-bottom: 20px;
+
+  svg,
+  img {
+    width: 60px;
+    height: 45px;
+  }
+}
+.footer__copy {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.footer__menu {
+  display: inline-block;
+  vertical-align: top;
+  list-style: none;
+  margin: 0 40px 0 0;
+  padding: 0;
+
+  li {
+    margin-bottom: 1em;
+  }
+  a {
+    font-weight: 500;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+
+@media (min-width: $min-tablet) {
+  .footer {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  .footer__logo {
+    float: left;
+  }
+  .footer__copy {
+    margin-left: 100px;
+    margin-bottom: 0;
+    text-align: left;
+  }
+  .footer__menu {
+    margin-right: 60px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+@media (min-width: $min-desktop) {
+  .footer__menu {
+    margin-right: 100px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+

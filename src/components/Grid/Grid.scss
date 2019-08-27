@@ -5,19 +5,35 @@ $breakpoints: (
   xl: $min-desktop,
 );
 
-.grid__row {
+.grid {
   @include grid-row();
 }
-.grid__row_justify_center {
-  justify-content: center;
+.grid_valign_center {
+  align-items: center;
+}
+.grid_valign_top {
+  align-items: flex-start;
+}
+.grid_valign_bottom {
+  align-items: flex-end;
+}
+.grid_valign_baseline {
+  align-items: baseline;
+}
+
+@media (min-width: $min-tablet) {
+  .grid_reverse {
+    flex-direction: row-reverse;
+  }
 }
 
 
 %grid-col {
   position: relative;
   width: 100%;
-  padding-right: $gutter / 2;
-  padding-left: $gutter / 2;
+  padding-right: $gutter-desktop / 2;
+  padding-left: $gutter-desktop / 2;
+  flex-shrink: 0;
 }
 
 @each $breakpoint, $min in $breakpoints {

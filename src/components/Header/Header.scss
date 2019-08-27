@@ -1,11 +1,11 @@
 @import "../../styles/variables";
 
 .header {
-  position: relative;
-  width: 100%;
-  height: 60px;
-}
-.header__inner {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  right: 0;
+  left: 0;
   display: flex;
   justify-content: space-between;
   align-content: stretch;
@@ -53,16 +53,13 @@
 
 
 .header_fixed {
-
-  .header__inner {
-    position: fixed;
-    z-index: 100;
-    top: 0;
-    right: 0;
-    left: 0;
-    background: #fff;
-    box-shadow: 0 1px 0 $color-gray9;
-  }
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  right: 0;
+  left: 0;
+  background: #fff;
+  box-shadow: 0 1px 0 $color-gray9;
 
   .header-button_dashboard,
   .header-button_user {

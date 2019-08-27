@@ -5,15 +5,29 @@
 .layout__container {
   position: relative;
   overflow: hidden;
-  min-height: calc(100vh - 60px);
+  min-height: 100vh;
   background: #fff;
+  padding-top: 60px;
   padding-bottom: 90px;
+  margin-bottom: 315px;
 }
 .layout__inner {
+  position: relative;
   max-width: $page-width-max;
   margin: 0 auto;
-  padding: 0 $page-gutter-desktop;
+  padding: 0 $page-gutter-mobile;
 }
+.layout__footer {
+  color: $color-gray2;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 315px;
+  z-index: -1;
+  background: $color-black;
+}
+
 
 .layout_fluid {
   .layout__inner {
@@ -71,4 +85,22 @@
 }
 
 
+@media (min-width: $min-tablet) {
+  .layout__container {
+    margin-bottom: 200px;
+  }
+  .layout__footer {
+    height: 200px;
+  }
+  .layout__inner {
+    padding-left: $page-gutter-tablet;
+    padding-right: $page-gutter-tablet;
+  }
+}
+@media (min-width: $min-desktop) {
+  .layout__inner {
+    padding-left: $page-gutter-desktop;
+    padding-right: $page-gutter-desktop;
+  }
+}
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import b from 'b_';
+import Footer from '../Footer/Footer';
 import './Layout.scss';
 
 const LayoutHeader = ({ children }) => <>{children}</>;
@@ -31,7 +32,16 @@ class Layout extends Component {
       background,
     });
 
-    return <div className={cls}>{children}</div>;
+    return (
+      <div className={cls}>
+        {children}
+        <div className="layout__footer">
+          <LayoutInner>
+            <Footer />
+          </LayoutInner>
+        </div>
+      </div>
+    );
   }
 }
 

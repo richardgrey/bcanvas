@@ -21,6 +21,18 @@ const IconsSprite = () => {
         <rect x="24" y="10" width="8" height="10" fill="#E34C41" />
         <rect x="16" width="8" height="20" fill="#FDDE79" />
       </symbol>
+      <symbol id="logo-bw" viewBox="0 0 60 45">
+        <path d="m0 0h60v45h-60z" fill="#7d7d7e" />
+        <path d="m1 31h28v13h-28z" fill="#aaaaab" />
+        <path d="m30 31h29v13h-29z" fill="#9a9a9b" />
+        <path d="m12 16h11v14h-11z" fill="#cececf" />
+        <path d="m12 1h11v14h-11z" fill="#bababb" />
+        <path d="m1 1h10v29h-10z" fill="#9b9b9c" />
+        <path d="m49 1h10v29h-10z" fill="#a1a1a2" />
+        <path d="m37 1h11v14h-11z" fill="#c8c8c9" />
+        <path d="m37 16h11v14h-11z" fill="#bababb" />
+        <path d="m24 1h12v29h-12z" fill="#cececf" />
+      </symbol>
       <symbol id="dashboard" viewBox="0 0 18 18">
         <path d="M18,8H10V0h8ZM12,6h4V2H12Z" />
         <path d="M8,8H0V0H8ZM2,6H6V2H2Z" />

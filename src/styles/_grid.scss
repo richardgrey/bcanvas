@@ -10,7 +10,7 @@
 }
 
 // Rows
-@mixin grid-row($direction: ltr, $align: stretch, $justify: flex-start, $grid-gutter: $gutter, $wrap: wrap) {
+@mixin grid-row($direction: ltr, $align: stretch, $justify: flex-start, $grid-gutter: $gutter-desktop, $wrap: wrap) {
   display: flex;
   flex-wrap: $wrap;
 
@@ -30,7 +30,7 @@
 }
 
 // Columns
-@mixin grid-col($width: 100%, $align: stretch, $grid-gutter: $gutter) {
+@mixin grid-col($width: 100%, $align: stretch, $grid-gutter: $gutter-desktop) {
   flex: none;
   align-self: $align;
 

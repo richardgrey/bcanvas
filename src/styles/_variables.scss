@@ -1,11 +1,13 @@
 // Grid
-$grid-column-count: 9;
-$gutter: 40px;
+$grid-column-count: 12;
+$gutter-desktop: 60px;
+$gutter-tablet: 40px;
+$gutter-mobile: 30px;
 
 // Page
 $page-width: 1240px;
 $page-gutter-mobile: 30px;
-$page-gutter-tablet: 60px;
+$page-gutter-tablet: 30px;
 $page-gutter-desktop: 60px;
 $page-width-max: $page-width + ($page-gutter-desktop * 2);
 
@@ -109,3 +111,6 @@ $min-desktop: $min-1080;
 
 // Radius
 $border-radius: 4px;
+
+//
+$elevation-base-color: $color-gray2;

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import b from 'b_';
 import IconCanvas from '../Icon/IconCanvas';
 import Button from '../Button/Button';
+import CanvasCardMock from './CanvasCardMock';
 import { removeCanvas } from '../../actions/canvas';
 import { DEFAULT_CANVAS_TITLE } from '../../constants';
 import schemas from '../../constants/schemas';
@@ -16,6 +17,7 @@ class CanvasCard extends Component {
       type: PropTypes.string.isRequired,
       id: PropTypes.string.isRequired,
       title: PropTypes.string,
+      isOwner: PropTypes.bool,
     }).isRequired,
   };
 
@@ -36,6 +38,47 @@ class CanvasCard extends Component {
     this.setState({
       isRemoving: true,
     });
+  }
+
+  renderRemovable() {
+    const { isConfirmingRemove } = this.state;
+
+    return !isConfirmingRemove ? (
+      // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+      <div
+        className="canvas-card__delete"
+        role="button"
+        tabIndex="0"
+        onClick={() => this.toggleRemoving(true)}
+      >
+        ×
+      </div>
+    ) : (
+      <div className="canvas-card__confirming-remove">
+        <div className="canvas-card__confirming-remove-inner">
+          <p>
+            <Button
+              styleType="danger"
+              size="x-small"
+              isFullWidth
+              onClick={e => this.removeCanvas(e)}
+            >
+              Confirm removal
+            </Button>
+          </p>
+          <p>
+            <Button
+              styleType="ghost"
+              size="x-small"
+              isFullWidth
+              onClick={() => this.toggleRemoving(false)}
+            >
+              Cancel
+            </Button>
+          </p>
+        </div>
+      </div>
+    );
   }
 
   render() {
@@ -62,46 +105,12 @@ class CanvasCard extends Component {
             <p className="canvas-card__type">{name}</p>
           </div>
         </Link>
-
-        {!isConfirmingRemove ? (
-          // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-          <div
-            className="canvas-card__delete"
-            role="button"
-            tabIndex="0"
-            onClick={() => this.toggleRemoving(true)}
-          >
-            ×
-          </div>
-        ) : (
-          <div className="canvas-card__confirming-remove">
-            <div className="canvas-card__confirming-remove-inner">
-              <p>
-                <Button
-                  styleType="danger"
-                  size="x-small"
-                  isFullWidth
-                  onClick={e => this.removeCanvas(e)}
-                >
-                  Confirm removal
-                </Button>
-              </p>
-              <p>
-                <Button
-                  styleType="ghost"
-                  size="x-small"
-                  isFullWidth
-                  onClick={() => this.toggleRemoving(false)}
-                >
-                  Cancel
-                </Button>
-              </p>
-            </div>
-          </div>
-        )}
+        {canvas.isOwner ? this.renderRemovable() : null}
       </div>
     );
   }
 }
+
+CanvasCard.Mock = CanvasCardMock;
 
 export default CanvasCard;

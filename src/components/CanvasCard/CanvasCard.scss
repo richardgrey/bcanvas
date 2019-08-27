@@ -47,7 +47,7 @@
 }
 .canvas-card__title {
   font-weight: bold;
-  font-size: 1.125rem;
+  font-size: 1.5rem;
   line-height: 1.125;
   overflow: hidden;
   max-height: 1.125em * 3;
@@ -224,5 +224,12 @@
     transition: none;
     transform: none;
     box-shadow: none;
+  }
+}
+
+
+@media (min-width: $min-tablet) {
+  .canvas-card__title {
+    font-size: 1.125rem;
   }
 }

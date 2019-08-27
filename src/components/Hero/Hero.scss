@@ -1,12 +1,12 @@
 @import '../../styles/variables';
 
 .hero {
-  margin: 150px auto 120px;
+  margin: 90px auto 120px;
   text-align: center;
 }
 .hero__title {
   font-family: $font-serif;
-  font-size: 4rem;
+  font-size: 2.5rem;
   line-height: 1;
   margin: 0 0 0.5em;
 }
@@ -29,6 +29,23 @@
     &:active:before {
       box-shadow: 0 4px 7px rgba($color-indigo, 0.3);
     }
+  }
+}
+
+@media (min-width: $min-tablet) {
+  .hero {
+    margin-top: 120px;
+  }
+  .hero__title {
+    font-size: 3.5rem;
+  }
+}
+@media (min-width: $min-desktop) {
+  .hero {
+    margin-top: 150px;
+  }
+  .hero__title {
+    font-size: 4rem;
   }
 }
 

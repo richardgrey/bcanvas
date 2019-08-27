@@ -8,10 +8,31 @@
   justify-content: flex-start;
   list-style: none;
   padding: 0;
-  margin: 0 (-$gutter/2);
+  margin: 0;
 }
 .items-list__item {
-  width: 25%;
-  margin: 0 0 $gutter;
-  padding: 0 $gutter/2;
+  width: 100%;
+  margin: 0 0 $gutter-mobile;
+  padding: 0;
+}
+
+@media (min-width: $min-tablet) {
+  .items-list__list {
+    margin: 0 (-$gutter-tablet/2);
+  }
+  .items-list__item {
+    width: 50%;
+    margin: 0 0 $gutter-tablet;
+    padding: 0 $gutter-tablet/2;
+  }
+}
+@media (min-width: $min-desktop) {
+  .items-list__list {
+    margin: 0 (-$gutter-desktop/2);
+  }
+  .items-list__item {
+    width: 25%;
+    margin: 0 0 $gutter-desktop;
+    padding: 0 $gutter-desktop/2;
+  }
 }

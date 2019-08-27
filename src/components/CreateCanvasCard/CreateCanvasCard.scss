@@ -34,11 +34,6 @@
   }
 }
 .create-canvas-card__title {
-  min-height: 1.125 * 2em;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
 }
 .create-canvas-card__desc {
   flex-grow: 1;
@@ -57,7 +52,7 @@
   }
 }
 
-
+// Hover & Active
 .create-canvas-card:hover,
 .create-canvas-card:focus {
   outline: none;
@@ -90,6 +85,7 @@
 }
 .create-canvas-card_type_value {
   background-color: $bg-orange;
+
   &:hover,
   &:focus {
     @include elevate(16, #eb933b);
@@ -111,6 +107,7 @@
 }
 
 
+// Sizing
 .create-canvas-card_size_small {
   padding: 20px;
 
@@ -120,5 +117,43 @@
   .create-canvas-card__title {
     font-size: 1.125rem;
     min-height: 1.125 * 2em;
+  }
+}
+
+
+@media (min-width: $min-tablet) {
+  .create-canvas-card_size_normal {
+    padding: 30px;
+  }
+  .create-canvas-card__media {
+    margin-bottom: 30px;
+  }
+  .create-canvas-card__title {
+    font-size: 1.125rem;
+    min-height: 1.125 * 2em;
+  }
+  .create-canvas-card__desc {
+    font-size: 0.875rem;
+  }
+  .create-canvas-card__cta {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: $min-desktop) {
+  .create-canvas-card_size_normal {
+    padding: 40px;
+  }
+  .create-canvas-card__media {
+    margin-bottom: 40px;
+  }
+  .create-canvas-card__title {
+    font-size: 1.5rem;
+  }
+  .create-canvas-card__desc {
+    font-size: 1rem;
+  }
+  .create-canvas-card__cta {
+    font-size: 1.125rem;
   }
 }

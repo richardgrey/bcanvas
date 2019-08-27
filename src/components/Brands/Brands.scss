@@ -1,0 +1,23 @@
+@import "../../styles/variables";
+
+.brands {
+  text-align: center;
+}
+.brands__item {
+  display: inline-block;
+  vertical-align: middle;
+  width: 30%;
+  padding: 0 5px;
+  margin-bottom: 10px;
+}
+@media (min-width: $min-tablet) {
+  .brands__item {
+    width: 20%;
+  }
+}
+@media (min-width: $min-desktop) {
+  .brands__item {
+    width: 10%;
+    margin-bottom: 0;
+  }
+}

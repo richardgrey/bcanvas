@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import Layout from '../components/Layout/Layout';
 import Header from '../components/Header/Header';
 import PageTitle from '../components/PageTitle/PageTitle';
-import ItemsList from '../components/ItemsList/ItemsList';
+import MyCanvases from '../components/MyCanvases/MyCanvases';
 import CreateCanvasSection from '../components/CreateCanvasSection/CreateCanvasSection';
 import ToolbarNewCanvas from '../components/ToolbarNewCanvas/ToolbarNewCanvas';
 
@@ -40,7 +40,7 @@ class Dashboard extends Component {
           ) : (
             <Layout.Inner>
               <PageTitle title="Dashboard" />
-              <ItemsList type="grid" />
+              <MyCanvases />
             </Layout.Inner>
           )}
         </Layout.Container>

@@ -1,16 +1,17 @@
 @import url("https://use.typekit.net/ctn7gqi.css");
 @import "variables";
 @import "reset";
+@import "elevation";
 
 /* ----------------------- */
 
 html {
-  font-size: 100%;
+  font-size: 87.5%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
-  font-feature-settings: "liga", "calt", "dlig", "salt";
+  font-feature-settings: "liga", "calt", "dlig";
 }
 body {
   color: $color-gray1;
@@ -49,7 +50,7 @@ hr {
   margin: 0 0 1em;
 }
 .h1, h1 {
-  font-size: 3rem;
+  font-size: 2.5rem;
 }
 .h2, h2 {
   font-size: 2rem;
@@ -79,8 +80,14 @@ a {
 }
 
 
-
-
+@media (min-width: $min-tablet) {
+  html {
+    font-size: 100%;
+  }
+  .h1, h1 {
+    font-size: 3rem;
+  }
+}
 
 
 

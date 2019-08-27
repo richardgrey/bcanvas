@@ -1,0 +1,7 @@
+@import "elevate";
+
+@for $z-value from 0 through 24 {
+  .elevation-#{$z-value} {
+    @include elevate($z-value);
+  }
+}

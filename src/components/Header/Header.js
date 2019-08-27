@@ -21,24 +21,22 @@ const renderDashboardBtn = () => (
 
 const Header = ({ btnDashboard, btnUser, btnBack, backTo, left, right, fixed }) => (
   <div className={`header${fixed ? ' header_fixed' : ''}`}>
-    <div className="header__inner">
-      <div className="header__left">
-        <div className="header__left-inner">
-          {btnBack ? renderBackBtn(backTo) : null}
-          {btnDashboard ? renderDashboardBtn() : null}
-          {left}
-        </div>
+    <div className="header__left">
+      <div className="header__left-inner">
+        {btnBack ? renderBackBtn(backTo) : null}
+        {btnDashboard ? renderDashboardBtn() : null}
+        {left}
       </div>
-      <div className="header__logo">
-        <Link to="/">
-          <Icon name="logo" />
-        </Link>
-      </div>
-      <div className="header__right">
-        <div className="header__right-inner">
-          {btnUser ? <UserButton /> : null}
-          {right}
-        </div>
+    </div>
+    <div className="header__logo">
+      <Link to="/">
+        <Icon name="logo" />
+      </Link>
+    </div>
+    <div className="header__right">
+      <div className="header__right-inner">
+        {btnUser ? <UserButton /> : null}
+        {right}
       </div>
     </div>
   </div>

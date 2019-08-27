@@ -39,13 +39,13 @@ class CreateCanvasCard extends Component {
     dispatch: PropTypes.func.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
     type: PropTypes.oneOf(['business', 'value', 'lean']).isRequired,
-    size: PropTypes.oneOf(['small', null]),
+    size: PropTypes.oneOf(['small', 'normal']),
     withDescription: PropTypes.bool,
     withCTA: PropTypes.bool,
   };
 
   static defaultProps = {
-    size: null,
+    size: 'normal',
     withDescription: false,
     withCTA: false,
   };
@@ -88,7 +88,7 @@ class CreateCanvasCard extends Component {
         {inner()}
       </div>
     ) : (
-      <Link to="/register" className={b('create-canvas-card', { type })}>
+      <Link to="/register" className={b('create-canvas-card', { type, size })}>
         {inner()}
       </Link>
     );
