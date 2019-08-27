@@ -53,6 +53,10 @@ $breakpoints: (
     @for $i from 0 through ($grid-column-count - 1) {
       .grid__col_offset-#{$infix}_#{$i} {
         @include grid-offset-left($i);
+        .grid_reverse & {
+          margin-left: 0;
+          @include grid-offset-right($i);
+        }
       }
     }
   }

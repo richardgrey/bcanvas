@@ -63,12 +63,12 @@ const Landing = () => (
     <Layout.Inner>
       <Section spacing="small">
         <Grid valign="center" reverse>
-          <Grid.Col xl={7} md={6}>
+          <Grid.Col xl={7} md={8} mdOffset={2}>
             <p>
               <Picture alt="business" src={require('./img/business_map_2.svg')} />
             </p>
           </Grid.Col>
-          <Grid.Col xl={5} md={6}>
+          <Grid.Col xl={5} md={8} mdOffset={2}>
             <h2 className="h1">
               Put your business on{'\u00A0'}the{'\u00A0'}map
             </h2>
@@ -80,12 +80,12 @@ const Landing = () => (
       </Section>
       <Section spacing="small">
         <Grid valign="center">
-          <Grid.Col xl={7} md={6}>
+          <Grid.Col xl={7} md={8} mdOffset={2}>
             <p>
               <Picture alt="business" src={require('./img/problem_solving_2.svg')} />
             </p>
           </Grid.Col>
-          <Grid.Col xl={5} md={6}>
+          <Grid.Col xl={5} md={8} mdOffset={2}>
             <h2 className="h1">Come up with great{'\u00A0'}ideas</h2>
             <p>
               When it is time to really understand your customers, including their jobs-to-be-done, pains, and gains, as well as your offer to them, the Value Proposition Canvas, developed by Alex Osterwalder at Strategyzer, is one of the best tools available to help you.
@@ -95,12 +95,12 @@ const Landing = () => (
       </Section>
       <Section spacing="small">
         <Grid valign="center" reverse>
-          <Grid.Col xl={7} md={6}>
+          <Grid.Col xl={7} md={8} mdOffset={2}>
             <p>
               <Picture alt="business" src={require('./img/startup_2_lime.svg')} />
             </p>
           </Grid.Col>
-          <Grid.Col xl={5} md={6}>
+          <Grid.Col xl={5} md={8} mdOffset={2}>
             <h2 className="h1">
               Put your business on{'\u00A0'}the{'\u00A0'}map
             </h2>
@@ -128,12 +128,12 @@ const Landing = () => (
       <h2 className="h1 text_align_center">Hall of Fame</h2>
       <Section spacing="small">
         <Grid valign="center">
-          <GridCol xl={3} xlOffset={2} md={4} sm={8}>
+          <GridCol xl={3} xlOffset={2} md={3} mdOffset={1} sm={8}>
             <p>
               <img src={require('./img/osterwalder.jpg')} alt="Alexander Osterwalder" />
             </p>
           </GridCol>
-          <GridCol xl={5} md={8}>
+          <GridCol xl={5} md={7}>
             <h3>Alexander Osterwalder</h3>
             <p>
               Original inventor of Business Model Canvas. He makes popularise it with his bestseller
@@ -144,12 +144,12 @@ const Landing = () => (
       </Section>
       <Section spacing="small">
         <Grid valign="center">
-          <GridCol xl={3} xlOffset={2} md={4} sm={8}>
+          <GridCol xl={3} xlOffset={2} md={3} mdOffset={1} sm={8}>
             <p>
               <img src={require('./img/maurya.jpg')} alt="Ash Maurya" />
             </p>
           </GridCol>
-          <GridCol xl={5} md={8} sm={12}>
+          <GridCol xl={5} md={7} sm={12}>
             <h3>Ash Maurya</h3>
             <p>
               Original inventor of Business Model Canvas. He makes popularise it with his bestseller

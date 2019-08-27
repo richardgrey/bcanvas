@@ -87,10 +87,10 @@
 
 @media (min-width: $min-tablet) {
   .layout__container {
-    margin-bottom: 200px;
+    margin-bottom: 300px;
   }
   .layout__footer {
-    height: 200px;
+    height: 300px;
   }
   .layout__inner {
     padding-left: $page-gutter-tablet;
@@ -98,6 +98,12 @@
   }
 }
 @media (min-width: $min-desktop) {
+  .layout__container {
+    margin-bottom: 200px;
+  }
+  .layout__footer {
+    height: 200px;
+  }
   .layout__inner {
     padding-left: $page-gutter-desktop;
     padding-right: $page-gutter-desktop;

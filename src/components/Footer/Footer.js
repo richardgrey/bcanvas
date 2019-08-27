@@ -9,7 +9,7 @@ const year = new Date().getFullYear();
 const Footer = () => (
   <div className="footer">
     <Grid valign="top">
-      <Grid.Col xl={5} md={6}>
+      <Grid.Col xl={5} md={5}>
         <div className="footer__logo">
           <Icon name="logo-bw" />
         </div>
@@ -25,7 +25,7 @@ const Footer = () => (
           <p>©{2019 - year ? `2019-${year}` : year}</p>
         </div>
       </Grid.Col>
-      <Grid.Col xl={6} xlOffset={1} md={6}>
+      <Grid.Col xl={6} xlOffset={1} md={7}>
         <ul className="footer__menu">
           <li>
             <Link to="/privacy">Privacy Policy</Link>
