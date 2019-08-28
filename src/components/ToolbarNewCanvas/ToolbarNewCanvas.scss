@@ -1,3 +1,34 @@
+@import "../../styles/variables";
+
 .toolbar-new-canvas {
-  padding: 0 20px;
+  padding: 0;
+
+  .header_fixed & {
+    padding: 0 10px;
+  }
+}
+.toolbar-new-canvas__mobile {
+  font-size: 1.25rem;
+  padding-left: 0;
+  padding-right: 0;
+  width: 40px;
+  height: 40px;
+}
+.toolbar-new-canvas__tablet {
+  display: none;
+}
+
+@media (min-width: $min-tablet) {
+  .toolbar-new-canvas {
+    &,
+    .header_fixed & {
+      padding: 0 20px;
+    }
+  }
+  .toolbar-new-canvas__mobile {
+    display: none;
+  }
+  .toolbar-new-canvas__tablet {
+    display: inline-block;
+  }
 }

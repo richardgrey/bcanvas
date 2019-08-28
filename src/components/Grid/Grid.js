@@ -1,25 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import b from 'b_';
+import GridRow from './GridRow';
 import GridCol from './GridCol';
 import './Grid.scss';
 
-const Grid = ({ children, valign, reverse }) => (
-  <div className={b('grid', { valign, reverse })}>{children}</div>
-);
+const Grid = ({ children, className }) => <div className={`grid ${className || ''}`}>{children}</div>;
 
 Grid.propTypes = {
   children: PropTypes.node,
-  valign: PropTypes.oneOf(['top', 'center', 'bottom', 'baseline']),
-  reverse: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 Grid.defaultProps = {
   children: null,
-  valign: undefined,
-  reverse: false,
+  className: undefined,
 };
 
 Grid.Col = GridCol;
+Grid.Row = GridRow;
 
 export default Grid;

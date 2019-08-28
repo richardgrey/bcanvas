@@ -34,6 +34,16 @@
     max-width: none;
   }
 }
+.layout_no-overflow {
+  .layout__container {
+    overflow: auto;
+
+    // TODO:
+    .layout__inner {
+      min-width: 1060px;
+    }
+  }
+}
 
 // Backgrounds
 // ===========

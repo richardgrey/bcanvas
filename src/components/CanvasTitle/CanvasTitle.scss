@@ -4,10 +4,9 @@
   position: relative;
   flex-grow: 1;
   flex-basis: 0;
-  // All space of left header half minus size of the dashboard button
-  width: calc(100% - 60px);
-  background: #fff;
+  margin: 10px 0 -20px;
   transition: background-color 250ms ease;
+  will-change: background-color;
 
   &:after {
     content: '⮐';
@@ -23,20 +22,9 @@
     opacity: 0;
     transition: opacity 100ms ease;
   }
-  &:before {
-    content: '';
-    position: absolute;
-    top:0;
-    right: 0;
-    width: 60px;
-    height: 100%;
-    background: linear-gradient(to left, #fff, #fff 50%, rgba(#fff, 0));
-    opacity: 1;
-  }
 }
 .canvas-title:hover,
 .canvas-title_focused {
-  background: $color-gray0;
   outline: none;
 }
 
@@ -46,7 +34,7 @@
   width: 100%;
   overflow: hidden;
   border: 0;
-  padding: 1.125rem 20px;
+  padding: 1.125rem 0;
   font-weight: bold;
   font-size: 1.125rem;
   line-height: 1.334;
@@ -89,4 +77,58 @@
 .canvas-title_read-only:hover {
   background: #fff;
   cursor: default;
+}
+
+
+// In .HEADER
+.header {
+  .canvas-title {
+    background: #fff;
+    // All space of left header half minus size of the dashboard button
+    width: calc(100% - 60px);
+    margin: 0;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top:0;
+      right: 0;
+      width: 60px;
+      height: 100%;
+      background: linear-gradient(to left, #fff, #fff 50%, rgba(#fff, 0));
+      opacity: 1;
+    }
+  }
+  .canvas-title:hover,
+  .canvas-title_focused {
+    outline: none;
+  }
+  .canvas-title__input {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+
+// TODO: Hardcode
+.header .canvas-title {
+  display: none;
+}
+.layout__container .canvas-title {
+  display: block;
+
+  &:after {
+    display: none;
+  }
+  .canvas-title__input {
+    font-size: 1.5rem;
+  }
+}
+@media (min-width: $min-desktop) {
+  .header .canvas-title {
+    display: block;
+  }
+  .layout__container .canvas-title {
+    display: none;
+  }
 }

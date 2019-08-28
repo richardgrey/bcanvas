@@ -12,7 +12,7 @@ import SamplesList from '../SamplesList/SamplesList';
 import LandingParallaxBg from './LandingParalaxBg';
 
 const TabPane = Tabs.TabsPane;
-const GridCol = Grid.Col;
+const { Row, Col } = Grid;
 
 const Landing = () => (
   <Layout.Container>
@@ -62,52 +62,66 @@ const Landing = () => (
 
     <Layout.Inner>
       <Section spacing="small">
-        <Grid valign="center" reverse>
-          <Grid.Col xl={7} xlOffset={0} md={8} mdOffset={2}>
-            <p>
-              <Picture alt="business" src={require('./img/business_map_2.svg')} />
-            </p>
-          </Grid.Col>
-          <Grid.Col xl={5} xlOffset={0} md={8} mdOffset={2}>
-            <h2 className="h1">
-              Put your business on{'\u00A0'}the{'\u00A0'}map
-            </h2>
-            <p>
-              The business model canvas is a great tool to help you understand a business model in a straightforward, structured way. Using this canvas will lead to insights about the customers you serve, what value propositions are offered through what channels, and how your company makes money. You can use the business model canvas to understand your own business model or that of a competitor! The business model canvas was created by Alexander Osterwalder, of Strategyzer.
-            </p>
-          </Grid.Col>
+        <Grid className="landing__benefits landing__benefits_reverse">
+          <Row valign="center">
+            <Col xl={7} xlOffset={0} md={8} mdOffset={2}>
+              <p>
+                <Picture alt="business" src={require('./img/business_map_2.svg')} />
+              </p>
+            </Col>
+            <Col xl={5} xlOffset={0} md={8} mdOffset={2} xs={10} xsOffset={1}>
+              <h2 className="h1">
+                Put your business on{'\u00A0'}the{'\u00A0'}map
+              </h2>
+              <p>
+                The business model canvas is a great tool to help you understand a business model in
+                a straightforward, structured way. Using this canvas will lead to insights about the
+                customers you serve, what value propositions are offered through what channels, and
+                how your company makes money. You can use the business model canvas to understand
+                your own business model or that of a competitor! The business model canvas was
+                created by Alexander Osterwalder, of Strategyzer.
+              </p>
+            </Col>
+          </Row>
         </Grid>
       </Section>
       <Section spacing="small">
-        <Grid valign="center">
-          <Grid.Col xl={7} xlOffset={0} md={8} mdOffset={2}>
-            <p>
-              <Picture alt="business" src={require('./img/problem_solving_2.svg')} />
-            </p>
-          </Grid.Col>
-          <Grid.Col xl={5} xlOffset={0} md={8} mdOffset={2}>
-            <h2 className="h1">Come up with great{'\u00A0'}ideas</h2>
-            <p>
-              When it is time to really understand your customers, including their jobs-to-be-done, pains, and gains, as well as your offer to them, the Value Proposition Canvas, developed by Alex Osterwalder at Strategyzer, is one of the best tools available to help you.
-            </p>
-          </Grid.Col>
+        <Grid className="landing__benefits">
+          <Row valign="center">
+            <Col xl={7} xlOffset={0} md={8} mdOffset={2}>
+              <p>
+                <Picture alt="business" src={require('./img/problem_solving_2.svg')} />
+              </p>
+            </Col>
+            <Col xl={5} xlOffset={0} md={8} mdOffset={2} xs={10} xsOffset={1}>
+              <h2 className="h1">Come up with great{'\u00A0'}ideas</h2>
+              <p>
+                When it is time to really understand your customers, including their
+                jobs-to-be-done, pains, and gains, as well as your offer to them, the Value
+                Proposition Canvas, developed by Alex Osterwalder at Strategyzer, is one of the best
+                tools available to help you.
+              </p>
+            </Col>
+          </Row>
         </Grid>
       </Section>
       <Section spacing="small">
-        <Grid valign="center" reverse>
-          <Grid.Col xl={7} xlOffset={0} md={8} mdOffset={2}>
-            <p>
-              <Picture alt="business" src={require('./img/startup_2_lime.svg')} />
-            </p>
-          </Grid.Col>
-          <Grid.Col xl={5} xlOffset={0} md={8} mdOffset={2}>
-            <h2 className="h1">Find new solutions for old problems</h2>
-            <p>
-              Lean Canvas is a 1-page business plan template that helps you deconstruct your idea
-              into its key assumptions. It’s adapted Business Model Canvas and optimized for Lean
-              Startups.
-            </p>
-          </Grid.Col>
+        <Grid className=" landing__benefits_reverse">
+          <Row valign="center">
+            <Col xl={7} xlOffset={0} md={8} mdOffset={2}>
+              <p>
+                <Picture alt="business" src={require('./img/startup_2_lime.svg')} />
+              </p>
+            </Col>
+            <Col xl={5} xlOffset={0} md={8} mdOffset={2} xs={10} xsOffset={1}>
+              <h2 className="h1">Find new solutions for old problems</h2>
+              <p>
+                Lean Canvas is a 1-page business plan template that helps you deconstruct your idea
+                into its key assumptions. It’s adapted Business Model Canvas and optimized for Lean
+                Startups.
+              </p>
+            </Col>
+          </Row>
         </Grid>
       </Section>
     </Layout.Inner>
@@ -125,35 +139,39 @@ const Landing = () => (
     <Layout.Inner>
       <h2 className="h1 text_align_center">Hall of Fame</h2>
       <Section spacing="small">
-        <Grid valign="center">
-          <GridCol xl={3} xlOffset={2} md={3} mdOffset={1} sm={8}>
-            <p>
-              <img src={require('./img/osterwalder.jpg')} alt="Alexander Osterwalder" />
-            </p>
-          </GridCol>
-          <GridCol xl={5} md={7}>
-            <h3>Alexander Osterwalder</h3>
-            <p>
-              Original inventor of Business Model Canvas. He makes popularise it with his bestseller
-              book Business Model Generation.
-            </p>
-          </GridCol>
+        <Grid>
+          <Row valign="center">
+            <Col xl={3} xlOffset={2} md={3} mdOffset={1} xs={10} xsOffset={1}>
+              <p>
+                <img src={require('./img/osterwalder.jpg')} alt="Alexander Osterwalder" />
+              </p>
+            </Col>
+            <Col xl={5} md={7} xs={10} xsOffset={1}>
+              <h3>Alexander Osterwalder</h3>
+              <p>
+                Original inventor of Business Model Canvas. He makes popularise it with his
+                bestseller book Business Model Generation.
+              </p>
+            </Col>
+          </Row>
         </Grid>
       </Section>
       <Section spacing="small">
-        <Grid valign="center">
-          <GridCol xl={3} xlOffset={2} md={3} mdOffset={1} sm={8}>
-            <p>
-              <img src={require('./img/maurya.jpg')} alt="Ash Maurya" />
-            </p>
-          </GridCol>
-          <GridCol xl={5} md={7} sm={12}>
-            <h3>Ash Maurya</h3>
-            <p>
-              Original inventor of Business Model Canvas. He makes popularise it with his bestseller
-              book Business Model Generation.
-            </p>
-          </GridCol>
+        <Grid>
+          <Row valign="center">
+            <Col xl={3} xlOffset={2} md={3} mdOffset={1} xs={10} xsOffset={1}>
+              <p>
+                <img src={require('./img/maurya.jpg')} alt="Ash Maurya" />
+              </p>
+            </Col>
+            <Col xl={5} md={7} mdOffset={0} xs={10} xsOffset={1}>
+              <h3>Ash Maurya</h3>
+              <p>
+                Original inventor of Business Model Canvas. He makes popularise it with his
+                bestseller book Business Model Generation.
+              </p>
+            </Col>
+          </Row>
         </Grid>
       </Section>
     </Layout.Inner>

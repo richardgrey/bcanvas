@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ModalShare from '../ModalShare/ModalShare';
 import HeaderButton from '../HeaderButton/HeaderButton';
+import './ToolbarCanvas.scss';
 
 class ToolbarCanvas extends Component {
   static propTypes = {

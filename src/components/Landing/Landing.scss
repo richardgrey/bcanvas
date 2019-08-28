@@ -1,3 +1,5 @@
+@import "../../styles/variables";
+
 .landing__bg {
   position: absolute;
   top: 450px;
@@ -6,4 +8,16 @@
   height: 846px;
   background: url('./img/bg.jpg') no-repeat 50% 50%;
   will-change: transform;
+}
+.landing__benefits {
+  margin-bottom: 60px;
+}
+
+@media (min-width: $min-desktop) {
+  .landing__benefits {
+    margin-bottom: 0;
+  }
+  .landing__benefits_reverse .grid__row {
+    flex-direction: row-reverse;
+  }
 }

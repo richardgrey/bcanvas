@@ -95,7 +95,7 @@ class CanvasPage extends Component {
     // No information about type of the canvas, so must be fetched before full render
     if (type) {
       return (
-        <Layout fluid background="gradient">
+        <Layout fluid noOverflow background="gradient">
           <Layout.Header>
             <Header
               btnDashboard
@@ -114,6 +114,9 @@ class CanvasPage extends Component {
           </Layout.Header>
           <Layout.Container>
             <Layout.Inner>
+              <div className="">
+                <CanvasTitle canvasId={id} title={title} canEdit={canEdit} dispatch={dispatch} />
+              </div>
               <CanvasTable
                 canvasId={id}
                 type={type}

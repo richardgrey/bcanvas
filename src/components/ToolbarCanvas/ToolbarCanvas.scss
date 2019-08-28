@@ -1,0 +1,11 @@
+@import "../../styles/variables";
+
+.toolbar-canvas {
+  display: none;
+}
+
+@media (min-width: $min-desktop) {
+  .toolbar-canvas {
+    display: block;
+  }
+}

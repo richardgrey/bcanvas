@@ -2,15 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import b from 'b_';
 
-const GridCol = ({ children, xl, md, sm, xlOffset, mdOffset, smOffset, ...other }) => (
+const GridCol = ({ children, xs, sm, md, xl, xsOffset, smOffset, mdOffset, xlOffset, ...other }) => (
   <div
     className={b('grid', 'col', {
-      xl,
-      md,
+      xs,
       sm,
-      'offset-xl': xlOffset,
-      'offset-md': mdOffset,
+      md,
+      xl,
+      'offset-xs': xsOffset,
       'offset-sm': smOffset,
+      'offset-md': mdOffset,
+      'offset-xl': xlOffset,
     })}
     {...other}
   >
@@ -20,22 +22,26 @@ const GridCol = ({ children, xl, md, sm, xlOffset, mdOffset, smOffset, ...other 
 
 GridCol.propTypes = {
   children: PropTypes.node,
-  xl: PropTypes.number,
-  md: PropTypes.number,
+  xs: PropTypes.number,
   sm: PropTypes.number,
-  xlOffset: PropTypes.number,
-  mdOffset: PropTypes.number,
+  md: PropTypes.number,
+  xl: PropTypes.number,
+  xsOffset: PropTypes.number,
   smOffset: PropTypes.number,
+  mdOffset: PropTypes.number,
+  xlOffset: PropTypes.number,
 };
 
 GridCol.defaultProps = {
   children: null,
-  xl: undefined,
-  md: undefined,
+  xs: undefined,
   sm: undefined,
-  xlOffset: undefined,
-  mdOffset: undefined,
+  md: undefined,
+  xl: undefined,
+  xsOffset: undefined,
   smOffset: undefined,
+  mdOffset: undefined,
+  xlOffset: undefined,
 };
 
 export default GridCol;

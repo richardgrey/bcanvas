@@ -9,6 +9,15 @@
   @return $number;
 }
 
+// Grid
+@mixin make-container($padding-x: $gutter-desktop/2) {
+  width: 100%;
+  //padding-right: $padding-x;
+  //padding-left: $padding-x;
+  //margin-right: auto;
+  //margin-left: auto;
+}
+
 // Rows
 @mixin grid-row($direction: ltr, $align: stretch, $justify: flex-start, $grid-gutter: $gutter-desktop, $wrap: wrap) {
   display: flex;

@@ -16,18 +16,21 @@ class Layout extends Component {
   static propTypes = {
     children: PropTypes.node,
     fluid: PropTypes.bool,
+    noOverflow: PropTypes.bool,
     background: PropTypes.string,
   };
 
   static defaultProps = {
     fluid: false,
     children: null,
+    noOverflow: false,
     background: undefined,
   };
 
   render() {
-    const { fluid, children, background } = this.props;
+    const { fluid, noOverflow, children, background } = this.props;
     const cls = b('layout', {
+      'no-overflow': noOverflow,
       fluid,
       background,
     });
