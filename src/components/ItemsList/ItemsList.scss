@@ -1,6 +1,7 @@
 @import "../../styles/variables";
 
 .items-list {
+  padding: 0 $gutter-mobile/2;
 }
 .items-list__list {
   display: flex;
@@ -13,10 +14,12 @@
 .items-list__item {
   width: 100%;
   margin: 0 0 $gutter-mobile;
-  padding: 0 10px;
 }
 
 @media (min-width: $min-tablet) {
+  .items-list {
+    padding: 0 $gutter-tablet/2;
+  }
   .items-list__list {
     margin: 0 (-$gutter-tablet/2);
   }
@@ -27,6 +30,9 @@
   }
 }
 @media (min-width: $min-desktop) {
+  .items-list {
+    padding: 0;
+  }
   .items-list__list {
     margin: 0 (-$gutter-desktop/2);
   }

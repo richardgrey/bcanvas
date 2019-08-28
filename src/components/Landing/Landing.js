@@ -128,7 +128,7 @@ const Landing = () => (
 
     <Section fluid bg="lightgray" spacing="large" indent="large">
       <Layout.Inner>
-        <h2 className="text_align_center">Famous business models mapped</h2>
+        <h2 className="h1 text_align_center">Companies you know mapped on{'\u00A0'}canvas</h2>
         <SamplesList />
         <div className="text_align_center">
           <Button href="/register">Try for FREE</Button>
@@ -146,7 +146,7 @@ const Landing = () => (
                 <img src={require('./img/osterwalder.jpg')} alt="Alexander Osterwalder" />
               </p>
             </Col>
-            <Col xl={5} md={7} xs={10} xsOffset={1}>
+            <Col xl={5} md={7} mdOffset={0} xs={10} xsOffset={1}>
               <h3>Alexander Osterwalder</h3>
               <p>
                 Original inventor of Business Model Canvas. He makes popularise it with his

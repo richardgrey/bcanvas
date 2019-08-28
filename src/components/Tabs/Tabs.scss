@@ -16,6 +16,10 @@
   padding: 20px 30px;
   background: transparent;
   cursor: pointer;
+
+  &:hover {
+    color: $color-gray1;
+  }
 }
 .tabs__tab_active {
   color: $color-gray1;

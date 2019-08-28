@@ -61,4 +61,5 @@ class ItemsList extends Component {
     );
   }
 }
+
 export default ItemsList;

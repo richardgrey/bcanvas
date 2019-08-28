@@ -2,16 +2,22 @@
 
 .hero {
   margin: 90px auto 120px;
+  padding: 0 10px;
   text-align: center;
 }
 .hero__title {
+  color: $color-black;
   font-family: $font-serif;
   font-size: 2.5rem;
   line-height: 1;
+  display: none;
   margin: 0 0 0.5em;
 }
+.hero__title_mobile {
+  display: block;
+}
 .hero__subtitle {
-  color: $color-gray1;
+  color: $color-gray2;
   font-family: $font-sans;
   font-size: 1.5rem;
   font-weight: normal;
@@ -34,10 +40,15 @@
 
 @media (min-width: $min-tablet) {
   .hero {
-    margin-top: 120px;
+    margin: 90px auto 120px;
+    padding: 0;
   }
   .hero__title {
     font-size: 3.5rem;
+    display: block;
+  }
+  .hero__title_mobile {
+    display: none;
   }
 }
 @media (min-width: $min-desktop) {

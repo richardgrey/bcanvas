@@ -7,6 +7,9 @@ const Hero = () => (
     <h1 className="hero__title">
       Start your next idea with a{'\u00A0'}business model, value proposition or lean canvas
     </h1>
+    <div className="hero__title hero__title_mobile">
+      Business model, value proposition and lean canvas
+    </div>
     <h2 className="hero__subtitle">
       Free online tool that helps you to visualise and share your business ideas.
     </h2>
