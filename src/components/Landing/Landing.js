@@ -63,12 +63,12 @@ const Landing = () => (
     <Layout.Inner>
       <Section spacing="small">
         <Grid valign="center" reverse>
-          <Grid.Col xl={7} md={8} mdOffset={2}>
+          <Grid.Col xl={7} xlOffset={0} md={8} mdOffset={2}>
             <p>
               <Picture alt="business" src={require('./img/business_map_2.svg')} />
             </p>
           </Grid.Col>
-          <Grid.Col xl={5} md={8} mdOffset={2}>
+          <Grid.Col xl={5} xlOffset={0} md={8} mdOffset={2}>
             <h2 className="h1">
               Put your business on{'\u00A0'}the{'\u00A0'}map
             </h2>
@@ -80,12 +80,12 @@ const Landing = () => (
       </Section>
       <Section spacing="small">
         <Grid valign="center">
-          <Grid.Col xl={7} md={8} mdOffset={2}>
+          <Grid.Col xl={7} xlOffset={0} md={8} mdOffset={2}>
             <p>
               <Picture alt="business" src={require('./img/problem_solving_2.svg')} />
             </p>
           </Grid.Col>
-          <Grid.Col xl={5} md={8} mdOffset={2}>
+          <Grid.Col xl={5} xlOffset={0} md={8} mdOffset={2}>
             <h2 className="h1">Come up with great{'\u00A0'}ideas</h2>
             <p>
               When it is time to really understand your customers, including their jobs-to-be-done, pains, and gains, as well as your offer to them, the Value Proposition Canvas, developed by Alex Osterwalder at Strategyzer, is one of the best tools available to help you.
@@ -95,15 +95,13 @@ const Landing = () => (
       </Section>
       <Section spacing="small">
         <Grid valign="center" reverse>
-          <Grid.Col xl={7} md={8} mdOffset={2}>
+          <Grid.Col xl={7} xlOffset={0} md={8} mdOffset={2}>
             <p>
               <Picture alt="business" src={require('./img/startup_2_lime.svg')} />
             </p>
           </Grid.Col>
-          <Grid.Col xl={5} md={8} mdOffset={2}>
-            <h2 className="h1">
-              Put your business on{'\u00A0'}the{'\u00A0'}map
-            </h2>
+          <Grid.Col xl={5} xlOffset={0} md={8} mdOffset={2}>
+            <h2 className="h1">Find new solutions for old problems</h2>
             <p>
               Lean Canvas is a 1-page business plan template that helps you deconstruct your idea
               into its key assumptions. It’s adapted Business Model Canvas and optimized for Lean

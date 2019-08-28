@@ -21,7 +21,7 @@ $breakpoints: (
   align-items: baseline;
 }
 
-@media (min-width: $min-tablet) {
+@media (min-width: $min-desktop) {
   .grid_reverse {
     flex-direction: row-reverse;
   }
