@@ -46,7 +46,7 @@ const Landing = () => (
 
     <Section fluid bg="lightgray" spacing="large" indent="large">
       <Layout.Inner>
-        <h2 className="h2 text_align_center">Companies you know mapped on{'\u00A0'}canvas</h2>
+        <h2 className="h2 text_align_center">Companies you know laid out on{'\u00A0'}canvas</h2>
         <SamplesList />
         <div className="text_align_center">
           <Button href="/register">Try for FREE</Button>

@@ -1,5 +1,5 @@
 import pick from '../utils/pick';
-import { CANVAS_PERMISSION_DENIED } from '../constants';
+import { CANVAS_PERMISSION_DENIED, ERROR_CANVAS_NOT_FOUND } from '../constants';
 import {
   CANVAS_UNLOAD,
   CANVAS_FETCH_REQUEST,
@@ -288,7 +288,10 @@ const canvas = (state = defaultState, action) => {
         isFetching: true,
       };
     case CANVAS_FETCH_ERROR:
-      if (action.payload.error === CANVAS_PERMISSION_DENIED) {
+      if (
+        (action.payload.error === CANVAS_PERMISSION_DENIED) ||
+        (action.payload.error === ERROR_CANVAS_NOT_FOUND)
+      ) {
         return {
           ...defaultState,
           isFetching: false,

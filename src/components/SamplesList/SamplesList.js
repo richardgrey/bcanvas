@@ -15,8 +15,8 @@ const samples = [
     isOwner: false,
   },
   {
-    id: 'slack3',
-    title: 'V',
+    id: 'slack',
+    title: 'Slack Value Proposition',
     type: 'value',
     isOwner: false,
   },
