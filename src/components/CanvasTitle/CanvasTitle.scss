@@ -70,12 +70,11 @@
 .canvas-title_empty {
   &,
   & .canvas-title__input {
-    color: #c8cbcc;
+    color: $color-gray6;
   }
 }
 .canvas-title_read-only,
 .canvas-title_read-only:hover {
-  background: #fff;
   cursor: default;
 }
 
@@ -101,7 +100,11 @@
   }
   .canvas-title:hover,
   .canvas-title_focused {
-    outline: none;
+    background: $color-gray0;
+  }
+  .canvas-title_read-only,
+  .canvas-title_read-only:hover {
+    background: #fff;
   }
   .canvas-title__input {
     padding-left: 20px;
