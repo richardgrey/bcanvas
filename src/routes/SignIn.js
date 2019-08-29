@@ -32,7 +32,7 @@ class SignIn extends Component {
     const historyState = location.state;
 
     if (isAuthenticated) {
-      return <Redirect to={(historyState && historyState.from) || '/'} />;
+      return <Redirect to={(historyState && historyState.redirectTo) || '/'} />;
     }
 
     const registerLink = {

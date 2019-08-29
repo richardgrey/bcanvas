@@ -1,5 +1,6 @@
 import api from '../api';
 import history from '../history';
+import isFirestoreId from '../utils/isFirestoreId';
 
 export const CANVAS_LIST_FETCH_REQUEST = 'CANVAS_LIST_FETCH_REQUEST';
 export const CANVAS_LIST_FETCH_SUCCESS = 'CANVAS_LIST_FETCH_SUCCESS';
@@ -42,7 +43,7 @@ export const CANVAS_FETCH_ERROR = 'CANVAS_FETCH_ERROR';
 /**
  * Get a full object of canvas with entries
  *
- * @param canvasId {uid}
+ * @param canvasId {string}
  * @returns {Function}
  */
 export const fetchCanvas = canvasId => async (dispatch, getState) => {
@@ -67,6 +68,51 @@ export const fetchCanvas = canvasId => async (dispatch, getState) => {
       type: CANVAS_FETCH_ERROR,
       payload: { canvasId, error },
     });
+  }
+};
+
+/**
+ * Get a full object of canvas with entries by provided slug
+ *
+ * @param slug {string}
+ * @returns {Function}
+ */
+export const fetchCanvasBySlug = slug => async (dispatch, getState) => {
+  const { account } = getState();
+
+  dispatch({
+    type: CANVAS_FETCH_REQUEST,
+    payload: { slug },
+  });
+
+  try {
+    const canvas = await api.canvas.getBySlug(slug);
+    dispatch({
+      type: CANVAS_FETCH_SUCCESS,
+      payload: {
+        ...canvas,
+        currentUserId: account.uid,
+      },
+    });
+  } catch (error) {
+    dispatch({
+      type: CANVAS_FETCH_ERROR,
+      payload: { slug, error },
+    });
+  }
+};
+
+/**
+ * This action will test provided string and will make appropriated request
+ *
+ * @param idOrSlug {String}
+ * @returns {Function}
+ */
+export const fetchCanvasBySlugOrId = idOrSlug => dispatch => {
+  if (isFirestoreId(idOrSlug)) {
+    dispatch(fetchCanvas(idOrSlug));
+  } else {
+    dispatch(fetchCanvasBySlug(idOrSlug));
   }
 };
 

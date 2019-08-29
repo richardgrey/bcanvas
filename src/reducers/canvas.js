@@ -359,10 +359,13 @@ const canvas = (state = defaultState, action) => {
     case CANVAS_SHARING_SUCCESS:
       return updateSharingReducer(state, action.payload);
     case AUTH_UNSET_USER:
-      return {
-        ...state,
-        ...canvasPermissions(state, null),
-      };
+      if (state.id) {
+        return {
+          ...state,
+          ...canvasPermissions(state, null),
+        };
+      }
+      return defaultState;
     default:
       return state;
   }

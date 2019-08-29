@@ -9,13 +9,16 @@ import CanvasTable from '../components/CanvasTable/CanvasTable';
 import CanvasTableLoading from '../components/CanvasTable/CanvasTableLoading';
 import ToolbarCanvas from '../components/ToolbarCanvas/ToolbarCanvas';
 import ToolbarNewCanvas from '../components/ToolbarNewCanvas/ToolbarNewCanvas';
-import { fetchCanvas } from '../actions/canvas';
+import { fetchCanvasBySlugOrId } from '../actions/canvas';
 import { locationPropType } from '../utils/propTypes';
 
 class CanvasPage extends Component {
   static propTypes = {
     match: PropTypes.shape({
       url: PropTypes.string,
+      params: PropTypes.shape({
+        id: PropTypes.string,
+      }),
     }).isRequired,
     location: locationPropType.isRequired,
     dispatch: PropTypes.func.isRequired,
@@ -46,18 +49,20 @@ class CanvasPage extends Component {
     const timeSinceLastFetch = Date.now() - lastFetch;
 
     if (timeSinceLastFetch > 60 * 1000 && !isCreating) {
-      dispatch(fetchCanvas(id));
+      dispatch(fetchCanvasBySlugOrId(id));
     }
   }
 
   componentDidUpdate(prevProps) {
-    const { dispatch, id, isCreating } = this.props;
+    const { dispatch, match, isCreating } = this.props;
+    const currentId = match.params.id;
+    const prevId = prevProps.match.params.id;
 
     if (
-      (prevProps.id === id && prevProps.isCreating && !isCreating) ||
-      (prevProps.id !== id && !isCreating)
+      (prevId === currentId && prevProps.isCreating && !isCreating) ||
+      (prevId !== currentId && !isCreating)
     ) {
-      dispatch(fetchCanvas(id));
+      dispatch(fetchCanvasBySlugOrId(currentId));
     }
   }
 
@@ -85,7 +90,7 @@ class CanvasPage extends Component {
           to={{
             pathname: '/sign-in',
             state: {
-              from: location,
+              redirectTo: location,
             },
           }}
         />
@@ -183,7 +188,7 @@ const mapStateToProps = (state, ownProps) => {
   };
 
   // Canvas with ID is loaded
-  if (canvasId === canvas.id) {
+  if (canvasId === canvas.id || canvasId === canvas.slug) {
     return prepareData(canvas);
   }
 

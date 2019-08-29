@@ -24,7 +24,7 @@ const canvas = {
           const canvases = [];
 
           // Snap is a custom data class, not a regular array
-          // @see https://firebase.google.com/docs/reference/js/firebase.database.DataSnapshot
+          // @see https://firebase.google.com/docs/reference/js/firebase.firestore.QuerySnapshot.html
           snap.forEach(doc => {
             canvases.push(normalizeCanvas(doc));
           });
@@ -47,6 +47,25 @@ const canvas = {
             resolve(normalizeCanvas(doc));
           } else {
             reject(ERROR_CANVAS_NOT_FOUND);
+          }
+        })
+        .catch(error => reject(CANVAS_ERROR_MAP[error.code] || error));
+    }),
+
+  getBySlug: async slug =>
+    new Promise((resolve, reject) => {
+      firestore
+        .collection('canvases')
+        .where('slug', '==', slug)
+        .where('isPublic', '==', true)
+        .where('deletedAt', '==', null)
+        .limit(1)
+        .get()
+        .then(snap => {
+          if (snap.empty) {
+            reject(ERROR_CANVAS_NOT_FOUND);
+          } else {
+            resolve(normalizeCanvas(snap.docs.pop()));
           }
         })
         .catch(error => reject(CANVAS_ERROR_MAP[error.code] || error));

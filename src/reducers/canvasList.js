@@ -100,8 +100,8 @@ const canvasList = (state = defaultState, action) => {
           reduceCanvasData(c, action.payload.currentUserId),
         ),
       };
-    // case CANVAS_CREATE_SUCCESS:
-    //   return addCanvasToList(state, action.payload.canvas, action.payload.currentUserId);
+    case CANVAS_CREATE_SUCCESS:
+      return addCanvasToList(state, action.payload.canvas, action.payload.currentUserId);
     case CANVAS_REMOVE_SUCCESS:
       return removeCanvasFromList(state, action.payload);
     case CANVAS_UPDATE_TITLE_SUCCESS:

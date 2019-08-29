@@ -12,6 +12,8 @@ export const CANVAS_DOCUMENT_DEFAULTS = {
   updatedAt: FieldValue.serverTimestamp(),
   deletedAt: null,
   slug: null,
+  background: null,
+  projectId: null,
 };
 
 export const timestampFieldsToMillis = doc => {
