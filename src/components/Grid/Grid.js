@@ -4,7 +4,9 @@ import GridRow from './GridRow';
 import GridCol from './GridCol';
 import './Grid.scss';
 
-const Grid = ({ children, className }) => <div className={`grid ${className || ''}`}>{children}</div>;
+const Grid = ({ children, className }) => (
+  <div className={['grid', className].join(' ')}>{children}</div>
+);
 
 Grid.propTypes = {
   children: PropTypes.node,

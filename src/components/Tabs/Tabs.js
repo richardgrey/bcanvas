@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import b from 'b_';
 import TabsPane from './TabsPane';
 import './Tabs.scss';
+import Icon from '../Icon/Icon';
 
 function firstActiveKey(children) {
   const keys = [];
@@ -77,7 +78,6 @@ class Tabs extends Component {
     };
   }
 
-
   onTabClick = key => {
     this.setState({
       activeKey: key,
@@ -95,9 +95,9 @@ class Tabs extends Component {
       }
 
       const { key } = child;
-      const { disabled, tab } = child.props;
+      const { disabled, tab, icon } = child.props;
       const active = activeKey === key;
-      const tabCls = b('tabs__tab', { active, disabled });
+      const tabCls = b('tabs__tab', { active, disabled, icon: !!icon });
       const events = disabled ? {} : { onClick: this.onTabClick.bind(this, key) };
 
       tabs.push(
@@ -109,6 +109,7 @@ class Tabs extends Component {
           aria-disabled={disabled ? 'true' : 'false'}
           {...events}
         >
+          {icon ? <Icon name={icon} className="tabs__tab-icon" /> : null}
           {tab}
         </div>,
       );

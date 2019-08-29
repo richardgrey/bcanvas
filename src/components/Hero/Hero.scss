@@ -10,11 +10,7 @@
   font-family: $font-serif;
   font-size: 2.5rem;
   line-height: 1;
-  display: none;
   margin: 0 0 0.5em;
-}
-.hero__title_mobile {
-  display: block;
 }
 .hero__subtitle {
   color: $color-gray2;
@@ -45,10 +41,6 @@
   }
   .hero__title {
     font-size: 3.5rem;
-    display: block;
-  }
-  .hero__title_mobile {
-    display: none;
   }
 }
 @media (min-width: $min-desktop) {

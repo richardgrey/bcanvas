@@ -1,0 +1,38 @@
+@import "../../styles/variables";
+
+.benefit {
+  text-align: center;
+  margin-bottom: 60px;
+
+  h1,
+  h2 {
+    margin-bottom: 0.5em;
+  }
+}
+.benefit__img {
+  margin-bottom: 1em;
+}
+.benefit__content {
+  padding: 0 20px;
+}
+.benefit__description {
+  font-size: 1.125rem;
+}
+
+@media (min-width: $min-tablet) {
+  .benefit__content {
+    padding: 0;
+  }
+  .benefit__img {
+    margin-bottom: 0;
+  }
+}
+@media (min-width: $min-desktop) {
+  .benefit {
+    text-align: left;
+    margin-bottom: 0;
+  }
+  .benefit_reverse .grid__row {
+    flex-direction: row-reverse;
+  }
+}

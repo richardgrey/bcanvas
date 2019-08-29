@@ -1,0 +1,40 @@
+
+
+.hidden {
+  display: none;
+}
+.visible_mobile {
+  display: block;
+}
+.visible-inline_mobile {
+  display: inline;
+}
+
+@media (min-width: $min-tablet) {
+  .hidden {
+    display: none;
+  }
+  .hidden_tablet {
+    display: none;
+  }
+  .visible_tablet {
+    display: block;
+  }
+  .visible-inline_tablet {
+    display: inline;
+  }
+}
+@media (min-width: $min-desktop) {
+  .hidden {
+    display: none;
+  }
+  .hidden_desktop {
+    display: none;
+  }
+  .visible_desktop {
+    display: block;
+  }
+  .visible-inline_desktop {
+    display: inline;
+  }
+}

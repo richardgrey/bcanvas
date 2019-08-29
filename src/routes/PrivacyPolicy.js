@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Layout from '../components/Layout/Layout';
 
-class CookiePage extends Component {
+class PrivacyPolicy extends Component {
   render() {
     return (
       <Layout>
@@ -71,4 +71,4 @@ class CookiePage extends Component {
   }
 }
 
-export default CookiePage;
+export default PrivacyPolicy;

@@ -2,18 +2,33 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import b from 'b_';
 
-const GridCol = ({ children, xs, sm, md, xl, xsOffset, smOffset, mdOffset, xlOffset, ...other }) => (
+const GridCol = ({
+  children,
+  className,
+  xs,
+  sm,
+  md,
+  xl,
+  xsOffset,
+  smOffset,
+  mdOffset,
+  xlOffset,
+  ...other
+}) => (
   <div
-    className={b('grid', 'col', {
-      xs,
-      sm,
-      md,
-      xl,
-      'offset-xs': xsOffset,
-      'offset-sm': smOffset,
-      'offset-md': mdOffset,
-      'offset-xl': xlOffset,
-    })}
+    className={[
+      b('grid', 'col', {
+        xs,
+        sm,
+        md,
+        xl,
+        'offset-xs': xsOffset,
+        'offset-sm': smOffset,
+        'offset-md': mdOffset,
+        'offset-xl': xlOffset,
+      }),
+      className,
+    ].join(' ')}
     {...other}
   >
     {children}
@@ -22,6 +37,7 @@ const GridCol = ({ children, xs, sm, md, xl, xsOffset, smOffset, mdOffset, xlOff
 
 GridCol.propTypes = {
   children: PropTypes.node,
+  className: PropTypes.string,
   xs: PropTypes.number,
   sm: PropTypes.number,
   md: PropTypes.number,
@@ -34,6 +50,7 @@ GridCol.propTypes = {
 
 GridCol.defaultProps = {
   children: null,
+  className: undefined,
   xs: undefined,
   sm: undefined,
   md: undefined,

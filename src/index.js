@@ -13,7 +13,7 @@ import App from './components/App/App';
 import Home from './routes/Home';
 import CanvasPage from './routes/CanvasPage';
 import TermsPage from './routes/TermsPage';
-import CookiePage from './routes/CookiePage';
+import PrivacyPolicy from './routes/PrivacyPolicy';
 import Register from './routes/Register';
 import SignIn from './routes/SignIn';
 import Dashboard from './routes/Dashboard';
@@ -35,7 +35,7 @@ ReactDOM.render(
           <Route path="/account/change-email" component={ChangeEmail} />
           <Route path="/canvas/:id" component={CanvasPage} />
           <Route path="/terms-of-services" component={TermsPage} />
-          <Route path="/cookie-policy" component={CookiePage} />
+          <Route path="/privacy-policy" component={PrivacyPolicy} />
         </Switch>
       </App>
     </Router>

@@ -64,6 +64,15 @@ export default {
       description: ['What your customer are doing now to get their job done?'],
     },
     {
+      label: 'proposition',
+      number: 9,
+      title: 'Value Proposition',
+      description: [
+        'Describe your value proposition. Format:',
+        'Our [product/service] helps [customer segment] who want to [job], by [verb↓] [pain] and [verb↑] [gain]',
+      ],
+    },
+    {
       label: 'segment',
       number: 8,
       title: 'Customer Segment',

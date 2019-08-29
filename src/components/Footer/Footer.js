@@ -17,7 +17,7 @@ const Footer = () => (
           </div>
           <div className="footer__copy">
             <p>
-              Designed and developed  by
+              Designed and developed  by{' '}
               <a href="mailto:igor@bcanvas.io">Igor{'\u00A0'}Nikolenko</a>.
               <br />
               Illustrations by{' '}
@@ -31,10 +31,10 @@ const Footer = () => (
         <Col xl={6} xlOffset={1} md={7}>
           <ul className="footer__menu">
             <li>
-              <Link to="/privacy">Privacy Policy</Link>
+              <Link to="/privacy-policy">Privacy Policy</Link>
             </li>
             <li>
-              <Link to="/terms">Terms & Conditions</Link>
+              <Link to="/terms-of-services">Terms & Conditions</Link>
             </li>
           </ul>
           <ul className="footer__menu">

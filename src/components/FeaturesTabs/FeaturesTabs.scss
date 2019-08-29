@@ -1,0 +1,25 @@
+@import "../../styles/variables";
+
+.features-tabs {}
+
+.features-tabs__title {
+  color: $color-gray1;
+  margin-bottom: 1em;
+
+  .icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.8em;
+    vertical-align: text-bottom;
+  }
+}
+.features-tabs__section {
+  margin: 40px 0;
+  text-align: center;
+}
+
+@media (min-width: $min-tablet) {
+  .features-tabs__section {
+    margin: 0;
+  }
+}

@@ -18,7 +18,7 @@ const UserHome = ({ isEmpty }) => (
         {isEmpty ? (
           <div className="user-home__latest">
             <PageTitle
-              title="Welcome! Lets get started"
+              title="Welcome! Let’s get started"
               subtitle="Choose a canvas type you want to start with"
             />
             <CreateCanvasSection withDescription withCTA />

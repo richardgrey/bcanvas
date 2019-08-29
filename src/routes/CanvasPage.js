@@ -114,9 +114,7 @@ class CanvasPage extends Component {
           </Layout.Header>
           <Layout.Container>
             <Layout.Inner>
-              <div className="">
-                <CanvasTitle canvasId={id} title={title} canEdit={canEdit} dispatch={dispatch} />
-              </div>
+              <CanvasTitle canvasId={id} title={title} canEdit={canEdit} dispatch={dispatch} />
               <CanvasTable
                 canvasId={id}
                 type={type}
@@ -143,7 +141,9 @@ class CanvasPage extends Component {
           />
         </Layout.Header>
         <Layout.Container>
-          <CanvasTableLoading />
+          <Layout.Inner>
+            <CanvasTableLoading />
+          </Layout.Inner>
         </Layout.Container>
       </Layout>
     );

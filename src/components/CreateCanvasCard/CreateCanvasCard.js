@@ -8,31 +8,7 @@ import IconCanvas from '../Icon/IconCanvas';
 import { createCanvas } from '../../actions/canvas';
 import './CreateCanvasCard.scss';
 
-import { CANVAS_TYPE_BUSINESS, CANVAS_TYPE_LEAN, CANVAS_TYPE_VALUE } from '../../constants';
-
-const content = {
-  [CANVAS_TYPE_BUSINESS]: {
-    title: 'Business Model Canvas',
-    description: `
-      The Business Model Canvas is a strategic management and entrepreneurial tool. It allows 
-      you to describe, design, challenge, invent, and pivot your business model.
-    `,
-  },
-  [CANVAS_TYPE_VALUE]: {
-    title: 'Value Proposition Canvas',
-    description: `
-      The Value Proposition Canvas helps you tackle the core challenges of every business — 
-      creating compelling products and services customers want to buy.
-    `,
-  },
-  [CANVAS_TYPE_LEAN]: {
-    title: 'Lean Canvas',
-    description: `
-      Lean Canvas is a 1-page business plan template that helps you deconstruct your idea into 
-      its key assumptions. It’s adapted Business Model Canvas and optimized for Lean Startups.
-    `,
-  },
-};
+import content from './local';
 
 class CreateCanvasCard extends Component {
   static propTypes = {

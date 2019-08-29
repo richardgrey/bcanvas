@@ -1,0 +1,11 @@
+@import "../../styles/variables";
+
+.hall-of-fame {
+  a {
+    color: $color-black;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+}

@@ -3,26 +3,26 @@ import ItemsList from '../ItemsList/ItemsList';
 
 const samples = [
   {
-    id: 'slack',
-    title: 'Slack Business Model',
+    id: 'netflix',
+    title: 'Netflix Business Model',
     type: 'business',
     isOwner: false,
   },
   {
-    id: 'slack2',
-    title: 'Slack Business Model',
+    id: 'uber',
+    title: 'Uber Lean Canvas',
     type: 'lean',
     isOwner: false,
   },
   {
     id: 'slack3',
-    title: 'Slack Business Model',
+    title: 'V',
     type: 'value',
     isOwner: false,
   },
   {
-    id: 'slack4',
-    title: 'Slack Business Model',
+    id: 'amazon',
+    title: 'Amazon Business Model',
     type: 'business',
     isOwner: false,
   },

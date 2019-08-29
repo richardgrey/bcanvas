@@ -19,6 +19,10 @@
 
   &:hover {
     color: $color-gray1;
+
+    .tabs__tab-icon {
+      fill: $color-gray1;
+    }
   }
 }
 .tabs__tab_active {
@@ -26,10 +30,30 @@
   border-radius: $border-radius;
   background: #fff;
   @include elevate(8, $color-gray2, -0.06);
+
+  .tabs__tab-icon {
+    fill: $color-gray1;
+  }
 }
 .tabs__tab_disabled {
   color: $color-gray6;
   cursor: default;
+
+  .tabs__tab-icon {
+    fill: $color-gray6;
+  }
+}
+.tabs__tab_icon {
+  padding-left: 20 + 40px;
+}
+
+.tabs__tab-icon {
+  width: 24px;
+  height: 24px;
+  margin-left: -40px;
+  margin-right: 16px;
+  vertical-align: text-bottom;
+  fill: $color-gray3;
 }
 
 .tabs_align_left,
@@ -68,7 +92,7 @@
       flex-direction: column;
       flex-shrink: 0;
       width: 17.5rem;
-      margin-right: $page-gutter-desktop;
+      margin-right: $gutter-tablet;
       margin-bottom: 0;
     }
     .tabs__tab {
@@ -79,8 +103,21 @@
     flex-direction: row-reverse;
 
     .tabs__tabs-bar {
-      margin-left: $page-gutter-desktop;
+      margin-left: $gutter-tablet;
       margin-right: 0;
+    }
+  }
+}
+
+@media (min-width: $min-desktop) {
+  .tabs_align_left {
+    .tabs__tabs-bar {
+      margin-right: $gutter-desktop;
+    }
+  }
+  .tabs_align_right {
+    .tabs__tabs-bar {
+      margin-left: $gutter-desktop;
     }
   }
 }
