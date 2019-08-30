@@ -48,7 +48,7 @@ class Register extends Component {
             btnBack
             right={
               <AuthHeaderText>
-                Already have an account? <Link to={signInLink}>Sign In</Link>
+                <span>Already have an account?</span> <Link to={signInLink}>Sign In</Link>
               </AuthHeaderText>
             }
           />

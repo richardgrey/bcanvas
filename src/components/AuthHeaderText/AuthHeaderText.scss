@@ -9,4 +9,15 @@
   a {
     color: $color-primary;
   }
+  span {
+    display: none;
+  }
+}
+
+@media (min-width: $min-tablet) {
+  .auth-header-text {
+    span {
+      display: inline;
+    }
+  }
 }

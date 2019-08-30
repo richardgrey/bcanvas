@@ -15,7 +15,7 @@
 .hero__subtitle {
   color: $color-gray2;
   font-family: $font-sans;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: normal;
 }
 .hero__cta {
@@ -41,6 +41,9 @@
   }
   .hero__title {
     font-size: 3.5rem;
+  }
+  .hero__subtitle {
+    font-size: 1.5rem;
   }
 }
 @media (min-width: $min-desktop) {

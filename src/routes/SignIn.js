@@ -47,14 +47,14 @@ class SignIn extends Component {
             btnBack
             right={
               <AuthHeaderText>
-                Don’t have an account? <Link to={registerLink}>Register</Link>
+                <span>Don’t have an account?</span> <Link to={registerLink}>Register</Link>
               </AuthHeaderText>
             }
           />
         </Layout.Header>
         <Layout.Container>
           <Layout.Inner>
-            <PageTitle title="Welcome back" subtitle="It’s nice to see you again." />
+            <PageTitle title="Sign In" subtitle="It’s nice to see you again." />
             <FormLogin dispatch={dispatch} errors={errorLogin} isSubmitting={isSubmitting} />
           </Layout.Inner>
         </Layout.Container>

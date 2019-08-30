@@ -16,6 +16,8 @@
   padding: 20px 30px;
   background: transparent;
   cursor: pointer;
+  transition: $transition-enter color;
+  will-change: color;
 
   &:hover {
     color: $color-gray1;
@@ -54,6 +56,8 @@
   margin-right: 16px;
   vertical-align: text-bottom;
   fill: $color-gray3;
+  transition: $transition-enter fill easy;
+  will-change: fill;
 }
 
 .tabs_align_left,

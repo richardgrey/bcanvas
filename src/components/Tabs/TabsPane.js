@@ -10,6 +10,7 @@ const TabsPane = ({ children, active, disabled }) => {
 
 TabsPane.propTypes = {
   tab: PropTypes.node.isRequired,
+  icon: PropTypes.string,
   children: PropTypes.node,
   active: PropTypes.bool,
   disabled: PropTypes.bool,
@@ -17,6 +18,7 @@ TabsPane.propTypes = {
 
 TabsPane.defaultProps = {
   children: null,
+  icon: null,
   active: false,
   disabled: false,
 };
