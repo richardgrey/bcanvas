@@ -5,7 +5,7 @@ import Form, { FormRow, InputRow } from '../Form/Form';
 import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
 import Divider from '../Divider/Divider';
-import { login, signInGoogle } from '../../actions/auth';
+import { signIn, signInGoogle } from '../../actions/auth';
 
 class FormLogin extends Component {
   static propTypes = {
@@ -43,7 +43,7 @@ class FormLogin extends Component {
       return;
     }
 
-    dispatch(login(email, password));
+    dispatch(signIn(email, password));
     if (typeof onSubmit === 'function') {
       onSubmit(email, password);
     }

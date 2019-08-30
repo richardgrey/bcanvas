@@ -1,5 +1,6 @@
 import api from '../api';
 import history from '../history';
+import * as analytics from '../analytics';
 
 // Constants
 // ============================================================================
@@ -50,6 +51,8 @@ export const register = (email, password, name) => async dispatch => {
   dispatch({ type: AUTH_REGISTER_REQUEST });
   try {
     const user = await api.auth.signUpViaEmail(email, password, name);
+
+    analytics.register(user.uid, email, name);
     dispatch({ type: AUTH_REGISTER_SUCCESS, payload: user });
   } catch (error) {
     dispatch({ type: AUTH_REGISTER_ERROR, payload: error });
@@ -63,10 +66,12 @@ export const register = (email, password, name) => async dispatch => {
  * @param password {string}
  * @returns {Function}
  */
-export const login = (email, password) => async dispatch => {
+export const signIn = (email, password) => async dispatch => {
   dispatch({ type: AUTH_LOGIN_REQUEST });
   try {
     const user = await api.auth.signInViaEmail(email, password);
+
+    analytics.signIn(user.uid, user.email, user.displayName, 'email');
     dispatch({ type: AUTH_LOGIN_SUCCESS, payload: user });
   } catch (error) {
     dispatch({ type: AUTH_LOGIN_ERROR, payload: error });
@@ -82,6 +87,15 @@ export const signInGoogle = () => async dispatch => {
   dispatch({ type: AUTH_LOGIN_REQUEST });
   try {
     const user = await api.auth.signInWithGoogle();
+
+    if (user.isNewUser) {
+      // track registration event
+      analytics.register(user.uid, user.email, user.displayName);
+    } else {
+      // track sign in
+      analytics.signIn(user.uid, user.email, user.displayName, 'email');
+    }
+
     dispatch({ type: AUTH_LOGIN_SUCCESS, payload: user });
   } catch (error) {
     dispatch({ type: AUTH_LOGIN_ERROR, payload: error });
@@ -97,6 +111,8 @@ export const signOut = () => async dispatch => {
   dispatch({ type: AUTH_SIGN_OUT_REQUEST });
   try {
     await api.auth.signOut();
+
+    analytics.signOut();
     dispatch({ type: AUTH_SIGN_OUT_SUCCESS });
     history.push('/');
   } catch (error) {

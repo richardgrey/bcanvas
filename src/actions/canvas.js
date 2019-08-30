@@ -1,5 +1,6 @@
 import api from '../api';
 import history from '../history';
+import * as analytics from '../analytics';
 import isFirestoreId from '../utils/isFirestoreId';
 
 export const CANVAS_LIST_FETCH_REQUEST = 'CANVAS_LIST_FETCH_REQUEST';
@@ -184,6 +185,8 @@ export const createCanvas = type => async (dispatch, getState) => {
     // Using created document reference create document with given type
     await api.canvas.createFromRef(canvasRef, { type });
 
+    analytics.canvasCreated(canvasId, type);
+
     dispatch({
       type: CANVAS_CREATE_SUCCESS,
       payload: {
@@ -254,6 +257,9 @@ export const removeCanvas = canvasId => async dispatch => {
   });
   try {
     await api.canvas.remove(canvasId);
+
+    analytics.canvasDeleted();
+
     dispatch({
       type: CANVAS_REMOVE_SUCCESS,
       payload: { canvasId },
@@ -289,7 +295,13 @@ export const saveSharingSettings = (canvasId, opts = {}) => async dispatch => {
     const options = {
       isPublic: opts.isPublic,
     };
+
     await api.canvas.update(canvasId, options);
+
+    if (opts.isPublic) {
+      analytics.canvasShare(canvasId);
+    }
+
     dispatch({
       type: CANVAS_SHARING_SUCCESS,
       payload: { canvasId, options },

@@ -3,13 +3,12 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, Switch } from 'react-router-dom';
 
-import './styles/index.scss';
-import './styles/print.scss';
-
 import configureStore from './configureStore';
 import * as serviceWorker from './serviceWorker';
 import history from './history';
 import App from './components/App/App';
+import * as analytics from './analytics';
+
 import Home from './routes/Home';
 import CanvasPage from './routes/CanvasPage';
 import Register from './routes/Register';
@@ -22,7 +21,16 @@ import PrivacyPolicy from './routes/PrivacyPolicy';
 import CookiePolicy from './routes/CookiePolicy';
 import NoMatch from './routes/NoMatch';
 
+import './styles/index.scss';
+import './styles/print.scss';
+
 const store = configureStore();
+
+// Track page views
+analytics.pageView(history.location.pathname + history.location.search);
+history.listen(location => {
+  analytics.pageView(location.pathname);
+});
 
 ReactDOM.render(
   <Provider store={store}>
