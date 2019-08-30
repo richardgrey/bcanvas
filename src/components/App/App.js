@@ -16,7 +16,7 @@ class App extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    this.unsubscribe = dispatch(subscribeOnAuthStateChanged());
+    this.unsubscribeAuth = dispatch(subscribeOnAuthStateChanged());
   }
 
   componentDidUpdate(prevProps) {
@@ -26,18 +26,18 @@ class App extends Component {
   }
 
   componentWillUnmount() {
-    if (typeof this.unsubscribe === 'function') {
-      this.unsubscribe();
+    if (typeof this.unsubscribeAuth === 'function') {
+      this.unsubscribeAuth();
     }
   }
 
   render() {
     const { children, isReady } = this.props;
     return isReady ? (
-      <div className="app">
+      <>
         <IconsSprite />
         {children}
-      </div>
+      </>
     ) : null;
   }
 }

@@ -45,6 +45,11 @@
   }
 }
 
+.layout__static-page {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
 // Backgrounds
 // ===========
 .layout_background_gradient .layout__container {

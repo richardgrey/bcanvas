@@ -289,8 +289,8 @@ const canvas = (state = defaultState, action) => {
       };
     case CANVAS_FETCH_ERROR:
       if (
-        (action.payload.error === CANVAS_PERMISSION_DENIED) ||
-        (action.payload.error === ERROR_CANVAS_NOT_FOUND)
+        action.payload.error === CANVAS_PERMISSION_DENIED ||
+        action.payload.error === ERROR_CANVAS_NOT_FOUND
       ) {
         return {
           ...defaultState,

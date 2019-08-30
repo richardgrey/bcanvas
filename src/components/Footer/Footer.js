@@ -28,27 +28,16 @@ const Footer = () => (
             <p>©{2019 - year ? `2019-${year}` : year}</p>
           </div>
         </Col>
-        <Col xl={6} xlOffset={1} md={7}>
+        <Col className="footer__menus" xl={6} xlOffset={1} md={7}>
           <ul className="footer__menu">
+            <li>
+              <Link to="/terms-of-services">Terms & Conditions</Link>
+            </li>
             <li>
               <Link to="/privacy-policy">Privacy Policy</Link>
             </li>
             <li>
-              <Link to="/terms-of-services">Terms & Conditions</Link>
-            </li>
-          </ul>
-          <ul className="footer__menu">
-            <li>
-              <a href="mailto:igor@bcanvas.io">Email</a>
-            </li>
-            <li>
-              <a
-                href="https://www.linkedin.com/in/igor-nikolenko/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                LinkedIn
-              </a>
+              <Link to="/cookie-policy">Cookie Policy</Link>
             </li>
           </ul>
           <ul className="footer__menu">
@@ -59,6 +48,18 @@ const Footer = () => (
                 rel="noopener noreferrer"
               >
                 Github
+              </a>
+            </li>
+            <li>
+              <a href="mailto:igor@bcanvas.io">Email</a>
+            </li>
+            <li>
+              <a
+                href="https://www.linkedin.com/in/igor-nikolenko/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn
               </a>
             </li>
           </ul>

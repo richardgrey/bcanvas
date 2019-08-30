@@ -28,15 +28,20 @@
   margin-bottom: 20px;
 }
 
+.footer__menus {
+  text-align: center;
+}
 .footer__menu {
+  text-align: left;
   display: inline-block;
   vertical-align: top;
   list-style: none;
+  min-width: 100px;
   margin: 0 40px 0 0;
   padding: 0;
 
   li {
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
   }
   a {
     font-weight: 500;
@@ -58,6 +63,9 @@
   }
   .footer__copy {
     margin-bottom: 0;
+    text-align: left;
+  }
+  .footer__menus {
     text-align: left;
   }
   .footer__menu {

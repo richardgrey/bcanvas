@@ -57,12 +57,17 @@
   .icon {
     fill: #fff;
   }
-  .icon_arrow {
+  .icon_arrow,
+  .icon_arrow-back {
     width: 18px;
     height: 12px;
     margin-left: 10px;
     transform: translate3d(0, 0, 0);
     transition: transform 300ms ease;
+  }
+  .icon_arrow-back {
+    margin-left: 0;
+    margin-right: 10px;
   }
   .icon_dashboard {
     vertical-align: top;
