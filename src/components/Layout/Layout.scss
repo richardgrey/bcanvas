@@ -45,9 +45,18 @@
   }
 }
 
-.layout__static-page {
-  max-width: 720px;
-  margin: 0 auto;
+.layout_type_canvas {
+  .layout__container {
+    height: 100vh;
+    overflow: auto;
+  }
+}
+
+.layout_type_static-page {
+  .layout__container .layout__inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
 }
 
 // Backgrounds
@@ -110,6 +119,12 @@
   .layout__inner {
     padding-left: $page-gutter-tablet;
     padding-right: $page-gutter-tablet;
+  }
+  .layout_type_canvas {
+    .layout__container {
+      height: auto;
+      overflow: hidden;
+    }
   }
 }
 @media (min-width: $min-desktop) {

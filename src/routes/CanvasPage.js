@@ -100,7 +100,7 @@ class CanvasPage extends Component {
     // No information about type of the canvas, so must be fetched before full render
     if (type) {
       return (
-        <Layout fluid noOverflow background="gradient">
+        <Layout type="canvas" fluid noOverflow background="gradient">
           <Layout.Header>
             <Header
               btnDashboard

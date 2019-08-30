@@ -24,22 +24,18 @@
 
 .modal__container {
   position: relative;
-  margin-top: 100px;
+  margin-top: 10px;
   flex: 0 0 auto;
-  width: 600px;
+  width: 100%;
   padding: 30px 40px;
   background: #fff;
   @include elevate(16, $color-gray3);
   animation: $transition-enter zoom-in;
 }
-.modal__container_size_tiny {
-  width: 400px;
-}
-.modal__container_size_small {
-  width: 450px;
-}
+.modal__container_size_tiny,
+.modal__container_size_small,
 .modal__container_size_large {
-  width: 800px;
+  width: 100%;
 }
 
 .modal__title {
@@ -52,8 +48,8 @@
 
 .modal__close {
   position: absolute;
-  right: 25px;
-  top: 25px;
+  right: 10px;
+  top: 10px;
   width: 30px;
   height: 30px;
   margin: 0;
@@ -82,7 +78,33 @@
 .modal-scroll-lock {
   overflow: hidden;
   padding-right: 15px;
+
   .header_fixed .header__inner {
     padding-right: 15px;
+  }
+}
+
+@media (min-width: $min-tablet) {
+
+  .modal__container {
+    margin-top: 100px;
+    width: 600px;
+    padding: 30px 40px;
+  }
+  .modal__container_size_tiny {
+    width: 400px;
+  }
+  .modal__container_size_small {
+    width: 450px;
+  }
+  .modal__container_size_large {
+    width: 800px;
+  }
+  .modal__close {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    width: 30px;
+    height: 30px;
   }
 }

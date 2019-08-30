@@ -15,12 +15,14 @@ LayoutInner.propTypes = LayoutHeader.propTypes;
 class Layout extends Component {
   static propTypes = {
     children: PropTypes.node,
+    type: PropTypes.string,
     fluid: PropTypes.bool,
     noOverflow: PropTypes.bool,
     background: PropTypes.string,
   };
 
   static defaultProps = {
+    type: undefined,
     fluid: false,
     children: null,
     noOverflow: false,
@@ -28,11 +30,12 @@ class Layout extends Component {
   };
 
   render() {
-    const { fluid, noOverflow, children, background } = this.props;
+    const { type, fluid, noOverflow, children, background } = this.props;
     const cls = b('layout', {
-      'no-overflow': noOverflow,
+      type,
       fluid,
       background,
+      'no-overflow': noOverflow,
     });
 
     return (
