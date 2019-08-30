@@ -5,7 +5,7 @@
   .layout__container {
     background: none !important;
   }
-  .layout__sidebar {
+  .layout__footer {
     display: none !important;
   }
 
@@ -16,6 +16,7 @@
   .header,
   .header__inner {
     position: static !important;
+    height: auto !important;
     background: none !important;
     border: none !important;
     box-shadow: none !important;
@@ -30,6 +31,9 @@
 
   .canvas-title__input {
     padding: 0 !important;
+  }
+  .layout__container .canvas-title {
+    margin-bottom: 10px;
   }
 
   .canvas-table {
