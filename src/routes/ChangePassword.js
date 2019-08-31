@@ -14,7 +14,7 @@ import {
   updatePassword,
   updatePasswordForGoogleSignIn,
   updatePasswordError,
-  updateAccountFormReset,
+  resetAccountForms,
 } from '../actions/account';
 
 class ChangePassword extends Component {
@@ -50,7 +50,7 @@ class ChangePassword extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(updateAccountFormReset());
+    dispatch(resetAccountForms());
   }
 
   onSubmit(e) {

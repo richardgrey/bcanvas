@@ -18,6 +18,8 @@ export const ERROR_AUTH_WEEK_PASSWORD = 'ERROR_AUTH_WEEK_PASSWORD';
 export const ERROR_AUTH_INTERNAL_ERROR = 'ERROR_AUTH_INTERNAL_ERROR';
 export const ERROR_AUTH_INV_DISPLAY_NAME = 'ERROR_AUTH_INV_DISPLAY_NAME';
 export const ERROR_AUTH_WRONG_USER = 'ERROR_AUTH_WRONG_USER';
+export const ERROR_AUTH_EXPIRED_ACTION_CODE = 'ERROR_AUTH_EXPIRED_ACTION_CODE';
+export const ERROR_AUTH_INVALID_ACTION_CODE = 'ERROR_AUTH_INVALID_ACTION_CODE';
 export const ERROR_UNAUTHORIZED_ACTION = 'ERROR_UNAUTHORIZED_ACTION';
 export const ERROR_AUTH_REAUTH_REQUIRED = 'ERROR_AUTH_REAUTH_REQUIRED';
 export const ERROR_CANVAS_NOT_FOUND = 'ERROR_CANVAS_NOT_FOUND';
@@ -29,23 +31,6 @@ export const ERROR_ACCOUNT_UPDATE_EMAIL = 'ERROR_AUTH_UPDATE_EMAIL';
 export const ERROR_ACCOUNT_UPDATE_PASSWORD = 'ERROR_AUTH_UPDATE_PASSWORD';
 export const ERROR_ACCOUNT_CONFIRM_PASSWORD = 'ERROR_ACCOUNT_CONFIRM_PASSWORD';
 
-// Form errors
-export const ERROR_CODE_MESSAGES = {
-  [ERROR_AUTH_EMAIL_IS_USED]: [
-    'email',
-    'This email already in use. Try another one or try to sign in',
-  ],
-  [ERROR_AUTH_EMAIL_IS_INVALID]: ['email', 'Something wrong with this email'],
-  [ERROR_AUTH_USER_IS_DISABLED]: ['email', 'This account was disabled. What you did?'],
-  [ERROR_AUTH_USER_NOT_FOUND]: ['password', 'The password or email is incorrect'],
-  [ERROR_AUTH_WRONG_PASSWORD]: ['password', 'The password or email is incorrect'],
-  [ERROR_AUTH_WEEK_PASSWORD]: [
-    'password',
-    'This password is to short. It should be at least 6\u00a0symbols',
-  ],
-  [ERROR_AUTH_INV_DISPLAY_NAME]: ['name', 'Let’s be a friends! What’s your name?'],
-  [ERROR_ACCOUNT_CONFIRM_PASSWORD]: ['repassword', 'Passwords should match'],
-};
-
+// Defaults
 export const DEFAULT_USER_NAME = 'Anonymous';
 export const DEFAULT_CANVAS_TITLE = 'Untitled Canvas';

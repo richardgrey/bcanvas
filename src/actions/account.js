@@ -1,6 +1,6 @@
 import api from '../api';
 
-export const ACCOUNT_UPDATE_FORM_RESET = 'ACCOUNT_UPDATE_FORM_RESET';
+export const ACCOUNT_FORMS_RESET = 'ACCOUNT_FORMS_RESET';
 export const ACCOUNT_UPDATE_NAME_REQUEST = 'ACCOUNT_UPDATE_NAME_REQUEST';
 export const ACCOUNT_UPDATE_NAME_SUCCESS = 'ACCOUNT_UPDATE_NAME_SUCCESS';
 export const ACCOUNT_UPDATE_NAME_ERROR = 'ACCOUNT_UPDATE_EMAIL_RESET';
@@ -101,6 +101,6 @@ export const updatePasswordError = error => dispatch => {
  * Reset account forms
  * @returns {Function}
  */
-export const updateAccountFormReset = () => dispatch => {
-  dispatch({ type: ACCOUNT_UPDATE_FORM_RESET });
+export const resetAccountForms = () => dispatch => {
+  dispatch({ type: ACCOUNT_FORMS_RESET });
 };

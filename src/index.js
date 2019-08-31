@@ -19,6 +19,8 @@ import ChangeEmail from './routes/ChangeEmail';
 import TermsPage from './routes/TermsPage';
 import PrivacyPolicy from './routes/PrivacyPolicy';
 import CookiePolicy from './routes/CookiePolicy';
+import AuthHandler from './routes/AuthHandler';
+import PasswordRecovery from './routes/PasswordRecovery';
 import NoMatch from './routes/NoMatch';
 
 import './styles/index.scss';
@@ -47,6 +49,12 @@ ReactDOM.render(
           <Route path="/terms-of-services" component={TermsPage} />
           <Route path="/privacy-policy" component={PrivacyPolicy} />
           <Route path="/cookie-policy" component={CookiePolicy} />
+          <Route path="/auth/action" component={AuthHandler} />
+          <Route path="/password-recovery/:verificationCode" component={PasswordRecovery} />
+          <Route path="/password-recovery" component={PasswordRecovery} />
+
+          <Route path="/email-recovery/:verificationCode" component={PasswordRecovery} />
+          <Route path="/email-verification/:verificationCode" component={PasswordRecovery} />
           <Route component={NoMatch} />
         </Switch>
       </App>

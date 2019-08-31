@@ -7,13 +7,14 @@ import Header from '../components/Header/Header';
 import AuthHeaderText from '../components/AuthHeaderText/AuthHeaderText';
 import PageTitle from '../components/PageTitle/PageTitle';
 import FormRegister from '../components/FormRegister/FormRegister';
+import { resetAuthForms } from '../actions/auth';
 
 class Register extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
     isSubmitting: PropTypes.bool,
-    errorRegister: PropTypes.shape({
+    errors: PropTypes.shape({
       name: PropTypes.string,
       email: PropTypes.string,
       password: PropTypes.string,
@@ -24,12 +25,17 @@ class Register extends Component {
   };
 
   static defaultProps = {
-    errorRegister: undefined,
+    errors: undefined,
     isSubmitting: false,
   };
 
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(resetAuthForms());
+  }
+
   render() {
-    const { dispatch, location, errorRegister, isSubmitting, isAuthenticated } = this.props;
+    const { dispatch, location, errors, isSubmitting, isAuthenticated } = this.props;
     const historyState = location.state;
 
     if (isAuthenticated) {
@@ -56,7 +62,7 @@ class Register extends Component {
         <Layout.Container>
           <Layout.Inner>
             <PageTitle title="Create your account" subtitle="One step away from your first canvas." />
-            <FormRegister dispatch={dispatch} errors={errorRegister} isSubmitting={isSubmitting} />
+            <FormRegister dispatch={dispatch} errors={errors} isSubmitting={isSubmitting} />
           </Layout.Inner>
         </Layout.Container>
       </Layout>
@@ -66,11 +72,11 @@ class Register extends Component {
 
 const mapStateToProps = state => {
   const { auth } = state;
-  const { isAuthenticated, errorRegister, isSubmitting } = auth;
+  const { isAuthenticated, errors, isSubmitting } = auth;
 
   return {
     isAuthenticated,
-    errorRegister,
+    errors,
     isSubmitting,
   };
 };

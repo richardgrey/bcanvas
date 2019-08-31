@@ -7,13 +7,14 @@ import Header from '../components/Header/Header';
 import AuthHeaderText from '../components/AuthHeaderText/AuthHeaderText';
 import PageTitle from '../components/PageTitle/PageTitle';
 import FormLogin from '../components/FormLogin/FormLogin';
+import { resetAuthForms } from '../actions/auth';
 
 class SignIn extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
     isSubmitting: PropTypes.bool,
-    errorLogin: PropTypes.shape({
+    errors: PropTypes.shape({
       email: PropTypes.string,
       password: PropTypes.string,
     }),
@@ -23,12 +24,17 @@ class SignIn extends Component {
   };
 
   static defaultProps = {
-    errorLogin: undefined,
+    errors: undefined,
     isSubmitting: false,
   };
 
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(resetAuthForms());
+  }
+
   render() {
-    const { dispatch, location, errorLogin, isSubmitting, isAuthenticated } = this.props;
+    const { dispatch, location, errors, isSubmitting, isAuthenticated } = this.props;
     const historyState = location.state;
 
     if (isAuthenticated) {
@@ -55,7 +61,7 @@ class SignIn extends Component {
         <Layout.Container>
           <Layout.Inner>
             <PageTitle title="Sign In" subtitle="It’s nice to see you again." />
-            <FormLogin dispatch={dispatch} errors={errorLogin} isSubmitting={isSubmitting} />
+            <FormLogin dispatch={dispatch} errors={errors} isSubmitting={isSubmitting} />
           </Layout.Inner>
         </Layout.Container>
       </Layout>
@@ -65,11 +71,11 @@ class SignIn extends Component {
 
 const mapStateToProps = state => {
   const { auth } = state;
-  const { isAuthenticated, errorLogin, isSubmitting } = auth;
+  const { isAuthenticated, errors, isSubmitting } = auth;
 
   return {
     isAuthenticated,
-    errorLogin,
+    errors,
     isSubmitting,
   };
 };

@@ -18,6 +18,8 @@ import {
   ERROR_REAUTH_PASSWORD_LOGIN,
   ERROR_REAUTH_GOOGLE_LOGIN,
   ERROR_AUTH_WRONG_USER,
+  ERROR_AUTH_EXPIRED_ACTION_CODE,
+  ERROR_AUTH_INVALID_ACTION_CODE,
 } from '../constants';
 
 export const AUTH_ERROR_CODE_MAP = {
@@ -33,6 +35,8 @@ export const AUTH_ERROR_CODE_MAP = {
   CREDENTIAL_TOO_OLD_LOGIN_AGAIN: ERROR_AUTH_REAUTH_REQUIRED,
   // For auth with Google, when user sign in in different account from current
   'auth/user-mismatch': ERROR_AUTH_WRONG_USER,
+  'auth/expired-action-code': ERROR_AUTH_EXPIRED_ACTION_CODE,
+  'auth/invalid-action-code': ERROR_AUTH_INVALID_ACTION_CODE,
 };
 
 const auth = {
@@ -124,6 +128,30 @@ const auth = {
         .reauthenticateWithCredential(authProvider)
         .then(result => resolve(result.user))
         .catch(error => reject(AUTH_ERROR_CODE_MAP[error.code] || ERROR_REAUTH_PASSWORD_LOGIN));
+    }),
+
+  sendPasswordResetEmail: async email =>
+    new Promise((resolve, reject) => {
+      firebaseAuth
+        .sendPasswordResetEmail(email)
+        .then(() => resolve())
+        .catch(error => reject(AUTH_ERROR_CODE_MAP[error.code] || error));
+    }),
+
+  verifyPasswordResetCode: async code =>
+    new Promise((resolve, reject) => {
+      firebaseAuth
+        .verifyPasswordResetCode(code)
+        .then(email => resolve(email))
+        .catch(error => reject(AUTH_ERROR_CODE_MAP[error.code] || error));
+    }),
+
+  confirmPasswordReset: async (code, password) =>
+    new Promise((resolve, reject) => {
+      firebaseAuth
+        .confirmPasswordReset(code, password)
+        .then(() => resolve())
+        .catch(error => reject(AUTH_ERROR_CODE_MAP[error.code] || error));
     }),
 };
 

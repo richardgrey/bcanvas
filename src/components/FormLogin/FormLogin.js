@@ -91,7 +91,7 @@ class FormLogin extends Component {
           </Button>
         </FormRow>
         <FormRow className="text_align_center">
-          <Link to="password-recovery">Forgot your password?</Link>
+          <Link to="/password-recovery">Forgot your password?</Link>
         </FormRow>
       </Form>
     );

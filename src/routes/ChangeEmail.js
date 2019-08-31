@@ -10,7 +10,7 @@ import Button from '../components/Button/Button';
 import Form, { InputRow, FormRow } from '../components/Form/Form';
 import { DEFAULT_USER_NAME } from '../constants';
 import { locationPropType } from '../utils/propTypes';
-import { updateAccountFormReset, updateEmail } from '../actions/account';
+import { resetAccountForms, updateEmail } from '../actions/account';
 
 class ChangeEmail extends Component {
   static propTypes = {
@@ -42,7 +42,7 @@ class ChangeEmail extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(updateAccountFormReset());
+    dispatch(resetAccountForms());
   }
 
   onSubmit(e) {

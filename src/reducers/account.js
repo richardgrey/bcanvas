@@ -11,7 +11,7 @@ import {
   ACCOUNT_UPDATE_EMAIL_REQUEST,
   ACCOUNT_UPDATE_PASSWORD_REQUEST,
   ACCOUNT_REAUTH_PASSWORD_ERROR,
-  ACCOUNT_UPDATE_FORM_RESET,
+  ACCOUNT_FORMS_RESET,
 } from '../actions/account';
 
 import errorCodeToState from '../utils/errorCodeToState';
@@ -116,7 +116,7 @@ export default function account(state = defaultState, action) {
         isSubmitting: false,
         isSuccess: false,
       };
-    case ACCOUNT_UPDATE_FORM_RESET:
+    case ACCOUNT_FORMS_RESET:
       return {
         ...state,
         errors: undefined,
