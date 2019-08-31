@@ -145,15 +145,11 @@ const HowToCanvas = () => (
           <Grid.Col md={6}>
             <h3>Value Proposition Canvas</h3>
             <p className="text_size_bigger">
-              The Value Proposition Canvas is a simple way to better understand your customers'
+              The Value Proposition Canvas is a simple way to better understand your customers’
               needs and to design the products and services they want. You can use it on its own,
               but it works even better along with Business Model Canvas where it fits Value
-              Proposition and Customer segment sections.
-            </p>
-            <p className="text_size_bigger">
-              Several options of formulating your value proposition exist as well as different
-              canvases. We offer to use Peter’s Thomson canvas variation as it goes deeper into the
-              physiology of customers choice.
+              Proposition and Customer segment sections. We offer to use Peter’s Thomson variation
+              of the canvas.
             </p>
           </Grid.Col>
         </Grid.Row>
