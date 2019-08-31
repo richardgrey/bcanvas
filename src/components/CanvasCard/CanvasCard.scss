@@ -6,6 +6,8 @@
   position: relative;
   display: block;
   max-width: 350px;
+  margin-left: auto;
+  margin-right: auto;
 
   &:hover {
     .canvas-card__media {
@@ -83,7 +85,8 @@
     }
   }
 }
-.canvas-card_type_value {
+.canvas-card_type_value,
+.canvas-card_type_value-osterwalder {
   .canvas-card__media {
     background-color: $bg-orange;
   }

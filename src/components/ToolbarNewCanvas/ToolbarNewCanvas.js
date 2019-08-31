@@ -31,6 +31,6 @@ class ToolbarNewCanvas extends Component {
       </div>
     );
   }
-};
+}
 
 export default ToolbarNewCanvas;

@@ -110,7 +110,7 @@ class Tabs extends Component {
           {...events}
         >
           {icon ? <Icon name={icon} className="tabs__tab-icon" /> : null}
-          {tab}
+          <span>{tab}</span>
         </div>,
       );
     });
@@ -149,6 +149,6 @@ class Tabs extends Component {
   }
 }
 
-Tabs.TabsPane = TabsPane;
+Tabs.Pane = TabsPane;
 
 export default Tabs;

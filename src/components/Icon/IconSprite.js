@@ -34,10 +34,7 @@ const IconsSprite = () => {
         <path d="m24 1h12v29h-12z" fill="#cececf" />
       </symbol>
       <symbol id="dashboard" viewBox="0 0 18 18">
-        <path d="M18,8H10V0h8ZM12,6h4V2H12Z" />
-        <path d="M8,8H0V0H8ZM2,6H6V2H2Z" />
-        <path d="M18,18H10V10h8Zm-6-2h4V12H12Z" />
-        <path d="M8,18H0V10H8ZM2,16H6V12H2Z" />
+        <path d="m2 2v4h4v-4zm-2-2h8v8h-8zm12 2v4h4v-4zm-2-2h8v8h-8zm2 12v4h4v-4zm-2-2h8v8h-8zm-8 2v4h4v-4zm-2-2h8v8h-8z" />
       </symbol>
       <symbol id="user" viewBox="0 0 16 18">
         <path d="M8,10a5,5,0,1,1,5-5A5,5,0,0,1,8,10ZM8,2a3,3,0,1,0,3,3A3,3,0,0,0,8,2Z" />

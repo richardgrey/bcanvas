@@ -30,22 +30,25 @@ class Dropdown extends Component {
     isShown: false,
   };
 
-  constructor(props) {
-    super(props);
-    this.onDocumentClick = this.onDocumentClick.bind(this);
-  }
-
   componentWillUnmount() {
     this.unbindDocumentClick();
   }
 
-  onDocumentClick(e) {
+  onDocumentClick = e => {
     const { isShown } = this.state;
 
     if (isShown && !isDOMEventIn(e, this.dropdown)) {
       this.toggle(false);
     }
-  }
+  };
+
+  onDocumentKeydown = e => {
+    const { isShown } = this.state;
+
+    if (isShown && e.key === 'Escape') {
+      this.toggle(false);
+    }
+  };
 
   toggle = flag => {
     const { isShown } = this.state;
@@ -68,10 +71,12 @@ class Dropdown extends Component {
 
   bindDocumentClick() {
     document.addEventListener('click', this.onDocumentClick, false);
+    document.addEventListener('keydown', this.onDocumentKeydown, false);
   }
 
   unbindDocumentClick() {
     document.removeEventListener('click', this.onDocumentClick, false);
+    document.removeEventListener('keydown', this.onDocumentKeydown, false);
   }
 
   renderMenu() {

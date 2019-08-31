@@ -61,9 +61,10 @@ class Entry extends Component {
     }
   };
 
-  onKeyPress = e => {
+  onKeyDown = e => {
     const { target } = e;
-    if (e.key === 'Enter' && !e.shiftKey) {
+
+    if ((e.key === 'Enter' || e.key === 'Tab') && !e.shiftKey) {
       e.preventDefault();
       const val = target.innerText.trim();
       this.submitEntry(val, target);
@@ -117,7 +118,7 @@ class Entry extends Component {
         suppressContentEditableWarning
         onFocus={this.onFocus}
         onBlur={this.onBlur}
-        onKeyPress={this.onKeyPress}
+        onKeyDown={this.onKeyDown}
         onKeyUp={this.onKeyUp}
         onPaste={this.onPaste}
       >

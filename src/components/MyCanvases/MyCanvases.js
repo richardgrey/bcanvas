@@ -48,7 +48,7 @@ class MyCanvases extends Component {
   }
 
   render() {
-    const { canvases, isLoaded, limit, type, dispatch } = this.props;
+    const { canvases, isLoaded, limit, type, dispatch, ...others } = this.props;
     const mocksCount = limit ? Math.min(limit, MAX_MOCK_ITEMS_COUNT) : MAX_MOCK_ITEMS_COUNT;
     const list = canvases.sort(sortByLatestChange).slice(0, limit || canvases.length);
 
@@ -59,6 +59,7 @@ class MyCanvases extends Component {
         canvases={list}
         loading={!isLoaded}
         mocksCount={mocksCount}
+        {...others}
       />
     );
   }

@@ -5,7 +5,7 @@
 .tabs {
 }
 .tabs__tabs-bar {
-  display: flex;
+  display: none;
   justify-content: center;
   margin-bottom: 30px
 }
@@ -13,6 +13,7 @@
   color: $color-gray3;
   font-weight: bold;
   font-size: 1rem;
+  position: relative;
   padding: 20px 30px;
   background: transparent;
   cursor: pointer;
@@ -26,13 +27,25 @@
       fill: $color-gray1;
     }
   }
+  span {
+    position: relative;
+  }
 }
 .tabs__tab_active {
   color: $color-gray1;
-  border-radius: $border-radius;
-  background: #fff;
-  @include elevate(8, $color-gray2, -0.06);
 
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: $border-radius;
+    background: #fff;
+    @include elevate(8, $color-gray2, -0.06);
+    animation: 280ms bounce;
+  }
   .tabs__tab-icon {
     fill: $color-gray1;
   }
@@ -46,18 +59,23 @@
   }
 }
 .tabs__tab_icon {
-  padding-left: 20 + 40px;
+  padding-left: 20 + 34px;
 }
 
 .tabs__tab-icon {
+  position: relative;
   width: 24px;
   height: 24px;
-  margin-left: -40px;
-  margin-right: 16px;
+  margin-left: -34px;
+  margin-right: 10px;
   vertical-align: text-bottom;
   fill: $color-gray3;
   transition: $transition-enter fill easy;
   will-change: fill;
+}
+
+.tabs__pane {
+  margin: 40px 0;
 }
 
 .tabs_align_left,
@@ -65,13 +83,13 @@
   .tabs__tabs-bar {
     display: none;
   }
-  .tabs__pane {
-    margin-bottom: $gutter-mobile;
-  }
 }
 
 
 @media (min-width: $min-tablet) {
+  .tabs__tabs-bar {
+    display: flex;
+  }
   .tabs__pane {
     display: none;
     margin: 0;

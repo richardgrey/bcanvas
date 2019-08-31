@@ -8,13 +8,16 @@ import CreateCanvasSection from '../CreateCanvasSection/CreateCanvasSection';
 import PageTitle from '../PageTitle/PageTitle';
 import Layout from '../Layout/Layout';
 import MyCanvases from '../MyCanvases/MyCanvases';
+import HowToCanvas from '../HowToCanvas/HowToCanvas';
+import Section from '../Section/Section';
+import SamplesList from '../SamplesList/SamplesList';
 
 const LATEST_CANVASES_COUNT = 4;
 
 const UserHome = ({ isEmpty }) => (
   <Layout.Container>
-    <Layout.Inner>
-      <div className="user-home">
+    <div className="user-home">
+      <Layout.Inner>
         {isEmpty ? (
           <div className="user-home__latest">
             <PageTitle
@@ -25,8 +28,8 @@ const UserHome = ({ isEmpty }) => (
           </div>
         ) : (
           <div className="user-home__latest">
-            <h3>My latest canvases</h3>
-            <MyCanvases limit={LATEST_CANVASES_COUNT} />
+            <h3 className="user-home__latest-title">My latest canvases</h3>
+            <MyCanvases noWrap limit={LATEST_CANVASES_COUNT} />
             <div className="user-home__latest-more">
               <Button href="/dashboard" styleType="secondary" isFullWidth>
                 <Icon name="dashboard" />
@@ -35,11 +38,20 @@ const UserHome = ({ isEmpty }) => (
             </div>
           </div>
         )}
-        <div>
-          <h2 className="text_align_center">Tips & tricks on business ideation</h2>
-        </div>
-      </div>
-    </Layout.Inner>
+      </Layout.Inner>
+      <Section bg="lightgray" indent="medium">
+        <Layout.Inner>
+          <h2 className="text_align_center">How to work with canvas</h2>
+          <HowToCanvas />
+        </Layout.Inner>
+      </Section>
+      <Layout.Inner>
+        <Section>
+          <h2 className="text_align_center">Check this examples</h2>
+          <SamplesList />
+        </Section>
+      </Layout.Inner>
+    </div>
   </Layout.Container>
 );
 

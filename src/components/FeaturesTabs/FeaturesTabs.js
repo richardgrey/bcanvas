@@ -6,14 +6,12 @@ import './FeaturesTabs.scss';
 
 import tabs from './local';
 
-const { TabsPane } = Tabs;
-
 const FeaturesTabs = () => (
   <div className="features-tabs">
     <h2 className="h1 text_align_center">Design innovative business model</h2>
     <Tabs align="right">
       {tabs.map(({ key, icon, tab, img }) => (
-        <TabsPane key={key} tab={tab} icon={icon}>
+        <Tabs.Pane key={key} tab={tab} icon={icon}>
           <div className="features-tabs__section">
             <h4 className="features-tabs__title hidden visible_mobile">
               <Icon name={icon} />
@@ -21,7 +19,7 @@ const FeaturesTabs = () => (
             </h4>
             <Picture className="elevation-10" alt={tab} {...img} />
           </div>
-        </TabsPane>
+        </Tabs.Pane>
       ))}
     </Tabs>
   </div>

@@ -9,6 +9,7 @@ class ItemsList extends Component {
   static propTypes = {
     type: PropTypes.oneOf(['vertical', 'grid']),
     mocksCount: PropTypes.number,
+    noWrap: PropTypes.bool,
     dispatch: PropTypes.func.isRequired,
     loading: PropTypes.bool,
     canvases: PropTypes.arrayOf(
@@ -22,6 +23,7 @@ class ItemsList extends Component {
 
   static defaultProps = {
     type: 'grid',
+    noWrap: false,
     mocksCount: null,
     loading: false,
   };
@@ -49,9 +51,10 @@ class ItemsList extends Component {
   };
 
   render() {
-    const { type } = this.props;
+    const { type, noWrap } = this.props;
     const cls = b('items-list', {
       [type]: !!type,
+      'no-wrap': noWrap,
     });
 
     return (

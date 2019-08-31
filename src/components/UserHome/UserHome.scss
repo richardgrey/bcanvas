@@ -1,7 +1,21 @@
+@import "../../styles/variables";
+
 .user-home__latest {
   margin: 60px 0 90px;
 }
 .user-home__latest-more {
   max-width: 480px;
   margin: 0 auto;
+}
+
+.user-home__latest-title {
+  text-align: center;
+  font-size: 1.75rem;
+}
+
+@media (min-width: $min-desktop) {
+  .user-home__latest-title {
+    text-align: left;
+    font-size: 1.5rem;
+  }
 }

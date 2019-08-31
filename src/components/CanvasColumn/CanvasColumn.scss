@@ -93,9 +93,10 @@
 }
 
 //
-// Value Proposition
-// =================
-.canvas-table_type_value {
+// Value Proposition Osterwalder
+// =============================
+.canvas-table_type_value-osterwalder {
+
   .canvas-column_products {
     grid-column: 1;
     grid-row: 1/3;
@@ -124,6 +125,61 @@
     border: 0;
   }
   .canvas-column_substitution {
+    grid-column: 1;
+    grid-row: 3;
+    width: 150%;
+    padding-right: 25%;
+    border-width: 1px 1px 0 0;
+  }
+  .canvas-column_proposition {
+    grid-column: 2;
+    grid-row: 3;
+    width: 100%;
+    margin-left: 50%;
+    border-width: 1px 1px 0 0;
+  }
+  .canvas-column_segment {
+    grid-column: 3;
+    grid-row: 3;
+    width: 150%;
+    margin-left: 50%;
+    padding-right: 25%;
+    border-width: 1px 0 0 0;
+  }
+}
+
+//
+// Value Proposition Osterwalder
+// =============================
+.canvas-table_type_value {
+  .canvas-column_benefits {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .canvas-column_features {
+    grid-column: 1;
+    grid-row: 2;
+    border-width: 1px 1px 0 0;
+  }
+  .canvas-column_experience {
+    grid-column: 2;
+    grid-row: 1/3;
+  }
+  .canvas-column_wants {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  .canvas-column_fears {
+    grid-column: 3;
+    grid-row: 2;
+    border-width: 1px 1px 0 0;
+  }
+  .canvas-column_needs {
+    grid-column: 4;
+    grid-row: 1/3;
+    border: 0;
+  }
+  .canvas-column_substitutes {
     grid-column: 1;
     grid-row: 3;
     width: 150%;

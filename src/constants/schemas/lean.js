@@ -29,7 +29,7 @@ export default {
     {
       label: 'proposition',
       number: 5,
-      title: 'Value Proposition',
+      title: 'Unique Value Proposition',
       description: [
         'Single, clear, compelling message that states why you are different and worth paying attention.',
       ],

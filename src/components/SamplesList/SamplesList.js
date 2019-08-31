@@ -15,8 +15,8 @@ const samples = [
     isOwner: false,
   },
   {
-    id: 'slack',
-    title: 'Slack Value Proposition',
+    id: 'evernote',
+    title: 'Evernote Value Proposition',
     type: 'value',
     isOwner: false,
   },
@@ -28,6 +28,6 @@ const samples = [
   },
 ];
 
-const SamplesList = () => <ItemsList canvases={samples} dispatch={() => {}} />;
+const SamplesList = () => <ItemsList noWrap canvases={samples} dispatch={() => {}} />;
 
 export default SamplesList;

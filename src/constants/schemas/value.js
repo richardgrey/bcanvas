@@ -3,65 +3,46 @@ export default {
   icon: '/img/canvas/canvas-value.svg',
   schema: [
     {
-      label: 'products',
+      label: 'benefits',
       number: 5,
-      title: 'Products & Services',
-      description: [
-        'What are the products and services you can offer you customer so they can get their job done?',
-      ],
+      title: 'Benefits',
+      description: ['What your product/service do?'],
     },
     {
-      label: 'gain-creators',
+      label: 'features',
       number: 6,
-      title: 'Gain Creators',
-      description: [
-        'What can you offer you customer to help them achieve their gains?',
-        'How do they create benefits your customer expects, desires or would be surprised by?',
-        'It could include functional utility, social gains, positive emotions, and cost savings.',
-      ],
+      title: 'Features',
+      description: ['How does your product/service work?'],
     },
     {
-      label: 'pain-relievers',
+      label: 'experience',
       number: 7,
-      title: 'Pain Relievers',
-      description: [
-        'How can you help your customers to relieve their pains?',
-        'What problems can you eradicate?',
-      ],
+      title: 'Experience',
+      description: ['What does it feel like to use your product/service?'],
     },
     {
-      label: 'gains',
+      label: 'wants',
       number: 3,
-      title: 'Gains',
-      description: [
-        'What would make your customer happy?',
-        'What would make their life and job-to-be-done easier?',
-      ],
+      title: 'Wants',
+      description: ['What are the emotional drivers of purchasing?'],
     },
     {
-      label: 'pains',
+      label: 'needs',
       number: 2,
-      title: 'Pains',
-      description: [
-        'What is annoying or troubling your customer?',
-        'What is preventing them from getting their job done?',
-        'Pains can be functional, social, emotional, or ancillary.',
-      ],
+      title: 'Needs',
+      description: ['What are the hidden needs?', 'What are the rational drivers of purchasing?'],
     },
     {
-      label: 'jobs',
+      label: 'fears',
       number: 1,
-      title: 'Jobs-To-Be-Done',
-      description: [
-        'What is the job the customer wants to get done in their work or life?',
-        'It could be the tasks they are trying to perform and complete, the problems they are trying to solve, or the needs they are trying to satisfy.'
-      ],
+      title: 'Fears',
+      description: ['Risks of switching to your product?'],
     },
     {
-      label: 'substitution',
+      label: 'substitutes',
       number: 4,
-      title: 'Substitution',
-      description: ['What your customer are doing now to get their job done?'],
+      title: 'Substitutes',
+      description: ['What do people currently do instead?'],
     },
     {
       label: 'proposition',
@@ -69,7 +50,7 @@ export default {
       title: 'Value Proposition',
       description: [
         'Describe your value proposition. Format:',
-        'Our [product/service] helps [customer segment] who want to [job], by [verb↓] [pain] and [verb↑] [gain]',
+        'We help [X] to [Y] by [Z]',
       ],
     },
     {
