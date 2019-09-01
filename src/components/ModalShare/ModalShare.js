@@ -86,7 +86,7 @@ class ModalShare extends Component {
             <InputText
               name="url"
               value={shareUrl}
-              // disabled
+              disabled
               onFocus={e => {
                 e.target.select();
               }}

@@ -32,9 +32,7 @@ const store = configureStore();
 
 // Track page views
 analytics.pageView(history.location.pathname + history.location.search);
-history.listen(location => {
-  analytics.pageView(location.pathname);
-});
+history.listen(analytics.pageView);
 
 ReactDOM.render(
   <Provider store={store}>
