@@ -1,11 +1,15 @@
 @import "../../styles/variables";
 
 .toolbar-canvas {
-  display: none;
+  .header-button_print {
+    display: none;
+  }
 }
 
-@media (min-width: $min-desktop) {
+@media (min-width: $min-tablet) {
   .toolbar-canvas {
-    display: block;
+    .header-button_print {
+      display: inline-block;
+    }
   }
 }

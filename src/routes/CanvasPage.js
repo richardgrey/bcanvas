@@ -8,7 +8,6 @@ import CanvasTitle from '../components/CanvasTitle/CanvasTitle';
 import CanvasTable from '../components/CanvasTable/CanvasTable';
 import CanvasTableLoading from '../components/CanvasTable/CanvasTableLoading';
 import ToolbarCanvas from '../components/ToolbarCanvas/ToolbarCanvas';
-import ToolbarNewCanvas from '../components/ToolbarNewCanvas/ToolbarNewCanvas';
 import { fetchCanvasBySlugOrId } from '../actions/canvas';
 import { locationPropType } from '../utils/propTypes';
 
@@ -111,7 +110,6 @@ class CanvasPage extends Component {
               }
               right={
                 <>
-                  {isAuthenticated ? <ToolbarNewCanvas /> : null}
                   <ToolbarCanvas canvas={this.props} dispatch={dispatch} />
                 </>
               }

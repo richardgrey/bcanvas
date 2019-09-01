@@ -77,11 +77,6 @@
 // Used applying to body
 .modal-scroll-lock {
   overflow: hidden;
-  padding-right: 15px;
-
-  .header_fixed {
-    padding-right: 15px;
-  }
 }
 
 @media (min-width: $min-tablet) {
@@ -106,5 +101,16 @@
     top: 25px;
     width: 30px;
     height: 30px;
+  }
+}
+
+@media (min-width: $min-desktop) {
+  .modal-scroll-lock {
+    overflow: hidden;
+    padding-right: 15px;
+
+    .header_fixed {
+      padding-right: 15px;
+    }
   }
 }
