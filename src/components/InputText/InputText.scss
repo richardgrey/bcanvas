@@ -16,7 +16,6 @@
     background: $color-gray9;
     border: 2px solid $color-gray9;
     border-radius: $border-radius;
-    //z-index: -1;
     will-change: border-color, backgrund-color;
     transition: border-color 100ms, background-color 100ms;
   }

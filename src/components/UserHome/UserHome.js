@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './UserHome.scss';
 import Button from '../Button/Button';
@@ -57,14 +58,15 @@ UserHome.propTypes = {
   isEmpty: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   const { canvasList } = state;
   const { isLoaded, canvases } = canvasList;
-  const isEmpty = isLoaded && !canvases.length;
+  const locState = ownProps.location.state || {};
+  const isEmpty = locState.registered || (isLoaded && !canvases.length);
 
   return {
     isEmpty,
   };
 };
 
-export default connect(mapStateToProps)(UserHome);
+export default withRouter(connect(mapStateToProps)(UserHome));

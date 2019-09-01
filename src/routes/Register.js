@@ -37,9 +37,16 @@ class Register extends Component {
   render() {
     const { dispatch, location, errors, isSubmitting, isAuthenticated } = this.props;
     const historyState = location.state;
+    let to;
 
     if (isAuthenticated) {
-      return <Redirect to={(historyState && historyState.redirectTo) || '/'} />;
+      to = {
+        pathname: (historyState && historyState.redirectTo) || '/',
+        state: {
+          registered: true,
+        },
+      };
+      return <Redirect to={to} />;
     }
 
     const signInLink = {
@@ -61,7 +68,10 @@ class Register extends Component {
         </Layout.Header>
         <Layout.Container>
           <Layout.Inner>
-            <PageTitle title="Create your account" subtitle="One step away from your first canvas." />
+            <PageTitle
+              title="Create your account"
+              subtitle="One step away from your first canvas."
+            />
             <FormRegister dispatch={dispatch} errors={errors} isSubmitting={isSubmitting} />
           </Layout.Inner>
         </Layout.Container>
