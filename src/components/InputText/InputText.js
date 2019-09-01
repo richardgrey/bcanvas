@@ -50,14 +50,14 @@ class InputText extends Component {
   onFocus = e => {
     this.setState({ focused: true });
     const { onFocus } = this.props;
-    if (typeof onFocus === 'function') {
+    if (onFocus) {
       onFocus(e);
     }
   };
 
   onBlur = e => {
     const { onBlur } = this.props;
-    if (typeof onBlur === 'function') {
+    if (onBlur) {
       onBlur(e);
     }
     this.setState({ focused: false });

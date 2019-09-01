@@ -9,7 +9,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: scroll;
   animation: $transition-enter fade-in;
 }
 .modal__backdrop {

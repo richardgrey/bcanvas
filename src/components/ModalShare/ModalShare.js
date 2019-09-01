@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Modal from '../Modal/Modal';
 import Button from '../Button/Button';
 import InputText from '../InputText/InputText';
-import { Checkbox, FormRow } from '../Form/Form';
+import { Checkbox, FormRow, FormHint } from '../Form/Form';
 import { saveSharingSettings } from '../../actions/canvas';
 import canvasShareUrl from '../../utils/canvasShareUrl';
 
@@ -66,22 +66,32 @@ class ModalShare extends Component {
     return (
       <Modal isOpened={isOpened} size="medium" onClose={this.modalClose}>
         <h3>Share with others</h3>
-        <FormRow>
-          <p>Copy this link and share</p>
-          <InputText
-            name="url"
-            value={shareUrl}
-            disabled
-            onFocus={e => {
-              e.target.select();
-            }}
-          />
-        </FormRow>
         {canvas.isOwner ? (
+          <>
+            <FormRow>
+              <p>
+                Simply select the checkbox below to make the canvas accessible for others, copy the
+                link and save changes.
+              </p>
+            </FormRow>
+            <FormRow>
+              <Checkbox name="s_public" isChecked={isPublic} onChange={this.toggleIsPublic}>
+                Allow anyone with the link to see this canvas
+              </Checkbox>
+            </FormRow>
+          </>
+        ) : null}
+        {isPublic ? (
           <FormRow>
-            <Checkbox name="s_public" isChecked={isPublic} onChange={this.toggleIsPublic}>
-              Allow anyone with the link to see this canvas
-            </Checkbox>
+            <InputText
+              name="url"
+              value={shareUrl}
+              // disabled
+              onFocus={e => {
+                e.target.select();
+              }}
+            />
+            <FormHint>Copy this link and share with others</FormHint>
           </FormRow>
         ) : null}
         <FormRow type="submit">
