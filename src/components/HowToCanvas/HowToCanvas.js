@@ -129,7 +129,7 @@ const HowToCanvas = () => (
             </ul>
             <br />
 
-            <h3>It’s the right time to start!</h3>
+            ~ It’s the right time to start!
           </Grid.Col>
         </Grid.Row>
       </Grid>
@@ -250,7 +250,7 @@ const HowToCanvas = () => (
             </ul>
             <br />
 
-            <h3>Let’s make it happened!</h3>
+            ~ Let’s make it happened!
           </Grid.Col>
         </Grid.Row>
       </Grid>
@@ -367,7 +367,17 @@ const HowToCanvas = () => (
               inside information, personal authority, community, a dream team, reputation, etc.
             </p>
             <br />
-            <h3>Let’s make the work done!</h3>
+
+            <h3>Build — Measure — Learn</h3>
+            <p>
+              Never forget that when you running lean there is nothing permanent. The golden cycle
+              of running lean never stops. All the assumptions you’ve made should be tested on as
+              soon as it’s possible in the wild. Get to the market fast, learn fast and you’ll be
+              unbeatable.
+            </p>
+            <br />
+
+            ~ Bazinga!
           </Grid.Col>
         </Grid.Row>
       </Grid>

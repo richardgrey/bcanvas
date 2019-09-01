@@ -6,7 +6,7 @@ import './Section.scss';
 const Section = ({ className, fluid, bg, indent, spacing, children, ...other }) => {
   const cls = b('section', { fluid, spacing, bg, indent });
   return (
-    <div className={`${cls} ${className}`} {...other}>
+    <div className={`${cls} ${className || ''}`} {...other}>
       {children}
     </div>
   );

@@ -46,10 +46,8 @@ const UserHome = ({ isEmpty }) => (
         </Layout.Inner>
       </Section>
       <Layout.Inner>
-        <Section>
-          <h2 className="text_align_center">Check this examples</h2>
-          <SamplesList />
-        </Section>
+        <h2 className="text_align_center">Check this examples</h2>
+        <SamplesList />
       </Layout.Inner>
     </div>
   </Layout.Container>
