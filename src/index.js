@@ -22,6 +22,7 @@ import CookiePolicy from './routes/CookiePolicy';
 import AuthHandler from './routes/AuthHandler';
 import PasswordRecovery from './routes/PasswordRecovery';
 import EmailRecovery from './routes/EmailRecovery';
+import EmailVerification from './routes/EmailVerification';
 import NoMatch from './routes/NoMatch';
 
 import './styles/index.scss';
@@ -54,8 +55,7 @@ ReactDOM.render(
           <Route path="/password-recovery/:verificationCode" component={PasswordRecovery} />
           <Route path="/password-recovery" component={PasswordRecovery} />
           <Route path="/email-recovery/:verificationCode" component={EmailRecovery} />
-
-          <Route path="/email-verification/:verificationCode" component={PasswordRecovery} />
+          <Route path="/email-verification/:verificationCode" component={EmailVerification} />
           <Route component={NoMatch} />
         </Switch>
       </App>
