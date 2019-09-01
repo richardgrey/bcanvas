@@ -12,7 +12,8 @@ class AuthHandler extends Component {
 
   render() {
     const { location } = this.props;
-    const { mode, oobCode, continueUrl, lang = 'en' } = queryString.parse(location.search);
+    const { mode, oobCode } = queryString.parse(location.search);
+    // const { continueUrl, lang = 'en' } = queryString.parse(location.search);
 
     if (mode === 'resetPassword') {
       return <Redirect to={`/password-recovery/${oobCode}`} />;

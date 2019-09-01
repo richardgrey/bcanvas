@@ -139,7 +139,7 @@ const updateEntryReducer = (state, payload) => {
       ...state,
       entries: {
         ...entries,
-        [entryId]: Object.assign({ value }, entries[entryId]),
+        [entryId]: Object.assign({}, entries[entryId], { value }),
       },
     };
   }

@@ -44,13 +44,66 @@ class Entry extends Component {
     inputRef: null,
   };
 
-  onBlur = e => {
-    e.target.innerHTML = `<span>${e.target.innerText}</span>`;
+  componentDidMount() {
+    window.addEventListener('blur', this.handleWindowBlur, false);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('blur', this.handleWindowBlur, false);
+  }
+
+  handleWindowBlur = () => {
+    clearTimeout(this.submitOnBlurTimer);
   };
 
   onPaste = e => {
     e.preventDefault();
     document.execCommand('inserttext', false, e.clipboardData.getData('Text'));
+  };
+
+  onBlur = e => {
+    const { id } = this.props;
+    const { target } = e;
+    const text = target.innerText.trim();
+
+    // Postpone action to cover the case when blur happened on changing active window/tab
+    this.submitOnBlurTimer = setTimeout(() => {
+      if (id) {
+        target.innerHTML = `<span>${text}</span>`;
+      } else {
+        target.innerHTML = '';
+      }
+      this.submitEntry(text, false);
+    }, 0);
+  };
+
+  onKeyDown = e => {
+    const { id } = this.props;
+    const { target, key } = e;
+    let text;
+
+    if (key === 'Enter') {
+      e.preventDefault();
+
+      if (id) {
+        // update existing entry
+        e.target.blur();
+        focusNextEntry(target);
+      } else if (target.innerText.trim()) {
+        // For new entry field act only if any text entered
+        e.target.blur();
+        // Keep focus for new entry field
+        e.target.focus();
+      }
+    }
+    if (!id && key === 'Tab') {
+      text = target.innerText.trim();
+      if (text) {
+        e.preventDefault();
+        this.submitEntry(text);
+        target.innerHTML = '';
+      }
+    }
   };
 
   onKeyUp = e => {
@@ -61,26 +114,10 @@ class Entry extends Component {
     }
   };
 
-  onKeyDown = e => {
-    const { target } = e;
-
-    if ((e.key === 'Enter' || e.key === 'Tab') && !e.shiftKey) {
-      e.preventDefault();
-      const val = target.innerText.trim();
-      this.submitEntry(val, target);
-    }
-  };
-
-  submitEntry(val, target) {
+  submitEntry(val) {
     const { dispatch, canvasId, id, value, label } = this.props;
 
-    if (val === value) {
-      // Imitate submission.
-      focusNextEntry(target);
-      return;
-    }
-
-    if (!canvasId) {
+    if (!canvasId || val === value) {
       return;
     }
 
@@ -92,12 +129,9 @@ class Entry extends Component {
         // Remove entry. Move focus to next input
         dispatch(removeEntry(canvasId, id));
       }
-      focusNextEntry(target);
     } else if (val) {
       // Creates new entry that will render via state update. Clear input for next entry
       dispatch(addEntry(canvasId, label, val));
-      // eslint-disable-next-line no-param-reassign
-      target.innerText = '';
     }
   }
 
