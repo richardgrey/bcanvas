@@ -18,7 +18,7 @@ const Footer = () => (
           <div className="footer__copy">
             <p>
               Designed and developed  by{' '}
-              <a href="mailto:igor@bcanvas.io">Igor{'\u00A0'}Nikolenko</a>.
+              <a href="https://www.linkedin.com/in/igor-nikolenko/">Igor{'\u00A0'}Nikolenko</a>.
               <br />
               Illustrations by{' '}
               <a href="https://manypixels.co/" target="_blank" rel="noopener noreferrer">
