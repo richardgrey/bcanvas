@@ -20,7 +20,7 @@ class CookiePolicy extends Component {
               preferences. When the user returns, the browser provides the cookie with the stored
               information to the site.
             </p>
-            <h2>What cookies are used for?</h2>
+            <h4>What cookies are used for?</h4>
             <p>
               Cookies are used for adjusting a website’s content to fit a user’s preferences and
               optimize the website. They store useful information that improve the user’s experience

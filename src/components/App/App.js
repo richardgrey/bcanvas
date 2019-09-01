@@ -6,6 +6,7 @@ import { subscribeOnAuthStateChanged } from '../../actions/auth';
 import IconsSprite from '../Icon/IconSprite';
 import { locationPropType } from '../../utils/propTypes';
 import './App.scss';
+import CookieBadge from '../CookieBadge/CookieBadge';
 
 class App extends Component {
   static propTypes = {
@@ -39,6 +40,7 @@ class App extends Component {
       <div className="app">
         <IconsSprite />
         {children}
+        <CookieBadge />
       </div>
     ) : null;
   }

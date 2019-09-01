@@ -1,0 +1,46 @@
+@import "../../styles/variables";
+
+@keyframes cookie-showup {
+  0% {
+    transform: translateY(100%);
+  }
+  66% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.cookie-badge {
+  color: #fff;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 20px 80px 20px 40px;
+  background: $color-primary;
+  animation: 2s ease cookie-showup;
+
+  a {
+    color: #fff;
+    text-decoration: underline;
+  }
+}
+.cookie-badge__close {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  width: 30px;
+  height: 30px;
+  margin: -15px 0 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+
+  .icon_cross {
+    width: 16px;
+    height: 16px;
+    fill: #fff;
+  }
+}
