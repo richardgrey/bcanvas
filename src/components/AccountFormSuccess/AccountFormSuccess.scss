@@ -11,15 +11,31 @@
   margin: 0 auto;
 
   & > div {
-    width: 50%;
+    //width: 50%;
     padding: 20px;
   }
 }
 .account-form-success__pic {
+  width: 100%;
+}
+.account-form-success__content {
+  text-align: center;
 }
 .account-form-success__title {
   font-family: $font-serif;
-  font-size: 4rem;
+  font-size: 3rem;
   line-height: 1;
   margin-bottom: 0;
+}
+
+@media (min-width: $min-tablet) {
+  .account-form-success > div {
+    width: 50%;
+  }
+  .account-form-success__content {
+    text-align: left;
+  }
+  .account-form-success__title {
+    font-size: 4rem;
+  }
 }
