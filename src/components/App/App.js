@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { subscribeOnAuthStateChanged } from '../../actions/auth';
 import IconsSprite from '../Icon/IconSprite';
 import { locationPropType } from '../../utils/propTypes';
+import './App.scss'
 
 class App extends Component {
   static propTypes = {
@@ -34,10 +35,10 @@ class App extends Component {
   render() {
     const { children, isReady } = this.props;
     return isReady ? (
-      <>
+      <div className="app">
         <IconsSprite />
         {children}
-      </>
+      </div>
     ) : null;
   }
 }
