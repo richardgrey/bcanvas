@@ -129,7 +129,7 @@ const HowToCanvas = () => (
             </ul>
             <br />
 
-            <h3>It’s time to do the work!</h3>
+            <h3>It’s the right time to start!</h3>
           </Grid.Col>
         </Grid.Row>
       </Grid>

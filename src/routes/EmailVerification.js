@@ -7,24 +7,18 @@ import PageTitle from '../components/PageTitle/PageTitle';
 import Button from '../components/Button/Button';
 import { FormRow } from '../components/Form/Form';
 import Icon from '../components/Icon/Icon';
-import { resetAuthForms, verifyActionCode, sendPasswordResetEmail } from '../actions/auth';
+import { resetAuthForms, verifyActionCode } from '../actions/auth';
 
 class EmailVerification extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     verificationCode: PropTypes.string,
     isValidVerificationCode: PropTypes.bool,
-    authActionEmail: PropTypes.string,
-    isSuccess: PropTypes.bool,
-    isSubmitting: PropTypes.bool,
   };
 
   static defaultProps = {
     verificationCode: undefined,
     isValidVerificationCode: undefined,
-    authActionEmail: undefined,
-    isSuccess: undefined,
-    isSubmitting: undefined,
   };
 
   componentDidMount() {
