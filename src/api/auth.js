@@ -146,6 +146,22 @@ const auth = {
         .catch(error => reject(AUTH_ERROR_CODE_MAP[error.code] || error));
     }),
 
+  checkActionCode: async code =>
+    new Promise((resolve, reject) => {
+      firebaseAuth
+        .checkActionCode(code)
+        .then(info => resolve(info))
+        .catch(error => reject(AUTH_ERROR_CODE_MAP[error.code] || error));
+    }),
+
+  applyActionCode: async code =>
+    new Promise((resolve, reject) => {
+      firebaseAuth
+        .applyActionCode(code)
+        .then(() => resolve())
+        .catch(error => reject(AUTH_ERROR_CODE_MAP[error.code] || error));
+    }),
+
   confirmPasswordReset: async (code, password) =>
     new Promise((resolve, reject) => {
       firebaseAuth

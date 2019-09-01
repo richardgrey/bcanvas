@@ -12,8 +12,8 @@ import {
   AUTH_PASSWORD_RESET_EMAIL_REQUEST,
   AUTH_PASSWORD_RESET_EMAIL_SUCCESS,
   AUTH_PASSWORD_RESET_EMAIL_ERROR,
-  AUTH_PASSWORD_CODE_VALIDATION_SUCCESS,
-  AUTH_PASSWORD_CODE_VALIDATION_ERROR,
+  AUTH_ACTION_CODE_VALIDATION_SUCCESS,
+  AUTH_ACTION_CODE_VALIDATION_ERROR,
   AUTH_RESET_PASSWORD_ERROR,
   AUTH_PASSWORD_CONFIRM_REQUEST,
   AUTH_PASSWORD_CONFIRM_SUCCESS,
@@ -27,6 +27,7 @@ const defaultState = {
   isValidVerificationCode: undefined,
   isSubmitting: undefined,
   errors: undefined,
+  authActionEmail: undefined,
 };
 
 export default function auth(state = defaultState, action) {
@@ -48,6 +49,7 @@ export default function auth(state = defaultState, action) {
         isSuccess: false,
         isValidVerificationCode: undefined,
         errors: undefined,
+        authActionEmail: undefined,
       };
     case AUTH_LOGIN_REQUEST:
     case AUTH_REGISTER_REQUEST:
@@ -93,12 +95,13 @@ export default function auth(state = defaultState, action) {
         isSubmitting: false,
         errors: errorCodeToState(action.payload, 'recovery'),
       };
-    case AUTH_PASSWORD_CODE_VALIDATION_SUCCESS:
+    case AUTH_ACTION_CODE_VALIDATION_SUCCESS:
       return {
         ...state,
+        authActionEmail: action.payload,
         isValidVerificationCode: true,
       };
-    case AUTH_PASSWORD_CODE_VALIDATION_ERROR:
+    case AUTH_ACTION_CODE_VALIDATION_ERROR:
       return {
         ...state,
         isValidVerificationCode: false,

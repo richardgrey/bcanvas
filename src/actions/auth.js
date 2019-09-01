@@ -167,9 +167,9 @@ export const sendPasswordResetEmail = email => async dispatch => {
 
 // ---
 
-export const AUTH_PASSWORD_CODE_VALIDATION_REQUEST = 'AUTH_PASSWORD_CODE_VALIDATION_REQUEST';
-export const AUTH_PASSWORD_CODE_VALIDATION_SUCCESS = 'AUTH_PASSWORD_CODE_VALIDATION_SUCCESS';
-export const AUTH_PASSWORD_CODE_VALIDATION_ERROR = 'AUTH_PASSWORD_CODE_VALIDATION_ERROR';
+export const AUTH_ACTION_CODE_VALIDATION_REQUEST = 'AUTH_ACTION_CODE_VALIDATION_REQUEST';
+export const AUTH_ACTION_CODE_VALIDATION_SUCCESS = 'AUTH_ACTION_CODE_VALIDATION_SUCCESS';
+export const AUTH_ACTION_CODE_VALIDATION_ERROR = 'AUTH_ACTION_CODE_VALIDATION_ERROR';
 
 /**
  * Check if given code is valid action code for password reset.
@@ -178,12 +178,25 @@ export const AUTH_PASSWORD_CODE_VALIDATION_ERROR = 'AUTH_PASSWORD_CODE_VALIDATIO
  * @returns {Function}
  */
 export const verifyPasswordResetCode = code => async dispatch => {
-  dispatch({ type: AUTH_PASSWORD_CODE_VALIDATION_REQUEST });
+  dispatch({ type: AUTH_ACTION_CODE_VALIDATION_REQUEST });
   try {
     const email = await api.auth.verifyPasswordResetCode(code);
-    dispatch({ type: AUTH_PASSWORD_CODE_VALIDATION_SUCCESS, payload: email });
+    dispatch({ type: AUTH_ACTION_CODE_VALIDATION_SUCCESS, payload: email });
   } catch (error) {
-    dispatch({ type: AUTH_PASSWORD_CODE_VALIDATION_ERROR, payload: error });
+    dispatch({ type: AUTH_ACTION_CODE_VALIDATION_ERROR, payload: error });
+  }
+};
+
+export const verifyActionCode = code => async dispatch => {
+  dispatch({ type: AUTH_ACTION_CODE_VALIDATION_REQUEST });
+  try {
+    const info = await api.auth.checkActionCode(code);
+    const { email } = info.data || {};
+    // Apply the code straight away
+    await api.auth.applyActionCode(code);
+    dispatch({ type: AUTH_ACTION_CODE_VALIDATION_SUCCESS, payload: email });
+  } catch (error) {
+    dispatch({ type: AUTH_ACTION_CODE_VALIDATION_ERROR, payload: error });
   }
 };
 
@@ -222,4 +235,20 @@ export const AUTH_RESET_PASSWORD_ERROR = 'AUTH_RESET_PASSWORD_ERROR';
  */
 export const resetPasswordError = error => dispatch => {
   dispatch({ type: AUTH_RESET_PASSWORD_ERROR, payload: error });
+};
+
+// ---
+
+export const AUTH_VERIFY_EMAIL_REQUEST = 'AUTH_VERIFY_EMAIL_REQUEST';
+export const AUTH_VERIFY_EMAIL_SUCCESS = 'AUTH_VERIFY_EMAIL_SUCCESS';
+export const AUTH_VERIFY_EMAIL_ERROR = 'AUTH_VERIFY_EMAIL_ERROR';
+
+export const verifyEmail = code => async dispatch => {
+  dispatch({ type: AUTH_VERIFY_EMAIL_REQUEST });
+  try {
+
+    dispatch({ type: AUTH_VERIFY_EMAIL_SUCCESS });
+  } catch (error) {
+    dispatch({ type: AUTH_VERIFY_EMAIL_ERROR, payload: error });
+  }
 };
