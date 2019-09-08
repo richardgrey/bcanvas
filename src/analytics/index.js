@@ -14,9 +14,9 @@ export const register = (uid, email, name) => {
   Amplitude.setUserId(uid);
   Amplitude.logEvent('Register');
   Amplitude.setUserProperties({
-    $email: email,
-    $name: name,
-    $created: new Date(),
+    email,
+    name,
+    created: new Date(),
   });
 };
 
@@ -29,8 +29,8 @@ export const signIn = (uid, email, name, provider) => {
   Amplitude.setUserId(uid);
   Amplitude.logEvent('Sign In', { provider });
   Amplitude.setUserProperties({
-    $email: email,
-    $name: name,
+    email,
+    name,
   });
 };
 
