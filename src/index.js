@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, Switch } from 'react-router-dom';
+import * as Sentry from '@sentry/browser';
 
 import configureStore from './configureStore';
 import * as serviceWorker from './serviceWorker';
@@ -29,6 +30,7 @@ import './styles/index.scss';
 import './styles/print.scss';
 
 const store = configureStore();
+Sentry.init({ dsn: process.env.REACT_APP_SENTRY_DSN });
 
 // Track page views
 analytics.pageView(history.location.pathname + history.location.search);

@@ -35,7 +35,7 @@ class Button extends Component {
     });
 
     return href ? (
-      <Link to={href} className={[cls, className].join(' ')}>
+      <Link to={href} className={[cls, className].join(' ')} {...other}>
         {inner()}
       </Link>
     ) : (
