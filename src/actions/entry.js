@@ -1,4 +1,4 @@
-import uuidv4 from 'uuid/v4';
+import { v4 as uuidv4 } from 'uuid';
 import api from '../api';
 
 export const ENTRY_ADD_REQUEST = 'ENTRY_ADD_REQUEST';

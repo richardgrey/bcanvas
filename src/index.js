@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import * as Sentry from '@sentry/browser';
 
 import configureStore from './configureStore';
@@ -34,11 +34,11 @@ Sentry.init({ dsn: process.env.REACT_APP_SENTRY_DSN });
 
 // Track page views
 analytics.pageView(history.location.pathname + history.location.search);
-history.listen(analytics.pageView);
+history.listen(({ location }) => analytics.pageView(location.pathname + location.search));
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={history}>
+    <BrowserRouter history={history}>
       <App>
         <Switch>
           <Route exact path="/" component={Home} />
@@ -59,7 +59,7 @@ ReactDOM.render(
           <Route component={NoMatch} />
         </Switch>
       </App>
-    </Router>
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root'),
 );

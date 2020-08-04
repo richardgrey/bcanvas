@@ -4,16 +4,16 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { subscribeOnAuthStateChanged } from '../../actions/auth';
 import IconsSprite from '../Icon/IconSprite';
-import { locationPropType } from '../../utils/propTypes';
-import './App.scss';
 import CookieBadge from '../CookieBadge/CookieBadge';
+
+import './App.scss';
 
 class App extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.node.isRequired,
     isReady: PropTypes.bool.isRequired,
-    location: locationPropType.isRequired,
+    location: PropTypes.object.isRequired,
   };
 
   componentDidMount() {
